@@ -6,6 +6,7 @@
   "private": true,
   "main": "main.js",
   "dependencies": {
+    "apsl-react-native-button": "^3.0.1",
     "exponent": "^10.0.4",
     "react": "~15.3.2",
     "react-native": "github:exponentjs/react-native#sdk-10.1.2"

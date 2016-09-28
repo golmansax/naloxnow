@@ -5,12 +5,15 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Components } from 'exponent';
+import Button from 'apsl-react-native-button';
 
 class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up main.js to start working on your app!</Text>
+        <Text>Hello!</Text>
+        <Button>Press me</Button>
       </View>
     );
   }
@@ -19,7 +22,7 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#bebebe',
     alignItems: 'center',
     justifyContent: 'center',
   },
