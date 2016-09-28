@@ -5,16 +5,38 @@ import {
   Text,
   View,
 } from 'react-native';
-import { Components } from 'exponent';
-import Button from 'apsl-react-native-button';
+import TabNavigator from 'react-native-tab-navigator';
+import { Entypo } from '@exponent/vector-icons';
+import { HomeScreen } from './screens/home_screen';
+import { SecondScreen } from './screens/second_screen';
 
 class App extends React.Component {
+  state = {
+    selectedTab: 'home',
+  };
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hello!</Text>
-        <Button>Press me</Button>
-      </View>
+      <TabNavigator>
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'home'}
+          title="Home"
+          renderIcon={() => (
+            <Entypo name="500px" size={32} color="green" />
+          )}
+          onPress={() => this.setState({ selectedTab: 'home' })}>
+          <HomeScreen />
+        </TabNavigator.Item>
+        <TabNavigator.Item
+          selected={this.state.selectedTab === 'profile'}
+          title="Profile"
+          renderIcon={() => (
+            <Entypo name="500px" size={32} color="green" />
+          )}
+          onPress={() => this.setState({ selectedTab: 'profile' })}>
+          <SecondScreen />
+        </TabNavigator.Item>
+      </TabNavigator>
     );
   }
 }
