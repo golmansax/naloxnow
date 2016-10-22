@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import TabNavigator from 'react-native-tab-navigator';
-import { Entypo } from '@exponent/vector-icons';
+import { FontAwesome } from '@exponent/vector-icons';
 import { HomeScreen } from './screens/home_screen';
 import { SecondScreen } from './screens/second_screen';
 
@@ -22,7 +22,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'home'}
           title="Home"
           renderIcon={() => (
-            <Entypo name="500px" size={32} color="green" />
+            <FontAwesome name="blind" size={32} color="green" />
           )}
           onPress={() => this.setState({ selectedTab: 'home' })}>
           <HomeScreen />
@@ -31,7 +31,7 @@ class App extends React.Component {
           selected={this.state.selectedTab === 'profile'}
           title="Profile"
           renderIcon={() => (
-            <Entypo name="500px" size={32} color="green" />
+            <FontAwesome name="blind" size={32} color="green" />
           )}
           onPress={() => this.setState({ selectedTab: 'profile' })}>
           <SecondScreen />
