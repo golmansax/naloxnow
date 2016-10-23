@@ -4,9 +4,10 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Components } from 'exponent';
 import Button from 'apsl-react-native-button';
 import { white, red } from '../styles/colors';
-import { naloxoneSources } from '../data';
+import { naloxoneSources, tenderloinLocation } from '../data';
 
 const styles = StyleSheet.create({
   content: {
@@ -28,15 +29,50 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ResponderScene = () => (
-  <View style={styles.content}>
-    <View style={styles.map}></View>
-    <View style={styles.list}>
-      {naloxoneSources.map((source) => (
-        <View key={source.id} style={styles.listItem}>
-          <Text>{source.title}</Text>
+export class ResponderScene extends React.Component {
+  state = {
+    lat: null,
+    lng: null,
+  };
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+  }
+
+  render() {
+    return (
+      <View style={styles.content}>
+        {this.state.lat === null || this.state.lng === null ? (
+          <View style={styles.map} />
+        ) : (
+          <Components.MapView
+            style={styles.map}
+            region={{
+              latitude: this.state.lat,
+              longitude: this.state.lng,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}
+            showsUserLocation={true}
+          />
+        )}
+        <View style={styles.list}>
+          {naloxoneSources.map((source) => (
+            <View key={source.id} style={styles.listItem}>
+              <Text>{source.title}</Text>
+            </View>
+          ))}
         </View>
-      ))}
-    </View>
-  </View>
-);
+      </View>
+    );
+  }
+}

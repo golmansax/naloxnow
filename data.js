@@ -15,3 +15,8 @@ export const naloxoneSources = [
     subtitle: '253 2nd Ave, San Mateo, CA',
   },
 ];
+
+export const tenderloinLocation = {
+  lat: 37.784201,
+  lng: -122.412280,
+};
