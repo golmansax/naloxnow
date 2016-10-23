@@ -1,6 +1,6 @@
 import Exponent from 'exponent';
 import React from 'react';
-import { Scene, Router, NavBar } from 'react-native-router-flux';
+import { Scene, Router } from 'react-native-router-flux';
 import { ResponderScene } from './scenes/responder_scene';
 
 const App = () => (

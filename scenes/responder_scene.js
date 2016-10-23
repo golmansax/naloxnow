@@ -5,9 +5,8 @@ import {
   View,
 } from 'react-native';
 import { Components } from 'exponent';
-import Button from 'apsl-react-native-button';
 import { white, red } from '../styles/colors';
-import { naloxoneSources, tenderloinLocation } from '../data';
+import { naloxoneSources } from '../data';
 
 const styles = StyleSheet.create({
   content: {
@@ -36,16 +35,16 @@ export class ResponderScene extends React.Component {
   };
 
   componentWillMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    navigator.geolocation.getCurrentPosition((position) => this.setState({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    }), (error) => {
+      alert(JSON.stringify(error));
+    }, {
+      enableHighAccuracy: true,
+      timeout: 20000,
+      maximumAge: 1000,
+    });
   }
 
   render() {
@@ -62,7 +61,7 @@ export class ResponderScene extends React.Component {
               latitudeDelta: 0.01,
               longitudeDelta: 0.01,
             }}
-            showsUserLocation={true}
+            showsUserLocation
           />
         )}
         <View style={styles.list}>
