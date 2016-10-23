@@ -1,13 +1,12 @@
 import Exponent from 'exponent';
 import React from 'react';
 import { Scene, Router, NavBar } from 'react-native-router-flux';
-import { ResponderScreen } from './screens/responder_screen';
-import { SecondScreen } from './screens/second_screen';
+import { ResponderScene } from './scenes/responder_scene';
 
 const App = () => (
   <Router>
     <Scene key='root' rightTitle='Settings' onRight={() => alert('Hello')}>
-      <Scene key='responder' component={ResponderScreen} title='Responder' />
+      <Scene key='responder' component={ResponderScene} title='Responder' />
     </Scene>
   </Router>
 );
