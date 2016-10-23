@@ -5,23 +5,20 @@ import {
   View,
 } from 'react-native';
 import Button from 'apsl-react-native-button';
-
-export class SecondScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>I'm the second screen</Text>
-        <Button>Find Naloxone now!</Button>
-      </View>
-    );
-  }
-}
+import { grey } from '../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#bebebe',
+    backgroundColor: grey,
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
+
+export const SecondScreen = () => (
+  <View style={styles.container}>
+    <Text>I&rsquo;m the second screen</Text>
+    <Button>Find Naloxone now!</Button>
+  </View>
+);
