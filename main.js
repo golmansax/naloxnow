@@ -1,41 +1,15 @@
 import Exponent from 'exponent';
 import React from 'react';
-import TabNavigator from 'react-native-tab-navigator';
-import { FontAwesome } from '@exponent/vector-icons';
+import { Scene, Router, NavBar } from 'react-native-router-flux';
 import { ResponderScreen } from './screens/responder_screen';
 import { SecondScreen } from './screens/second_screen';
 
-class App extends React.Component {
-  state = {
-    selectedTab: 'home',
-  };
-
-  render() {
-    return (
-      <TabNavigator>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'home'}
-          title='Home'
-          renderIcon={() => (
-            <FontAwesome name='blind' size={32} color='green' />
-          )}
-          onPress={() => this.setState({ selectedTab: 'home' })}
-          >
-          <ResponderScreen />
-        </TabNavigator.Item>
-        <TabNavigator.Item
-          selected={this.state.selectedTab === 'profile'}
-          title='Profile'
-          renderIcon={() => (
-            <FontAwesome name='blind' size={32} color='green' />
-          )}
-          onPress={() => this.setState({ selectedTab: 'profile' })}
-          >
-          <SecondScreen />
-        </TabNavigator.Item>
-      </TabNavigator>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Scene key='root' rightTitle='Settings' onRight={() => alert('Hello')}>
+      <Scene key='responder' component={ResponderScreen} title='Responder' />
+    </Scene>
+  </Router>
+);
 
 Exponent.registerRootComponent(App);
