@@ -2,7 +2,7 @@ import Exponent from 'exponent';
 import React from 'react';
 import TabNavigator from 'react-native-tab-navigator';
 import { FontAwesome } from '@exponent/vector-icons';
-import { HomeScreen } from './screens/home_screen';
+import { ResponderScreen } from './screens/responder_screen';
 import { SecondScreen } from './screens/second_screen';
 
 class App extends React.Component {
@@ -21,7 +21,7 @@ class App extends React.Component {
           )}
           onPress={() => this.setState({ selectedTab: 'home' })}
           >
-          <HomeScreen />
+          <ResponderScreen />
         </TabNavigator.Item>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'profile'}

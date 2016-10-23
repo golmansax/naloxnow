@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const HomeScreen = () => (
+export const ResponderScreen = () => (
   <View style={styles.container}>
     <NavigationBar title={{ title: 'Home' }} style={styles.navbar} />
     <View style={styles.content}>
