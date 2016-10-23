@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
   },
+
+  listItem: {
+    height: 50,
+  },
 });
 
 export const ResponderScene = () => (
@@ -29,7 +33,9 @@ export const ResponderScene = () => (
     <View style={styles.map}></View>
     <View style={styles.list}>
       {naloxoneSources.map((source) => (
-        <Text key={source.id}>{source.title}</Text>
+        <View key={source.id} style={styles.listItem}>
+          <Text>{source.title}</Text>
+        </View>
       ))}
     </View>
   </View>
