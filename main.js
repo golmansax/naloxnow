@@ -1,4 +1,4 @@
 import Exponent from 'exponent';
-import { App } from './app';
+import { Entry } from './components/entry';
 
-Exponent.registerRootComponent(App);
+Exponent.registerRootComponent(Entry);

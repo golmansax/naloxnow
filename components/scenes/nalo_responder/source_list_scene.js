@@ -6,9 +6,9 @@ import {
   Text,
   View,
   TouchableHighlight,
-} from '../../components/base';
-import { white } from '../../styles/colors';
-import { naloxoneSources, responderLocation } from '../../data';
+} from '../../base';
+import { white } from '../../../styles/colors';
+import { naloxoneSources, responderLocation } from '../../../data';
 import { LocationMarkerView } from './location_marker_view';
 
 const styles = StyleSheet.create({

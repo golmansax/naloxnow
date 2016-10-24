@@ -5,10 +5,10 @@ import {
   Text,
   View,
   Button,
-} from '../../components/base';
-import { white } from '../../styles/colors';
-import { RequestStatus } from '../../constants';
-import { firebaseApp } from '../../lib/firebase';
+} from '../../base';
+import { white } from '../../../styles/colors';
+import { RequestStatus } from '../../../constants';
+import { firebaseApp } from '../../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {

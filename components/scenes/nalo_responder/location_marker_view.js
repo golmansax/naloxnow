@@ -3,8 +3,8 @@ import Pulse from 'react-native-pulse';
 import {
   View,
   Image,
-} from '../../components/base';
-import { locationPulseBlue } from '../../styles/colors';
+} from '../../base';
+import { locationPulseBlue } from '../../../styles/colors';
 import locationIcon from './location_icon.png';
 
 export const LocationMarkerView = () => (

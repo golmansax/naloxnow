@@ -4,9 +4,9 @@ import { Actions } from 'react-native-router-flux';
 import {
   Text,
   View,
-} from '../../components/base';
-import { white } from '../../styles/colors';
-import { firebaseApp } from '../../lib/firebase';
+} from '../../base';
+import { white } from '../../../styles/colors';
+import { firebaseApp } from '../../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {
