@@ -6,6 +6,7 @@ import {
   Button,
 } from '../../components';
 import { white } from '../../styles/colors';
+import { firebaseApp } from '../../firebase';
 
 const styles = StyleSheet.create({
   content: {
@@ -19,7 +20,9 @@ export const NaloResponderSourceInfoScene = ({ source }) => (
   <View style={styles.content}>
     <Text>{source.title}</Text>
     <Text>{source.subtitle}</Text>
-    <Button>Request Naloxone</Button>
+    <Button onPress={() => firebaseApp.database().ref('requestedSource').set(source)}>
+      Request Naloxone
+    </Button>
   </View>
 );
 
