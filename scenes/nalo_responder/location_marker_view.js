@@ -3,7 +3,7 @@ import Pulse from 'react-native-pulse';
 import {
   View,
   Image,
-} from '../../components';
+} from '../../components/base';
 import { locationPulseBlue } from '../../styles/colors';
 import locationIcon from './location_icon.png';
 

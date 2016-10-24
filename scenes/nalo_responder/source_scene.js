@@ -5,7 +5,7 @@ import {
   Text,
   View,
   Button,
-} from '../../components';
+} from '../../components/base';
 import { white } from '../../styles/colors';
 import { RequestStatus } from '../../constants';
 import { firebaseApp } from '../../firebase';

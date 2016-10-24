@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { View, TouchableHighlight, Text } from './components';
+import { View, TouchableHighlight, Text } from './components/base';
 
 const menuEntries = [
   { title: 'Find Naloxone', key: 'naloResponder' },

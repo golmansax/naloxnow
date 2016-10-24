@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import {
   Text,
   View,
-} from '../../components';
+} from '../../components/base';
 import { white } from '../../styles/colors';
 import { firebaseApp } from '../../firebase';
 
