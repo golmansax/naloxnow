@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { View, TouchableHighlight, Text } from './components/base';
+import { View, TouchableHighlight, Text } from '../base';
 
 const menuEntries = [
   { title: 'Find Naloxone', key: 'naloResponder' },
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const SideMenu = ({ onNavigate }) => (
+export const DrawerMenu = ({ onNavigate }) => (
   <View style={styles.content}>
     {menuEntries.map((entry) => (
       <TouchableHighlight
@@ -34,6 +34,6 @@ export const SideMenu = ({ onNavigate }) => (
   </View>
 );
 
-SideMenu.propTypes = {
+DrawerMenu.propTypes = {
   onNavigate: PropTypes.func.isRequired,
 };

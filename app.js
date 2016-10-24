@@ -4,7 +4,7 @@ import { NaloResponderSourceListScene } from './scenes/nalo_responder/source_lis
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
 import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
 import { NaloProviderScene } from './scenes/nalo_provider_scene';
-import { DrawerLayout } from './drawer_layout';
+import { DrawerLayout } from './components/layouts/drawer_layout';
 
 export const App = () => (
   <Router>

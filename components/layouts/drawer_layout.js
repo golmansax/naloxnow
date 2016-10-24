@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import Drawer from 'react-native-drawer';
 import { Actions, DefaultRenderer } from 'react-native-router-flux';
-import { SideMenu } from './sidemenu';
+import { DrawerMenu } from './drawer_menu';
 
 export class DrawerLayout extends Component {
   render() {
@@ -15,7 +15,7 @@ export class DrawerLayout extends Component {
         onOpen={() => Actions.refresh({ key, open: true })}
         onClose={() => Actions.refresh({ key, open: false })}
         type='static'
-        content={<SideMenu onNavigate={this.closeDrawer} />}
+        content={<DrawerMenu onNavigate={this.closeDrawer} />}
         tapToClose
         openDrawerOffset={0.2}
         tweenHandler={Drawer.tweenPresets.parallax}
