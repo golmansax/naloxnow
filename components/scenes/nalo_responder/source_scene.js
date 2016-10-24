@@ -7,7 +7,7 @@ import {
   Button,
 } from '../../base';
 import { white } from '../../../styles/colors';
-import { RequestStatus } from '../../../constants';
+import { RequestStatus } from '../../../lib/constants';
 import { firebaseApp } from '../../../lib/firebase';
 
 const styles = StyleSheet.create({

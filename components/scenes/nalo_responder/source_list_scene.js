@@ -8,7 +8,7 @@ import {
   TouchableHighlight,
 } from '../../base';
 import { white } from '../../../styles/colors';
-import { naloxoneSources, responderLocation } from '../../../data';
+import { naloxoneSources, responderLocation } from '../../../lib/data';
 import { LocationMarkerView } from './location_marker_view';
 
 const styles = StyleSheet.create({
