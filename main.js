@@ -7,8 +7,16 @@ import { NaloResponderSourceInfoScene } from './scenes/nalo_responder/source_inf
 const App = () => (
   <Router>
     <Scene key='root' rightTitle='Settings' onRight={() => alert('Hello')}>
-      <Scene key='naloResponderSourceListScene' component={NaloResponderSourceListScene} title='Find Naloxone'/>
-      <Scene key='naloResponderSourceInfoScene' component={NaloResponderSourceInfoScene} title='Find Naloxone'/>
+      <Scene
+        key='naloResponderSourceListScene'
+        component={NaloResponderSourceListScene}
+        title='Find Naloxone'
+      />
+      <Scene
+        key='naloResponderSourceInfoScene'
+        component={NaloResponderSourceInfoScene}
+        title='Find Naloxone'
+      />
     </Scene>
   </Router>
 );

@@ -6,9 +6,8 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Button,
 } from '../../components';
-import { white, red } from '../../styles/colors';
+import { white } from '../../styles/colors';
 import { naloxoneSources } from '../../data';
 
 const styles = StyleSheet.create({

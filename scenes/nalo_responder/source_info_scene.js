@@ -1,14 +1,11 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import {
-  MapView,
   Text,
   View,
-  TouchableHighlight,
   Button,
 } from '../../components';
-import { white, red } from '../../styles/colors';
-import { naloxoneSources } from '../../data';
+import { white } from '../../styles/colors';
 
 const styles = StyleSheet.create({
   content: {
@@ -18,16 +15,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export const NaloResponderSourceInfoScene = ({ source }) => {
-  console.log(source);
-  return (
-    <View style={styles.content}>
-      <Text>{source.title}</Text>
-      <Text>{source.subtitle}</Text>
-      <Button>Request Naloxone</Button>
-    </View>
-  );
-};
+export const NaloResponderSourceInfoScene = ({ source }) => (
+  <View style={styles.content}>
+    <Text>{source.title}</Text>
+    <Text>{source.subtitle}</Text>
+    <Button>Request Naloxone</Button>
+  </View>
+);
 
 NaloResponderSourceInfoScene.propTypes = {
   source: PropTypes.object.isRequired,
