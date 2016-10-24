@@ -5,10 +5,12 @@ import {
   MapView,
   Text,
   View,
+  Image,
   TouchableHighlight,
 } from '../../components';
 import { white } from '../../styles/colors';
-import { naloxoneSources } from '../../data';
+import { naloxoneSources, responderLocation } from '../../data';
+import { LocationMarkerView } from './location_marker_view';
 
 const styles = StyleSheet.create({
   content: {
@@ -37,10 +39,13 @@ export class NaloResponderSourceListScene extends Component {
   };
 
   componentWillMount() {
-    navigator.geolocation.getCurrentPosition((position) => this.setState({
-      lat: position.coords.latitude,
-      lng: position.coords.longitude,
-    }), (error) => {
+    navigator.geolocation.getCurrentPosition(() => {
+      // Set mock location
+      this.setState({
+        lat: responderLocation.lat,
+        lng: responderLocation.lng,
+      });
+    }, (error) => {
       alert(JSON.stringify(error));
     }, {
       enableHighAccuracy: true,
@@ -63,8 +68,16 @@ export class NaloResponderSourceListScene extends Component {
               latitudeDelta: 0.01,
               longitudeDelta: 0.01,
             }}
-            showsUserLocation
-          />
+            >
+            <MapView.Marker
+              coordinate={{
+                latitude: this.state.lat,
+                longitude: this.state.lng,
+              }}
+              >
+              <LocationMarkerView />
+            </MapView.Marker>
+          </MapView>
         )}
         <View style={styles.list}>
           {naloxoneSources.map((source) => (

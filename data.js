@@ -1,3 +1,8 @@
+export const responderLocation = {
+  lat: 37.781115,
+  lng: -122.411625,
+};
+
 export const naloxoneSources = [
   {
     id: 'walgreens',
