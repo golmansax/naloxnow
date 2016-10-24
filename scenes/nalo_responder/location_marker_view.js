@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import Pulse from 'react-native-pulse';
 import {
   View,

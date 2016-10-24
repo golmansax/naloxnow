@@ -5,7 +5,6 @@ import {
   MapView,
   Text,
   View,
-  Image,
   TouchableHighlight,
 } from '../../components';
 import { white } from '../../styles/colors';
