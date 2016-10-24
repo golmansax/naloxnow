@@ -8,7 +8,7 @@ import {
 } from '../../components/base';
 import { white } from '../../styles/colors';
 import { RequestStatus } from '../../constants';
-import { firebaseApp } from '../../firebase';
+import { firebaseApp } from '../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {

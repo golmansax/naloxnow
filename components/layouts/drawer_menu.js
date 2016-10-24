@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
+import { registerForPushNotificationsAsync } from '../../lib/push_notifications';
 
 const menuEntries = [
   { title: 'Find Naloxone', key: 'naloResponder' },
@@ -31,6 +32,15 @@ export const DrawerMenu = ({ onNavigate }) => (
         <Text>{entry.title}</Text>
       </TouchableHighlight>
     ))}
+    <TouchableHighlight
+      style={styles.entry}
+      onPress={async function () {
+        await registerForPushNotificationsAsync();
+        alert('Push notification');
+      }}
+      >
+      <Text>Enable push notifications</Text>
+    </TouchableHighlight>
   </View>
 );
 
