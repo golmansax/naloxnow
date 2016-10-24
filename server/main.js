@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 require('babel-register');
+require('babel-polyfill');
 const server = require('./index').server;
 
 const { SERVER_PORT } = process.env;
