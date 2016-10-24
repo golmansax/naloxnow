@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
 import { registerForPushNotificationsAsync } from '../../lib/push_notifications';
+import { getGlobalState } from '../../lib/global_state';
 
 const menuEntries = [
   { title: 'Find Naloxone', key: 'naloResponder' },
@@ -41,6 +42,9 @@ export const DrawerMenu = ({ onNavigate }) => (
       >
       <Text>Enable push notifications</Text>
     </TouchableHighlight>
+    <View style={styles.entry}>
+      <Text>User ID: {getGlobalState('user').id}</Text>
+    </View>
   </View>
 );
 

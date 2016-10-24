@@ -2,6 +2,8 @@ module.exports = {
   extends: ['golmansax/react-native'],
 
   rules: {
+    'babel/generator-star-spacing': 1,
+    'generator-star-spacing': 0,
     'import/prefer-default-export': 0,
     'max-len': [2, { code: 100 }],
     'react/forbid-prop-types': 0,
@@ -12,4 +14,6 @@ module.exports = {
   env: {
     browser: true,
   },
+
+  plugins: ['babel'],
 };
