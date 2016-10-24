@@ -16,6 +16,7 @@
     "firebase": "^3.5.1",
     "react": "~15.3.2",
     "react-native": "github:exponentjs/react-native#sdk-10.1.2",
+    "react-native-drawer": "^2.3.0",
     "react-native-router-flux": "^3.36.0"
   },
   "devDependencies": {
