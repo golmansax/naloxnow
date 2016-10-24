@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import {
-  StyleSheet,
+  MapView,
   Text,
   View,
-} from 'react-native';
-import { Components } from 'exponent';
-import { white, red } from '../styles/colors';
-import { naloxoneSources } from '../data';
+  TouchableHighlight,
+  Button,
+} from '../../components';
+import { white, red } from '../../styles/colors';
+import { naloxoneSources } from '../../data';
 
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    top: 60,
     backgroundColor: white,
   },
 
   map: {
     flex: 1,
-    backgroundColor: red,
   },
 
   list: {
@@ -28,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export class ResponderScene extends React.Component {
+export class NaloResponderSourceListScene extends Component {
   state = {
     lat: null,
     lng: null,
@@ -53,7 +56,7 @@ export class ResponderScene extends React.Component {
         {this.state.lat === null || this.state.lng === null ? (
           <View style={styles.map} />
         ) : (
-          <Components.MapView
+          <MapView
             style={styles.map}
             region={{
               latitude: this.state.lat,
@@ -66,9 +69,13 @@ export class ResponderScene extends React.Component {
         )}
         <View style={styles.list}>
           {naloxoneSources.map((source) => (
-            <View key={source.id} style={styles.listItem}>
+            <TouchableHighlight
+              key={source.id}
+              style={styles.listItem}
+              onPress={() => Actions.naloResponderSourceInfoScene({ source })}
+              >
               <Text>{source.title}</Text>
-            </View>
+            </TouchableHighlight>
           ))}
         </View>
       </View>
