@@ -6,7 +6,7 @@
   "private": true,
   "main": "main.js",
   "scripts": {
-    "build:ios": "exp build:ios",
+    "build:ios": "exp start",
     "lint": "eslint ."
   },
   "dependencies": {
