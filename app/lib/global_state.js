@@ -1,10 +1,10 @@
-import { firebaseApp } from './firebase';
+import { firebaseDB } from './firebase';
 
 const state = {
-  user: {}, //firebaseApp.auth().currentUser,
+  user: {},
 };
 
-firebaseApp.auth().onAuthStateChanged((user) => {
+firebaseDB().auth().onAuthStateChanged((user) => {
   if (user) {
     state.user = user;
   }

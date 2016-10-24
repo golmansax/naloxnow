@@ -6,7 +6,7 @@ import {
   View,
 } from '../../base';
 import { white } from '../../../styles/colors';
-import { firebaseApp } from '../../../lib/firebase';
+import { firebaseDB } from '../../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {
@@ -22,7 +22,7 @@ export class NaloResponderRequestScene extends Component {
   };
 
   componentDidMount() {
-    this.listener = firebaseApp.database().ref('request/status').on('value', (snapshot) => {
+    this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
       const newStatus = snapshot.val();
       if (newStatus !== this.props.request.status) {
         const request = Object.assign({}, this.props.request, {
@@ -34,7 +34,7 @@ export class NaloResponderRequestScene extends Component {
   }
 
   componentWillUnmount() {
-    firebaseApp.database().off(this.listener);
+    firebaseDB().database().off(this.listener);
   }
 
   render() {

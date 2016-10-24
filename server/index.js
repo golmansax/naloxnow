@@ -1,16 +1,20 @@
-/* eslint-disable no-process-env, no-console */
-
 import express from 'express';
+import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import {
+  isExponentPushToken,
+  sendPushNotificationAsync,
+} from 'exponent-server-sdk';
+import { firebaseDB } from './firebase';
 
-const app = express();
+const server = express();
 
-app.use(morgan('common'));
-app.get('/push', (req, res) => {
-  res.send('Hello World!');
+server.use(morgan('common'));
+server.use(bodyParser.json());
+server.get('/push', (req, res, next) => {
+  firebaseDB().ref('pushToken').once('value')
+    .then((snapshot) => res.send(snapshot.val()))
+    .catch(next);
 });
 
-const { SERVER_PORT } = process.env;
-app.listen(SERVER_PORT, () => {
-  console.log(`Example app listening on port ${SERVER_PORT}!`);
-});
+export { server };

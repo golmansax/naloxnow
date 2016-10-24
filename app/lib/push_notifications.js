@@ -1,5 +1,5 @@
 import { Permissions, Notifications } from 'exponent';
-import { firebaseApp } from './firebase';
+import { firebaseDB } from './firebase';
 import { SERVER_PORT } from 'babel-plugin-dotenv';
 
 export async function registerForPushNotificationsAsync() {
@@ -7,7 +7,7 @@ export async function registerForPushNotificationsAsync() {
 
   // Get the token that uniquely identifies this device
   const token = await Notifications.getExponentPushTokenAsync();
-  return firebaseApp.database().ref('pushToken').set(token);
+  return firebaseDB().ref('pushToken').set(token);
 }
 
 const SERVER_ROOT = `http://localhost:${SERVER_PORT}`;

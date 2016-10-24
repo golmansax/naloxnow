@@ -9,10 +9,13 @@ import {
   FIREBASE_MESSAGING_SENDER_ID,
 } from 'babel-plugin-dotenv';
 
-export const firebaseApp = firebase.initializeApp({
+const firebaseInstance = firebase.initializeApp({
   apiKey: FIREBASE_API_KEY,
   authDomain: FIREBASE_AUTH_DOMAIN,
   databaseURL: FIREBASE_DATABASE_URL,
   storageBucket: FIREBASE_STORAGE_BUCKET,
   messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 });
+
+export const firebaseDB = () => firebaseInstance.database();
+export const firebaseAuth = () => firebaseInstance.auth();

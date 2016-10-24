@@ -15,6 +15,7 @@
     "apsl-react-native-button": "^3.0.1",
     "babel-plugin-dotenv": "0.0.1",
     "babel-register": "^6.18.0",
+    "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "exponent": "^10.0.4",
     "exponent-server-sdk": "^1.0.5",

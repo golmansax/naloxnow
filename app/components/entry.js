@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import { firebaseApp } from '../lib/firebase';
+import { firebaseAuth } from '../lib/firebase';
 import { AppLoading } from './base';
 import { NaloResponderSourceListScene } from './scenes/nalo_responder/source_list_scene';
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
@@ -15,7 +15,7 @@ export class Entry extends Component {
 
   componentWillMount() {
     // Anonymous sign in so we can have access to database
-    firebaseApp.auth().signInAnonymously()
+    firebaseAuth().signInAnonymously()
       .then(() => this.setState({ isReady: true }))
       .catch((err) => alert(err.message));
   }
