@@ -7,14 +7,18 @@
   "main": "app/main.js",
   "scripts": {
     "build:ios": "exp start",
+    "start:server": "node server/main.js",
     "lint": "eslint ."
   },
   "dependencies": {
     "@exponent/vector-icons": "^1.0.4",
     "apsl-react-native-button": "^3.0.1",
     "babel-plugin-dotenv": "0.0.1",
+    "babel-register": "^6.18.0",
+    "dotenv": "^2.0.0",
     "exponent": "^10.0.4",
     "exponent-server-sdk": "^1.0.5",
+    "express": "^4.14.0",
     "firebase": "^3.5.1",
     "react": "~15.3.2",
     "react-native": "github:exponentjs/react-native#sdk-10.1.2",
