@@ -4,10 +4,8 @@ machine:
 
 dependencies:
   pre:
-    - npm install -g npm@3.10.x exp@latest
+    - npm install -g npm@3.10.x
 
 test:
   override:
     - npm run lint
-    - exp start
-    - exp logs /home/ubuntu/naloxnow
