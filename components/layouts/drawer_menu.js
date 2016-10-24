@@ -37,13 +37,13 @@ export const DrawerMenu = ({ onNavigate }) => (
       style={styles.entry}
       onPress={async function () {
         await registerForPushNotificationsAsync();
-        alert('Push notification');
+        alert('Push notification enabled for this user');
       }}
       >
       <Text>Enable push notifications</Text>
     </TouchableHighlight>
     <View style={styles.entry}>
-      <Text>User ID: {getGlobalState('user').id}</Text>
+      <Text>User ID: {getGlobalState('user').uid}</Text>
     </View>
   </View>
 );
