@@ -1,7 +1,7 @@
 {
-  "name": "nalonow",
+  "name": "naloxnow",
   "version": "0.0.0",
-  "description": "Hello Exponent!",
+  "description": "App to help find naloxone",
   "author": null,
   "private": true,
   "main": "main.js",
