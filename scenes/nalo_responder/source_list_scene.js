@@ -83,7 +83,7 @@ export class NaloResponderSourceListScene extends Component {
             <TouchableHighlight
               key={source.id}
               style={styles.listItem}
-              onPress={() => Actions.naloResponderSourceInfoScene({ source })}
+              onPress={() => Actions.naloResponderSourceScene({ source })}
               >
               <Text>{source.title}</Text>
             </TouchableHighlight>

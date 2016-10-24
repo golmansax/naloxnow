@@ -1,7 +1,8 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import { NaloResponderSourceListScene } from './scenes/nalo_responder/source_list_scene';
-import { NaloResponderSourceInfoScene } from './scenes/nalo_responder/source_info_scene';
+import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
+import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
 import { NaloProviderScene } from './scenes/nalo_provider_scene';
 import { DrawerLayout } from './drawer_layout';
 
@@ -16,8 +17,13 @@ export const App = () => (
             title='Find Naloxone'
           />
           <Scene
-            key='naloResponderSourceInfoScene'
-            component={NaloResponderSourceInfoScene}
+            key='naloResponderSourceScene'
+            component={NaloResponderSourceScene}
+            title='Find Naloxone'
+          />
+          <Scene
+            key='naloResponderRequestScene'
+            component={NaloResponderRequestScene}
             title='Find Naloxone'
           />
         </Scene>

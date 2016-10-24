@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import {
   Text,
   View,
   Button,
 } from '../../components';
 import { white } from '../../styles/colors';
+import { RequestStatus } from '../../constants';
 import { firebaseApp } from '../../firebase';
 
 const styles = StyleSheet.create({
@@ -16,16 +18,27 @@ const styles = StyleSheet.create({
   },
 });
 
-export const NaloResponderSourceInfoScene = ({ source }) => (
+export const NaloResponderSourceScene = ({ source }) => (
   <View style={styles.content}>
     <Text>{source.title}</Text>
     <Text>{source.subtitle}</Text>
-    <Button onPress={() => firebaseApp.database().ref('requestedSource').set(source)}>
+    <Button
+      onPress={() => {
+        const request = {
+          source,
+          status: RequestStatus.REQUESTED,
+        };
+
+        firebaseApp.database().ref('request').set(request).then(() => {
+          Actions.naloResponderRequestScene({ request });
+        });
+      }}
+      >
       Request Naloxone
     </Button>
   </View>
 );
 
-NaloResponderSourceInfoScene.propTypes = {
+NaloResponderSourceScene.propTypes = {
   source: PropTypes.object.isRequired,
 };
