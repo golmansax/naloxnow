@@ -5,11 +5,18 @@ import {
   View,
   Image,
 } from '../../components';
+import { locationPulseBlue } from '../../styles/colors';
 import locationIcon from './location_icon.png';
 
 export const LocationMarkerView = () => (
   <View>
-    <Pulse color='#bacae2' numPulses={1} top={-35} diameter={100} speed={100} />
+    <Pulse
+      color={locationPulseBlue}
+      numPulses={1}
+      top={-35}
+      diameter={100}
+      speed={100}
+    />
     <Image source={locationIcon} />
   </View>
 );
