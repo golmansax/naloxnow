@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { DeviceEventEmitter } from 'react-native';
-import { firebaseAuth } from '../lib/firebase';
-import { getPushTokenAsync } from '../lib/push_notifications';
-import { setGlobalState } from '../lib/global_state';
-import { AppLoading } from './base';
+import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloResponderHomeScene } from './scenes/nalo_responder/home_scene';
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
 import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
@@ -14,25 +11,14 @@ import { DrawerLayout } from './layouts/drawer_layout';
 
 export class Entry extends Component {
   state = {
-    isReady: false,
+    isReady: true,
   };
 
   componentWillMount() {
-    Promise
-      .all([
-        // Anonymous sign in so we can have access to database
-        firebaseAuth().signInAnonymously()
-          .then((user) => setGlobalState('user', user)),
-        getPushTokenAsync()
-          .then((token) => setGlobalState('pushToken', token)),
-      ])
-      .then(() => this.setState({ isReady: true }))
-      .catch((err) => alert(err.message));
-
     // Handle notifications that are received or selected while the app
     // is open
-    this._notificationSubscription = DeviceEventEmitter.addListener(
-      'Exponent.notification', this._handleNotification
+    this.removeListener = DeviceEventEmitter.addListener(
+      'Exponent.notification', this.handleNotification
     );
 
     // Handle notifications that are received or selected while the app
@@ -41,15 +27,15 @@ export class Entry extends Component {
     // root component -- the one that is registered with `AppRegistry`
     // as main.
     if (this.props.exp.notification) {
-      this._handleNotification(this.props.exp.notification);
+      this.handleNotification(this.props.exp.notification);
     }
   }
 
-  render() {
-    if (!this.state.isReady) {
-      return <AppLoading />;
-    }
+  componentWillUnmount() {
+    this.removeListener();
+  }
 
+  render() {
     return (
       <Router>
         <Scene
@@ -62,6 +48,11 @@ export class Entry extends Component {
             rightTitle='Menu'
             onRight={() => Actions.refresh({ key: 'drawer', open: true })}
             >
+            <Scene
+              key='chooseRoleScene'
+              component={ChooseRoleScene}
+              title='Choose Role'
+            />
             <Scene
               key='naloResponderHomeScene'
               component={NaloResponderHomeScene}
@@ -80,7 +71,6 @@ export class Entry extends Component {
             <Scene
               key='naloProviderHomeScene'
               component={NaloProviderHomeScene}
-              initial
               title='Deliver Naloxone'
             />
             <Scene

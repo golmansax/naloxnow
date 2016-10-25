@@ -1,4 +1,7 @@
-const state = {};
+const state = {
+  user: {},
+  pushToken: {},
+};
 
 export function getGlobalState(key) {
   if (!state[key]) {

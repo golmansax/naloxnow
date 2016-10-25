@@ -1,6 +1,11 @@
 export const responderLocation = {
-  lat: 37.781115,
-  lng: -122.411625,
+  latitude: 37.781115,
+  longitude: -122.411625,
+};
+
+export const providerLocation = {
+  latitude: 37.783156,
+  longitude: -122.417475,
 };
 
 export const naloxoneSources = [

@@ -8,7 +8,7 @@ import {
 } from '../../base';
 import { white } from '../../../styles/colors';
 import { RequestStatus } from '../../../lib/constants';
-import { firebaseApp } from '../../../lib/firebase';
+import { firebaseDB } from '../../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {
@@ -29,7 +29,7 @@ export const NaloResponderSourceScene = ({ source }) => (
           status: RequestStatus.REQUESTED,
         };
 
-        firebaseApp.database().ref('request').set(request).then(() => {
+        firebaseDB.ref('request').set(request).then(() => {
           Actions.naloResponderRequestScene({ request });
         });
       }}
