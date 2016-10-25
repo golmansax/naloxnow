@@ -54,5 +54,6 @@ export class NaloProviderHomeScene extends Component {
 
   acceptRequest = () => {
     firebaseDB().ref('request/status').set(RequestStatus.ACCEPTED);
+    Actions.naloProviderAcceptedRequestScene();
   };
 }

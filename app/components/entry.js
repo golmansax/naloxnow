@@ -9,6 +9,7 @@ import { NaloResponderHomeScene } from './scenes/nalo_responder/home_scene';
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
 import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
+import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
 
 export class Entry extends Component {
@@ -80,7 +81,12 @@ export class Entry extends Component {
               key='naloProviderHomeScene'
               component={NaloProviderHomeScene}
               initial
-              title='Naloxone'
+              title='Deliver Naloxone'
+            />
+            <Scene
+              key='naloProviderAcceptedRequestScene'
+              component={NaloProviderAcceptedRequestScene}
+              title='Deliver Naloxone'
             />
           </Scene>
         </Scene>
