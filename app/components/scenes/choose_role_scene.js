@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { Location } from 'exponent';
 import { getPushTokenAsync } from '../../lib/push_notifications';
 import { getSignedInUserAsync } from '../../lib/auth';
 import { setGlobalState } from '../../lib/global_state';
@@ -13,13 +14,7 @@ const styles = StyleSheet.create({
 });
 
 async function requestLocationAsync() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject, {
-      enableHighAccuracy: true,
-      timeout: 20000,
-      maximumAge: 1000,
-    });
-  });
+  return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
 }
 
 async function storeLoggedInUserAsync() {
