@@ -10,11 +10,10 @@ export async function getPushNotificationTokenAsync() {
 
 export async function sendPushNotificationAsync() {
   const pushToken = await getPushNotificationTokenAsync();
-  console.log(`Sending push notification to token: ${pushToken}...`);
 
   return sendExponentPushNotificationAsync({
     exponentPushToken: pushToken,
-    message: "This is a test notification",
-    data: {withSome: 'data'},
+    message: 'This is a test notification',
+    data: { withSome: 'data' },
   });
 }

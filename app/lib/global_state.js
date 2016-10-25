@@ -12,6 +12,5 @@ export function getGlobalState(key) {
 }
 
 export function setGlobalState(key, value) {
-  console.log('SET', key, value);
   state[key] = value;
 }

@@ -37,7 +37,7 @@ function chooseProvider() {
       storeLoggedInUserAsync(),
       storePushTokenAsync(),
     ])
-    .then(() => Actions.naloProviderHomeScene())
+    .then(() => Actions.naloProviderHomeScene());
 }
 
 function chooseResponder() {
@@ -46,7 +46,7 @@ function chooseResponder() {
       requestLocationAsync(),
       storeLoggedInUserAsync(),
     ])
-    .then(() => Actions.naloResponderHomeScene())
+    .then(() => Actions.naloResponderHomeScene());
 }
 
 export const ChooseRoleScene = () => (

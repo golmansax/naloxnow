@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import { View, Text, MapView } from '../../base';
+import { View, MapView } from '../../base';
 import { responderLocation, providerLocation } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 

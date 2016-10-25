@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
-import {
-  registerPushTokenAsync,
-  sendPushNotificationAsync,
-} from '../../lib/push_notifications';
+import { registerPushTokenAsync } from '../../lib/push_notifications';
 import { getGlobalState } from '../../lib/global_state';
 
 const menuEntries = [

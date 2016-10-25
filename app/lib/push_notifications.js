@@ -1,6 +1,6 @@
 import { Permissions, Notifications } from 'exponent';
-import { firebaseDB } from './firebase';
 import { SERVER_PORT } from 'babel-plugin-dotenv';
+import { firebaseDB } from './firebase';
 
 export async function getPushTokenAsync() {
   const { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
@@ -28,11 +28,11 @@ const SERVER_ROOT = `http://localhost:${SERVER_PORT}`;
 function checkStatus(res) {
   if (res.status >= 200 && res.status < 300) {
     return res;
-  } else {
-    var err = new Error(res.statusText);
-    err.res = res;
-    throw err;
   }
+
+  const err = new Error(res.statusText);
+  err.res = res;
+  throw err;
 }
 
 export async function sendPushNotificationAsync() {

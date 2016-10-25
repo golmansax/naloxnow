@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import { DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
@@ -10,6 +10,12 @@ import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepte
 import { DrawerLayout } from './layouts/drawer_layout';
 
 export class Entry extends Component {
+  static propTypes = {
+    exp: PropTypes.shape({
+      notification: PropTypes.object,
+    }).isRequired,
+  };
+
   state = {
     isReady: true,
   };
@@ -84,8 +90,5 @@ export class Entry extends Component {
     );
   }
 
-  handleNotification = (notification) => {
-    alert('Got notification');
-    console.log(notification);
-  };
+  handleNotification = (notification) => alert('Got notification');
 }
