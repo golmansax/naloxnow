@@ -16,10 +16,6 @@ export class Entry extends Component {
     }).isRequired,
   };
 
-  state = {
-    isReady: true,
-  };
-
   componentWillMount() {
     // Handle notifications that are received or selected while the app
     // is open
