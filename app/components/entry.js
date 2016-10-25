@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import { DeviceEventEmitter } from 'react-native';
 import { firebaseAuth } from '../lib/firebase';
+import { getPushTokenAsync } from '../lib/push_notifications';
+import { setGlobalState } from '../lib/global_state';
 import { AppLoading } from './base';
 import { NaloResponderSourceListScene } from './scenes/nalo_responder/source_list_scene';
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
@@ -14,10 +17,31 @@ export class Entry extends Component {
   };
 
   componentWillMount() {
-    // Anonymous sign in so we can have access to database
-    firebaseAuth().signInAnonymously()
+    Promise
+      .all([
+        // Anonymous sign in so we can have access to database
+        firebaseAuth().signInAnonymously()
+          .then((user) => setGlobalState('user', user)),
+        getPushTokenAsync()
+          .then((token) => setGlobalState('pushToken', token)),
+      ])
       .then(() => this.setState({ isReady: true }))
       .catch((err) => alert(err.message));
+
+    // Handle notifications that are received or selected while the app
+    // is open
+    this._notificationSubscription = DeviceEventEmitter.addListener(
+      'Exponent.notification', this._handleNotification
+    );
+
+    // Handle notifications that are received or selected while the app
+    // is closed, and selected in order to open the app.
+    // `exp` is a special prop that is only available on your app's
+    // root component -- the one that is registered with `AppRegistry`
+    // as main.
+    if (this.props.exp.notification) {
+      this._handleNotification(this.props.exp.notification);
+    }
   }
 
   render() {
@@ -58,4 +82,9 @@ export class Entry extends Component {
       </Router>
     );
   }
+
+  handleNotification = (notification) => {
+    alert('Got notification');
+    console.log(notification);
+  };
 }
