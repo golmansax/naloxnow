@@ -32,7 +32,7 @@ function chooseProvider() {
       storeLoggedInUserAsync(),
       storePushTokenAsync(),
     ])
-    .then(() => Actions.naloProviderAcceptedRequestScene());
+    .then(() => Actions.naloProviderHomeScene());
 }
 
 function chooseResponder() {

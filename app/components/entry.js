@@ -79,6 +79,7 @@ export class Entry extends Component {
               key='naloProviderAcceptedRequestScene'
               component={NaloProviderAcceptedRequestScene}
               title='Deliver Naloxone'
+              duration={1}
             />
           </Scene>
         </Scene>

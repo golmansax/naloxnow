@@ -1,33 +1,32 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { View, MapView } from '../../base';
-import { responderLocation, providerLocation } from '../../../lib/data';
-import { LocationMarkerView } from '../../misc/location_marker_view';
+import React, { Component } from 'react';
+import URI from 'urijs';
+import { Linking } from 'react-native';
+import { View } from '../../base';
+import { providerLocation, responderLocation } from '../../../lib/data';
+import { locationToString } from '../../../lib/utils';
 
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    top: 60,
-  },
+async function openDirections() {
+  const url = new URI('https://maps.apple.com')
+    .search({
+      saddr: locationToString(providerLocation),
+      daddr: locationToString(responderLocation),
+    })
+    .toString();
 
-  map: {
-    flex: 1,
-  },
-});
+  if (!Linking.canOpenURL(url)) {
+    throw new Error(`Cannot link to URL: ${url}`);
+  }
 
-export const NaloProviderAcceptedRequestScene = () => (
-  <View style={styles.content}>
-    <MapView
-      style={styles.map}
-      region={Object.assign({}, providerLocation, {
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      })}
-      >
-      <MapView.Marker coordinate={providerLocation}>
-        <LocationMarkerView />
-      </MapView.Marker>
-      <MapView.Marker coordinate={responderLocation} />
-    </MapView>
-  </View>
-);
+  return Linking.openURL(url);
+}
+
+export class NaloProviderAcceptedRequestScene extends Component {
+  componentDidMount() {
+    openDirections();
+  }
+
+  render() {
+    return <View />;
+  }
+
+}

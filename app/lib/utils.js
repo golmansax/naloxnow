@@ -7,3 +7,7 @@ export function checkStatus(res) {
   err.res = res;
   throw err;
 }
+
+export function locationToString({ latitude, longitude }) {
+  return `${latitude},${longitude}`;
+}

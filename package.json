@@ -27,7 +27,8 @@
     "react-native": "github:exponentjs/react-native#sdk-10.1.2",
     "react-native-drawer": "^2.3.0",
     "react-native-pulse": "^1.0.2",
-    "react-native-router-flux": "^3.36.0"
+    "react-native-router-flux": "^3.36.0",
+    "urijs": "^1.18.2"
   },
   "devDependencies": {
     "eslint": "^3.8.1",
@@ -40,7 +41,6 @@
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-react-native": "^2.0.0",
     "jsonfile": "^2.4.0",
-    "node-fetch": "^1.6.3",
-    "urijs": "^1.18.2"
+    "node-fetch": "^1.6.3"
   }
 }

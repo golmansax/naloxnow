@@ -4,12 +4,8 @@ import fetch from 'node-fetch';
 import URI from 'urijs';
 import path from 'path';
 import jsonfile from 'jsonfile';
-import { checkStatus } from '../lib/utils';
+import { locationToString, checkStatus } from '../lib/utils';
 import { providerLocation, responderLocation } from '../lib/data';
-
-function locationToString({ latitude, longitude }) {
-  return `${latitude},${longitude}`;
-}
 
 async function getDirectionsAsync(url) {
   return fetch(url)
