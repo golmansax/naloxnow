@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export class NaloResponderSourceListScene extends Component {
+export class NaloResponderHomeScene extends Component {
   state = {
     lat: null,
     lng: null,

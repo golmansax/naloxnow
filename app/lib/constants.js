@@ -1,4 +1,5 @@
 export const RequestStatus = {
+  NOT_YET_REQUESTED: 'NOT_YET_REQUESTED',
   REQUESTED: 'REQUESTED',
   ACCEPTED: 'ACCEPTED',
 };

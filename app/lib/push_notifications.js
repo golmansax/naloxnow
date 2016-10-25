@@ -5,8 +5,8 @@ import { SERVER_PORT } from 'babel-plugin-dotenv';
 export async function getPushTokenAsync() {
   const { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
 
+  // If user did not grant permissions
   if (status !== 'granted') {
-    alert(`User did not grant permissions, status: ${status}`);
     return { status };
   }
 

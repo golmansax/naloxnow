@@ -5,10 +5,10 @@ import { firebaseAuth } from '../lib/firebase';
 import { getPushTokenAsync } from '../lib/push_notifications';
 import { setGlobalState } from '../lib/global_state';
 import { AppLoading } from './base';
-import { NaloResponderSourceListScene } from './scenes/nalo_responder/source_list_scene';
+import { NaloResponderHomeScene } from './scenes/nalo_responder/home_scene';
 import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
 import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
-import { NaloProviderScene } from './scenes/nalo_provider_scene';
+import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
 
 export class Entry extends Component {
@@ -62,8 +62,8 @@ export class Entry extends Component {
             onRight={() => Actions.refresh({ key: 'drawer', open: true })}
             >
             <Scene
-              key='naloResponderSourceListScene'
-              component={NaloResponderSourceListScene}
+              key='naloResponderHomeScene'
+              component={NaloResponderHomeScene}
               title='Find Naloxone'
             />
             <Scene
@@ -76,7 +76,12 @@ export class Entry extends Component {
               component={NaloResponderRequestScene}
               title='Find Naloxone'
             />
-            <Scene key='naloProvider' component={NaloProviderScene} />
+            <Scene
+              key='naloProviderHomeScene'
+              component={NaloProviderHomeScene}
+              initial
+              title='Naloxone'
+            />
           </Scene>
         </Scene>
       </Router>

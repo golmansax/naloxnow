@@ -9,8 +9,8 @@ import {
 import { getGlobalState } from '../../lib/global_state';
 
 const menuEntries = [
-  { title: 'Find Naloxone', key: 'naloResponder' },
-  { title: 'Provide Naloxone', key: 'naloProvider' },
+  { title: 'Find Naloxone', key: 'naloResponderHomeScene' },
+  { title: 'Provide Naloxone', key: 'naloProviderHomeScene' },
 ];
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     top: 60,
   },
   entry: {
-    padding: 5,
+    padding: 10,
   },
 });
 
