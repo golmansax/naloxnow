@@ -33,11 +33,16 @@ const styles = StyleSheet.create({
     height: NAVBAR_HEIGHT,
   },
 
-  tabBarStyle: {
+  tabBar: {
     backgroundColor: lightGrey,
     height: TAB_HEIGHT,
     borderTopWidth: 1,
     borderColor: white,
+  },
+
+  tabContainer: {
+    borderColor: white,
+    borderRightWidth: 1,
   },
 
   navBarContent: {
@@ -126,7 +131,8 @@ export class Entry extends Component {
             />
             <Scene
               key='naloRequestor'
-              tabBarStyle={styles.tabBarStyle}
+              tabBarStyle={styles.tabBar}
+              tabBarIconContainerStyle={styles.tabContainer}
               tabs
               hideNavBar
               pressOpacity={pressedOpacity}

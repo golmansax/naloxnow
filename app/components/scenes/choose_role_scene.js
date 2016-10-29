@@ -1,10 +1,19 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Location } from 'exponent';
 import { getPushTokenAsync } from '../../lib/push_notifications';
 import { getSignedInUserAsync } from '../../lib/auth';
 import { setGlobalState } from '../../lib/global_state';
 import { View, Button } from '../base';
+import { vr } from '../../styles/units';
+
+const styles = StyleSheet.create({
+  button: {
+    margin: vr(0.5),
+    marginBottom: 0,
+  },
+});
 
 async function requestLocationAsync() {
   return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
@@ -21,7 +30,7 @@ async function storePushTokenAsync() {
 function chooseProvider() {
   Promise
     .all([
-      requestLocationAsync(),
+      // requestLocationAsync(),
       storeLoggedInUserAsync(),
       storePushTokenAsync(),
     ])
@@ -31,7 +40,7 @@ function chooseProvider() {
 function chooseRequestor() {
   Promise
     .all([
-      requestLocationAsync(),
+      // requestLocationAsync(),
       storeLoggedInUserAsync(),
     ])
     .then(() => Actions.naloRequestor());
@@ -39,7 +48,7 @@ function chooseRequestor() {
 
 export const ChooseRoleScene = () => (
   <View>
-    <Button onPress={chooseRequestor}>Be a requestor</Button>
-    <Button onPress={chooseProvider}>Be a provider</Button>
+    <Button style={styles.button} onPress={chooseRequestor}>Be a requestor</Button>
+    <Button style={styles.button} onPress={chooseProvider}>Be a provider</Button>
   </View>
 );
