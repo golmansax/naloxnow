@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
 import { Text as RNText } from 'react-native';
 import { mainFontStyle } from '../../styles/fonts';
+import { defaultFontSize } from '../../styles/units';
+import { superDarkGrey } from '../../styles/colors';
+
+const styles = StyleSheet.create({
+  text: {
+    ...mainFontStyle,
+    fontSize: defaultFontSize,
+    color: superDarkGrey,
+    lineHeight: 21,
+  },
+});
 
 export class Text extends Component {
   static propTypes = {
@@ -16,7 +28,7 @@ export class Text extends Component {
     return (
       <RNText
         ref={(component) => (this.rootRef = component)}
-        style={[mainFontStyle, style]}
+        style={[styles.text, style]}
         {...props}
       />
     );

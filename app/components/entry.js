@@ -4,7 +4,6 @@ import { Font } from 'exponent';
 import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
-import { NaloRequestorSourceScene } from './scenes/nalo_requestor/source_scene';
 import { NaloRequestorRequestScene } from './scenes/nalo_requestor/request_scene';
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
 import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
@@ -156,11 +155,6 @@ export class Entry extends Component {
                   key='naloRequestorHomeScene'
                   component={NaloRequestorHomeScene}
                   rnderBackButton={() => false}
-                />
-                <Scene
-                  {...tabSceneProps}
-                  key='naloRequestorSourceScene'
-                  component={NaloRequestorSourceScene}
                 />
                 <Scene
                   {...tabSceneProps}

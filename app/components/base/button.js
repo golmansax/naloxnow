@@ -3,15 +3,25 @@ import { StyleSheet } from 'react-native';
 import APSLButton from 'apsl-react-native-button';
 import { View, Text } from './index';
 import { mainFontStyle } from '../../styles/fonts';
-import { nnRed, white } from '../../styles/colors';
-import { vr, defaultFontSize } from '../../styles/units';
+import { nnRed, white, superLightGrey, superDarkGrey } from '../../styles/colors';
+import { vr, defaultFontSize, defaultBorderRadius } from '../../styles/units';
 
 const styles = StyleSheet.create({
   button: {
     marginBottom: null,
     height: null,
-    borderRadius: 4,
+    borderRadius: defaultBorderRadius,
     padding: vr(0.75),
+  },
+
+  text: {
+    ...mainFontStyle,
+    fontSize: defaultFontSize,
+      color: superDarkGrey,
+  },
+
+  plainButton: {
+    backgroundColor: superLightGrey,
   },
 
   urgentButton: {
@@ -21,11 +31,6 @@ const styles = StyleSheet.create({
 
   urgentButtonText: {
     color: white,
-  },
-
-  text: {
-    ...mainFontStyle,
-    fontSize: defaultFontSize,
   },
 });
 

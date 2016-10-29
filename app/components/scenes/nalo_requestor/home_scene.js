@@ -7,6 +7,8 @@ import {
   View,
   TouchableHighlight,
 } from '../../base';
+import { RequestStatus } from '../../../lib/constants';
+import { firebaseDB } from '../../../lib/firebase';
 import { naloxoneSources, requestorLocation } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr, pressedOpacity } from '../../../styles/units';
@@ -45,7 +47,16 @@ export const NaloRequestorHomeScene = () => (
         <TouchableHighlight
           key={source.id}
           style={styles.listItem}
-          onPress={() => Actions.naloRequestorSourceScene({ source })}
+          onPress={() => {
+            const request = {
+              source,
+              status: RequestStatus.NOT_YET_REQUESTED,
+            };
+
+            firebaseDB().ref('request').set(request).then(() => {
+              Actions.naloRequestorRequestScene({ request });
+            });
+          }}
           underlayColor={lightGrey}
           activeOpacity={pressedOpacity}
           >
