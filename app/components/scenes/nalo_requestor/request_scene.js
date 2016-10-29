@@ -2,18 +2,18 @@ import React, { Component, PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { StyleSheet } from 'react-native';
 import {
-  MapView,
-  View,
-  Button,
-  Text,
+  MapView, View, Button, Text,
 } from '../../base';
 import { LocationMarkerView } from '../../misc/location_marker_view';
-import { midpointLocation, providerLocation, requestorLocation } from '../../../lib/data';
+import {
+  midpointLocation, providerLocation, requestorLocation, naloxoneRequestor,
+} from '../../../lib/data';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
 import { SourceInfo } from './source_info';
 import { white, superDarkGrey } from '../../../styles/colors';
 import { vr, defaultBorderRadius } from '../../../styles/units';
+import { sendPushNotificationAsync } from '../../../lib/push_notifications';
 
 const styles = StyleSheet.create({
   container: {
@@ -110,7 +110,13 @@ export class NaloRequestorRequestScene extends Component {
             <Button
               design='urgent'
               style={styles.button}
-              onPress={() => firebaseDB().ref('request/status').set(RequestStatus.REQUESTED)}
+              onPress={() => {
+                firebaseDB().ref('request/status').set(RequestStatus.REQUESTED)
+                sendPushNotificationAsync([
+                  `URGENT: ${naloxoneRequestor.title} needs naloxone immediately,`,
+                  `is located ${source.time} minutes away`,
+                ].join(' '))
+              }}
               >
               Request Naloxone Now
             </Button>

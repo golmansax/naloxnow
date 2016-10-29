@@ -182,5 +182,5 @@ export class Entry extends Component {
     );
   }
 
-  handleNotification = (notification) => alert(`Got notification: ${notification.message}`);
+  handleNotification = (notification) => console.log(notification);
 }
