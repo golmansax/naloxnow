@@ -59,7 +59,7 @@ export class NaloProviderHomeScene extends Component {
   }
 
   componentWillUnmount() {
-    firebaseDB().database().off(this.listener);
+    firebaseDB().ref('request').off('value', this.listener);
   }
 
   render() {
