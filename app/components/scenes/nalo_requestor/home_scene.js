@@ -10,7 +10,8 @@ import {
 import { naloxoneSources, requestorLocation } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr, pressedOpacity } from '../../../styles/units';
-import { white, superLightGrey, lightGrey } from '../../../styles/colors';
+import { white, lightGrey } from '../../../styles/colors';
+import { SourceInfo } from './source_info';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,17 +30,8 @@ const styles = StyleSheet.create({
   },
 
   listItem: {
-    padding: vr(1),
-    backgroundColor: superLightGrey,
     borderColor: white,
     borderBottomWidth: 1,
-  },
-
-  listItemContent: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
   },
 });
 
@@ -57,15 +49,7 @@ export const NaloRequestorHomeScene = () => (
           underlayColor={lightGrey}
           activeOpacity={pressedOpacity}
           >
-          <View style={styles.listItemContent}>
-            <View>
-              <Text>{source.title}</Text>
-              <Text>{source.subtitle}</Text>
-            </View>
-            <View>
-              <Text>{source.time} mins</Text>
-            </View>
-          </View>
+          <SourceInfo source={source} />
         </TouchableHighlight>
       ))}
     </View>

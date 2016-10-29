@@ -1,17 +1,44 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
+import { StyleSheet } from 'react-native';
 import {
+  MapView,
   Text,
   View,
   Button,
 } from '../../base';
+import { LocationMarkerView } from '../../misc/location_marker_view';
+import { midpointLocation, providerLocation, requestorLocation } from '../../../lib/data';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
+import { SourceInfo } from './source_info';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  map: {
+    flex: 1,
+  },
+});
 
 export const NaloRequestorSourceScene = ({ source }) => (
-  <View>
-    <Text>{source.title}</Text>
-    <Text>{source.subtitle}</Text>
+  <View style={styles.container}>
+    <SourceInfo source={source} />
+    <MapView
+      ref={(ref) => (this.mapRef = ref)}
+      style={styles.map}
+      initialRegion={Object.assign({}, midpointLocation, {
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      })}
+      >
+      <MapView.Marker identifier='requestor' coordinate={requestorLocation}>
+        <LocationMarkerView />
+      </MapView.Marker>
+      <MapView.Marker identifier='provider' coordinate={providerLocation} />
+    </MapView>
     <Button
       onPress={() => {
         const request = {

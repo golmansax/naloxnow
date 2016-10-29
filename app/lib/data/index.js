@@ -8,6 +8,11 @@ export const providerLocation = {
   longitude: -122.417475,
 };
 
+export const midpointLocation = {
+  latitude: 37.782136,
+  longitude: -122.41455,
+};
+
 export const naloxoneSources = [
   {
     id: 'uber',
