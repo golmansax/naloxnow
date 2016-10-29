@@ -10,7 +10,7 @@ import {
 import { naloxoneSources, requestorLocation } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr } from '../../../styles/units';
-import { white, superLightGrey } from '../../../styles/colors';
+import { white, superLightGrey, lightGrey } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,6 +54,8 @@ export const NaloRequestorHomeScene = () => (
           key={source.id}
           style={styles.listItem}
           onPress={() => Actions.naloRequestorSourceScene({ source })}
+          underlayColor={lightGrey}
+          activeOpacity={0.5}
           >
           <View style={styles.listItemContent}>
             <View>
