@@ -1,3 +1,4 @@
+import { FIREBASE_USER_EMAIL, FIREBASE_USER_PASSWORD } from 'babel-plugin-dotenv';
 import { firebaseAuth } from './firebase';
 
 export async function getSignedInUserAsync() {
@@ -18,7 +19,12 @@ export async function getSignedInUserAsync() {
           throw new Error('Should not attempt to sign in more than once');
         }
 
-        auth.signInAnonymously();
+        if (FIREBASE_USER_EMAIL && FIREBASE_USER_PASSWORD) {
+          auth.signInWithEmailAndPassword(FIREBASE_USER_EMAIL, FIREBASE_USER_PASSWORD);
+        } else {
+          auth.signInAnonymously();
+        }
+
         signInAttempted = true;
       }
     });

@@ -34,7 +34,7 @@ function chooseRequestor() {
       requestLocationAsync(),
       storeLoggedInUserAsync(),
     ])
-    .then(() => Actions.naloRequestorHomeScene());
+    .then(() => Actions.naloRequestor());
 }
 
 export const ChooseRoleScene = () => (

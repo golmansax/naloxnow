@@ -9,16 +9,23 @@ import { NaloRequestorRequestScene } from './scenes/nalo_requestor/request_scene
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
 import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
-import { nnBlue, white } from '../styles/colors';
-import { vr } from '../styles/units';
+import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
+import { pressedOpacity, vr } from '../styles/units';
+import { Test } from './test';
 import { AppLoading } from './base';
+import { Tab } from './layouts/tab';
 
 const NAVBAR_HEIGHT = vr(4);
+const TAB_HEIGHT = vr(4);
 const styles = StyleSheet.create({
   content: {
     flex: 1,
     top: NAVBAR_HEIGHT,
+  },
+
+  tabContent: {
+    paddingBottom: NAVBAR_HEIGHT + TAB_HEIGHT,
   },
 
   navBar: {
@@ -26,9 +33,17 @@ const styles = StyleSheet.create({
     height: NAVBAR_HEIGHT,
   },
 
+  tabBarStyle: {
+    backgroundColor: lightGrey,
+    height: TAB_HEIGHT,
+  },
+
+  navBarContent: {
+    color: white,
+  },
+
   navBarText: {
     ...mainFontStyle,
-    color: white,
   },
 });
 
@@ -76,13 +91,18 @@ export class Entry extends Component {
       return <AppLoading />;
     }
 
-    const defaultProps = {
+    const defaultSceneProps = {
       drawerImage: null,
       navigationBarStyle: styles.navBar,
       title: 'NaloxoneNow',
-      titleStyle: styles.navBarText,
-      rightButtonTextStyle: styles.navBarText,
+      titleStyle: [styles.navBarContent, styles.navBarText],
+      rightButtonTextStyle: [styles.navBarContent, styles.navBarText],
       sceneStyle: styles.content,
+    };
+
+    const tabSceneProps = {
+      ...defaultSceneProps,
+      sceneStyle: [styles.content, styles.tabContent],
     };
 
     return (
@@ -98,37 +118,60 @@ export class Entry extends Component {
             onRight={() => Actions.refresh({ key: 'drawer', open: true })}
             >
             <Scene
-              {...defaultProps}
+              {...defaultSceneProps}
               key='chooseRoleScene'
               component={ChooseRoleScene}
             />
             <Scene
-              {...defaultProps}
-              key='naloRequestorHomeScene'
-              component={NaloRequestorHomeScene}
-              renderBackButton={() => false}
-            />
-            <Scene
-              {...defaultProps}
-              key='naloRequestorSourceScene'
-              component={NaloRequestorSourceScene}
-            />
-            <Scene
-              {...defaultProps}
-              key='naloRequestorRequestScene'
-              component={NaloRequestorRequestScene}
-            />
-            <Scene
-              {...defaultProps}
-              key='naloProviderHomeScene'
-              component={NaloProviderHomeScene}
-            />
-            <Scene
-              {...defaultProps}
-              key='naloProviderAcceptedRequestScene'
-              component={NaloProviderAcceptedRequestScene}
-              duration={1}
-            />
+              key='naloRequestor'
+              tabBarStyle={styles.tabBarStyle}
+              tabs
+              hideNavBar
+              pressOpacity={pressedOpacity}
+              >
+              <Scene
+                key='overdoseToolkit'
+                title='Overdose Toolkit'
+                icon={Tab}
+                >
+                <Scene key='toolkitStep1' component={Test} />
+              </Scene>
+              <Scene
+                key='naloxoneNow'
+                title='NaloxoneNow'
+                icon={Tab}
+                initial
+                >
+                <Scene
+                  {...tabSceneProps}
+                  initial
+                  key='naloRequestorHomeScene'
+                  component={NaloRequestorHomeScene}
+                  rnderBackButton={() => false}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='naloRequestorSourceScene'
+                  component={NaloRequestorSourceScene}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='naloRequestorRequestScene'
+                  component={NaloRequestorRequestScene}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='naloProviderHomeScene'
+                  component={NaloProviderHomeScene}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='naloProviderAcceptedRequestScene'
+                  component={NaloProviderAcceptedRequestScene}
+                  duration={1}
+                />
+              </Scene>
+            </Scene>
           </Scene>
         </Scene>
       </Router>
