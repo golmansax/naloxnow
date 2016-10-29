@@ -8,7 +8,7 @@ const server = express();
 server.use(morgan('common'));
 server.use(bodyParser.json());
 server.get('/push', async function(req, res) {
-  const response = await sendPushNotificationAsync();
+  const response = await sendPushNotificationAsync(req.query.message);
   res.send(response);
 });
 server.get('/', (req, res) => res.send('OK'));

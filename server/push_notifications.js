@@ -8,12 +8,12 @@ export async function getPushNotificationTokenAsync() {
     .then((snapshot) => snapshot.val());
 }
 
-export async function sendPushNotificationAsync() {
+export async function sendPushNotificationAsync(message) {
   const pushToken = await getPushNotificationTokenAsync();
 
   return sendExponentPushNotificationAsync({
     exponentPushToken: pushToken,
-    message: 'This is a test notification',
+    message,
     data: { withSome: 'data' },
   });
 }

@@ -26,7 +26,7 @@ export async function registerPushTokenAsync(token) {
 
 const SERVER_ROOT = `http://localhost:${SERVER_PORT}`;
 
-export async function sendPushNotificationAsync() {
-  return fetch(`${SERVER_ROOT}/push`, {
+export async function sendPushNotificationAsync(message) {
+  return fetch(`${SERVER_ROOT}/push?message=${message}`, {
   }).then(checkStatus);
 }

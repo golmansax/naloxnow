@@ -2,7 +2,10 @@ import React, { PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
-import { registerPushTokenAsync } from '../../lib/push_notifications';
+import {
+  sendPushNotificationAsync,
+  registerPushTokenAsync,
+} from '../../lib/push_notifications';
 import { getGlobalState } from '../../lib/global_state';
 
 const menuEntries = [
@@ -42,6 +45,16 @@ export const DrawerMenu = ({ onNavigate }) => (
       }}
       >
       <Text>Register this user for push notifications</Text>
+    </TouchableHighlight>
+    <TouchableHighlight
+      style={styles.entry}
+      onPress={async function () {
+        sendPushNotificationAsync('This is a test')
+          .then(() => alert('Successfully sent message'))
+          .catch((err) => alert(err.message));
+      }}
+      >
+      <Text>Send push notification</Text>
     </TouchableHighlight>
     <View style={styles.entry}>
       <Text>User ID: {getGlobalState('user').uid}</Text>
