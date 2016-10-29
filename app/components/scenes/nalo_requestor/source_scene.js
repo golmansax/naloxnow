@@ -1,9 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
 import { StyleSheet } from 'react-native';
 import {
   MapView,
-  Text,
   View,
   Button,
 } from '../../base';

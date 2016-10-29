@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Text, View } from '../../base';
 import { StyleSheet } from 'react-native';
+import { Text, View } from '../../base';
 import { vr } from '../../../styles/units';
 import { superLightGrey } from '../../../styles/colors';
 
@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
 
 export class SourceInfo extends Component {
   static propTypes = {
-    style: View.propTypes.style,
     source: PropTypes.object.isRequired,
+    style: View.propTypes.style,
   };
 
   setNativeProps(nativeProps) {

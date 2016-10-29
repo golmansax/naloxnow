@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Location } from 'exponent';
+// import { Location } from 'exponent';
 import { getPushTokenAsync } from '../../lib/push_notifications';
 import { getSignedInUserAsync } from '../../lib/auth';
 import { setGlobalState } from '../../lib/global_state';
@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
 });
 
 async function requestLocationAsync() {
-  return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+  return Promise.resolve();
+  // return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
 }
 
 async function storeLoggedInUserAsync() {
@@ -30,7 +31,7 @@ async function storePushTokenAsync() {
 function chooseProvider() {
   Promise
     .all([
-      // requestLocationAsync(),
+      requestLocationAsync(),
       storeLoggedInUserAsync(),
       storePushTokenAsync(),
     ])
@@ -40,7 +41,7 @@ function chooseProvider() {
 function chooseRequestor() {
   Promise
     .all([
-      // requestLocationAsync(),
+      requestLocationAsync(),
       storeLoggedInUserAsync(),
     ])
     .then(() => Actions.naloRequestor());
