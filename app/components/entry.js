@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Font } from 'exponent';
 import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
@@ -10,6 +11,8 @@ import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepte
 import { DrawerLayout } from './layouts/drawer_layout';
 import { nnBlue, white } from '../styles/colors';
 import { vr } from '../styles/units';
+import { mainFontStyle } from '../styles/fonts';
+import { AppLoading } from './base';
 
 const NAVBAR_HEIGHT = vr(4);
 const styles = StyleSheet.create({
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
   },
 
   navBarText: {
+    ...mainFontStyle,
     color: white,
   },
 });
@@ -35,7 +39,11 @@ export class Entry extends Component {
     }).isRequired,
   };
 
-  componentWillMount() {
+  state = {
+    isReady: false,
+  };
+
+  async componentWillMount() {
     // Handle notifications that are received or selected while the app
     // is open
     this.removeListener = DeviceEventEmitter.addListener(
@@ -50,6 +58,13 @@ export class Entry extends Component {
     if (this.props.exp.notification) {
       this.handleNotification(this.props.exp.notification);
     }
+
+    await Font.loadAsync({
+      // eslint-disable-next-line global-require
+      'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
+    });
+
+    this.setState({ isReady: true });
   }
 
   componentWillUnmount() {
@@ -57,6 +72,10 @@ export class Entry extends Component {
   }
 
   render() {
+    if (!this.state.isReady) {
+      return <AppLoading />;
+    }
+
     const defaultProps = {
       drawerImage: null,
       navigationBarStyle: styles.navBar,
