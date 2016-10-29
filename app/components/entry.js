@@ -1,13 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import { DeviceEventEmitter } from 'react-native';
+import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
-import { NaloResponderHomeScene } from './scenes/nalo_responder/home_scene';
-import { NaloResponderSourceScene } from './scenes/nalo_responder/source_scene';
-import { NaloResponderRequestScene } from './scenes/nalo_responder/request_scene';
+import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
+import { NaloRequestorSourceScene } from './scenes/nalo_requestor/source_scene';
+import { NaloRequestorRequestScene } from './scenes/nalo_requestor/request_scene';
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
 import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
+import { nnBlue, white } from '../styles/colors';
+import { vr } from '../styles/units';
+
+const NAVBAR_HEIGHT = vr(4);
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    top: NAVBAR_HEIGHT,
+  },
+
+  navBar: {
+    backgroundColor: nnBlue,
+    height: NAVBAR_HEIGHT,
+  },
+
+  navBarText: {
+    color: white,
+  },
+});
 
 export class Entry extends Component {
   static propTypes = {
@@ -38,6 +57,15 @@ export class Entry extends Component {
   }
 
   render() {
+    const defaultProps = {
+      drawerImage: null,
+      navigationBarStyle: styles.navBar,
+      title: 'NaloxoneNow',
+      titleStyle: styles.navBarText,
+      rightButtonTextStyle: styles.navBarText,
+      sceneStyle: styles.content,
+    };
+
     return (
       <Router>
         <Scene
@@ -51,34 +79,35 @@ export class Entry extends Component {
             onRight={() => Actions.refresh({ key: 'drawer', open: true })}
             >
             <Scene
+              {...defaultProps}
               key='chooseRoleScene'
               component={ChooseRoleScene}
-              title='Choose Role'
             />
             <Scene
-              key='naloResponderHomeScene'
-              component={NaloResponderHomeScene}
-              title='Find Naloxone'
+              {...defaultProps}
+              key='naloRequestorHomeScene'
+              component={NaloRequestorHomeScene}
+              renderBackButton={() => false}
             />
             <Scene
-              key='naloResponderSourceScene'
-              component={NaloResponderSourceScene}
-              title='Find Naloxone'
+              {...defaultProps}
+              key='naloRequestorSourceScene'
+              component={NaloRequestorSourceScene}
             />
             <Scene
-              key='naloResponderRequestScene'
-              component={NaloResponderRequestScene}
-              title='Find Naloxone'
+              {...defaultProps}
+              key='naloRequestorRequestScene'
+              component={NaloRequestorRequestScene}
             />
             <Scene
+              {...defaultProps}
               key='naloProviderHomeScene'
               component={NaloProviderHomeScene}
-              title='Deliver Naloxone'
             />
             <Scene
+              {...defaultProps}
               key='naloProviderAcceptedRequestScene'
               component={NaloProviderAcceptedRequestScene}
-              title='Deliver Naloxone'
               duration={1}
             />
           </Scene>

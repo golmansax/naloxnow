@@ -1,17 +1,10 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Location } from 'exponent';
 import { getPushTokenAsync } from '../../lib/push_notifications';
 import { getSignedInUserAsync } from '../../lib/auth';
 import { setGlobalState } from '../../lib/global_state';
 import { View, Button } from '../base';
-
-const styles = StyleSheet.create({
-  content: {
-    top: 60,
-  },
-});
 
 async function requestLocationAsync() {
   return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
@@ -35,18 +28,18 @@ function chooseProvider() {
     .then(() => Actions.naloProviderHomeScene());
 }
 
-function chooseResponder() {
+function chooseRequestor() {
   Promise
     .all([
       requestLocationAsync(),
       storeLoggedInUserAsync(),
     ])
-    .then(() => Actions.naloResponderHomeScene());
+    .then(() => Actions.naloRequestorHomeScene());
 }
 
 export const ChooseRoleScene = () => (
-  <View style={styles.content}>
-    <Button onPress={chooseResponder}>Be a responder</Button>
+  <View>
+    <Button onPress={chooseRequestor}>Be a requestor</Button>
     <Button onPress={chooseProvider}>Be a provider</Button>
   </View>
 );

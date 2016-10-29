@@ -1,4 +1,4 @@
-export const responderLocation = {
+export const requestorLocation = {
   latitude: 37.781115,
   longitude: -122.411625,
 };

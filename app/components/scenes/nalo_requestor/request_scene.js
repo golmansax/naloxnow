@@ -1,22 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
   Text,
   View,
 } from '../../base';
-import { white } from '../../../styles/colors';
 import { firebaseDB } from '../../../lib/firebase';
 
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    top: 60,
-    backgroundColor: white,
-  },
-});
-
-export class NaloResponderRequestScene extends Component {
+export class NaloRequestorRequestScene extends Component {
   static propTypes = {
     request: PropTypes.object.isRequired,
   };
@@ -28,7 +18,7 @@ export class NaloResponderRequestScene extends Component {
         const request = Object.assign({}, this.props.request, {
           status: newStatus,
         });
-        Actions.naloResponderRequestScene({ request });
+        Actions.naloRequestorRequestScene({ request });
       }
     });
   }
@@ -42,7 +32,7 @@ export class NaloResponderRequestScene extends Component {
     const { source } = request;
 
     return (
-      <View style={styles.content}>
+      <View>
         <Text>REQUEST</Text>
         <Text>{source.title}</Text>
         <Text>{source.subtitle}</Text>

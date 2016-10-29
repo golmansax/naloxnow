@@ -1,25 +1,15 @@
 import React, { PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
   Text,
   View,
   Button,
 } from '../../base';
-import { white } from '../../../styles/colors';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
 
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    top: 60,
-    backgroundColor: white,
-  },
-});
-
-export const NaloResponderSourceScene = ({ source }) => (
-  <View style={styles.content}>
+export const NaloRequestorSourceScene = ({ source }) => (
+  <View>
     <Text>{source.title}</Text>
     <Text>{source.subtitle}</Text>
     <Button
@@ -30,7 +20,7 @@ export const NaloResponderSourceScene = ({ source }) => (
         };
 
         firebaseDB.ref('request').set(request).then(() => {
-          Actions.naloResponderRequestScene({ request });
+          Actions.naloRequestorRequestScene({ request });
         });
       }}
       >
@@ -39,6 +29,6 @@ export const NaloResponderSourceScene = ({ source }) => (
   </View>
 );
 
-NaloResponderSourceScene.propTypes = {
+NaloRequestorSourceScene.propTypes = {
   source: PropTypes.object.isRequired,
 };

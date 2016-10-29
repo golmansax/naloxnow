@@ -1,16 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, Text, Button } from '../../base';
 import { firebaseDB } from '../../../lib/firebase';
 import { RequestStatus } from '../../../lib/constants';
-
-const styles = StyleSheet.create({
-  content: {
-    flex: 1,
-    top: 60,
-  },
-});
 
 export class NaloProviderHomeScene extends Component {
   static propTypes = {
@@ -39,7 +31,7 @@ export class NaloProviderHomeScene extends Component {
     const { status, source } = request;
 
     return (
-      <View style={styles.content}>
+      <View>
         <Text>Provider</Text>
         {status === RequestStatus.REQUESTED ? (
           <View>

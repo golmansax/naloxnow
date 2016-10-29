@@ -12,6 +12,7 @@ export class DrawerLayout extends Component {
       <Drawer
         ref={(ref) => (this.drawer = ref)}
         open={open}
+        side='right'
         onOpen={() => Actions.refresh({ key, open: true })}
         onClose={() => Actions.refresh({ key, open: false })}
         type='static'
