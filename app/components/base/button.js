@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   text: {
     ...mainFontStyle,
     fontSize: defaultFontSize,
-      color: superDarkGrey,
+    color: superDarkGrey,
   },
 
   plainButton: {

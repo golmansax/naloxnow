@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 1,
       width: 0,
-    }
+    },
   },
 });
 
@@ -110,14 +110,7 @@ export class NaloRequestorRequestScene extends Component {
             <Button
               design='urgent'
               style={styles.button}
-              onPress={() => {
-                const request = {
-                  source,
-                  status: RequestStatus.REQUESTED,
-                };
-
-                firebaseDB().ref('request').set(request);
-              }}
+              onPress={() => firebaseDB().ref('request/status').set(RequestStatus.REQUESTED)}
               >
               Request Naloxone Now
             </Button>

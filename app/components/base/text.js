@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text as RNText } from 'react-native';
+import { StyleSheet, Text as RNText } from 'react-native';
 import { mainFontStyle } from '../../styles/fonts';
 import { defaultFontSize } from '../../styles/units';
 import { superDarkGrey } from '../../styles/colors';
