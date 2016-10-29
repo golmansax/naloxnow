@@ -18,41 +18,49 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  map: {
+  mapContainer: {
     flex: 1,
+    justifyContent: 'flex-end',
+  },
+
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
 
 export const NaloRequestorSourceScene = ({ source }) => (
   <View style={styles.container}>
     <SourceInfo source={source} />
-    <MapView
-      ref={(ref) => (this.mapRef = ref)}
-      style={styles.map}
-      initialRegion={Object.assign({}, midpointLocation, {
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
-      })}
-      >
-      <MapView.Marker identifier='requestor' coordinate={requestorLocation}>
-        <LocationMarkerView />
-      </MapView.Marker>
-      <MapView.Marker identifier='provider' coordinate={providerLocation} />
-    </MapView>
-    <Button
-      onPress={() => {
-        const request = {
-          source,
-          status: RequestStatus.REQUESTED,
-        };
+    <View style={styles.mapContainer}>
+      <MapView
+        ref={(ref) => (this.mapRef = ref)}
+        style={styles.map}
+        initialRegion={Object.assign({}, midpointLocation, {
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01,
+        })}
+        >
+        <MapView.Marker identifier='requestor' coordinate={requestorLocation}>
+          <LocationMarkerView />
+        </MapView.Marker>
+        <MapView.Marker identifier='provider' coordinate={providerLocation} />
+      </MapView>
+      <Button
+        style={styles.button}
+        onPress={() => {
+          const request = {
+            source,
+            status: RequestStatus.REQUESTED,
+          };
 
-        firebaseDB.ref('request').set(request).then(() => {
-          Actions.naloRequestorRequestScene({ request });
-        });
-      }}
-      >
-      Request Naloxone
-    </Button>
+          firebaseDB.ref('request').set(request).then(() => {
+            Actions.naloRequestorRequestScene({ request });
+          });
+        }}
+        >
+        Request Naloxone Now
+      </Button>
+    </View>
   </View>
 );
 
