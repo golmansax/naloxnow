@@ -9,32 +9,61 @@ import {
 } from '../../base';
 import { naloxoneSources, requestorLocation } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
+import { vr } from '../../../styles/units';
+import { white, superLightGrey } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  title: {
+    paddingTop: vr(.5),
+    paddingBottom: vr(.5),
+    paddingRight: vr(1),
+    paddingLeft: vr(1),
+  },
+
   map: {
     flex: 1,
   },
 
-  list: {
-    flex: 1,
+  listItem: {
+    padding: vr(1),
+    backgroundColor: superLightGrey,
+    borderColor: white,
+    borderBottomWidth: 1,
   },
 
-  listItem: {
-    height: 50,
+  listItemContent: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 
 export const NaloRequestorHomeScene = () => (
-  <View>
-    <View><Text>Nearest naloxone carriers</Text></View>
-    <View style={styles.list}>
+  <View style={styles.container}>
+    <View>
+      <Text style={styles.title}>Nearest naloxone carriers</Text>
+    </View>
+    <View>
       {naloxoneSources.map((source) => (
         <TouchableHighlight
           key={source.id}
           style={styles.listItem}
           onPress={() => Actions.naloRequestorSourceScene({ source })}
           >
-          <Text>{source.title}</Text>
+          <View style={styles.listItemContent}>
+            <View>
+              <Text>{source.title}</Text>
+              <Text>{source.subtitle}</Text>
+            </View>
+            <View>
+              <Text>{source.time} mins</Text>
+            </View>
+          </View>
         </TouchableHighlight>
       ))}
     </View>

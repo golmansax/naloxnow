@@ -10,18 +10,27 @@ export const providerLocation = {
 
 export const naloxoneSources = [
   {
-    id: 'walgreens',
-    title: 'Walgreens',
-    subtitle: '253 2nd Ave, San Mateo, CA',
-  },
-  {
     id: 'uber',
     title: 'Uber driver',
     subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 7,
+  },
+  {
+    id: 'walgreens',
+    title: 'Walgreens',
+    subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 8,
+  },
+  {
+    id: 'uber2',
+    title: 'Random person',
+    subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 10,
   },
   {
     id: 'p2p',
     title: 'Random person',
     subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 15,
   },
 ];
