@@ -57,6 +57,7 @@ export const NaloRequestorSourceScene = ({ source }) => (
         <MapView.Marker identifier='provider' coordinate={providerLocation} />
       </MapView>
       <Button
+        design='urgent'
         style={styles.button}
         onPress={() => {
           const request = {

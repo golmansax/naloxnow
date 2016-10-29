@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { StyleSheet } from 'react-native';
 import APSLButton from 'apsl-react-native-button';
 import { View, Text } from './index';
@@ -10,23 +10,34 @@ const styles = StyleSheet.create({
   button: {
     marginBottom: null,
     height: null,
-    borderWidth: 0,
     borderRadius: 4,
     padding: vr(0.75),
+  },
+
+  urgentButton: {
+    borderWidth: 0,
     backgroundColor: nnRed,
+  },
+
+  urgentButtonText: {
+    color: white,
   },
 
   text: {
     ...mainFontStyle,
-    color: white,
     fontSize: defaultFontSize,
   },
 });
 
 export class Button extends Component {
   static propTypes = {
+    design: PropTypes.oneOf(['plain', 'urgent']).isRequired,
     style: View.propTypes.style,
     textStyle: Text.propTypes.style,
+  };
+
+  static defaultProps = {
+    design: 'plain',
   };
 
   setNativeProps(nativeProps) {
@@ -34,12 +45,12 @@ export class Button extends Component {
   }
 
   render() {
-    const { textStyle, style, ...props } = this.props;
+    const { textStyle, style, design, ...props } = this.props;
     return (
       <APSLButton
-        style={[styles.button, style]}
+        style={[styles.button, styles[`${design}Button`], style]}
         ref={(component) => (this.rootRef = component)}
-        textStyle={[styles.text, textStyle]}
+        textStyle={[styles.text, styles[`${design}ButtonText`], textStyle]}
         {...props}
       />
     );
