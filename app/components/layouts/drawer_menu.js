@@ -6,8 +6,8 @@ import { registerPushTokenAsync } from '../../lib/push_notifications';
 import { getGlobalState } from '../../lib/global_state';
 
 const menuEntries = [
-  { title: 'Find Naloxone', key: 'naloRequestorHomeScene' },
-  { title: 'Provide Naloxone', key: 'naloProviderHomeScene' },
+  { title: 'Find Naloxone', key: 'naloRequestor' },
+  { title: 'Provide Naloxone', key: 'naloProvider' },
 ];
 
 const styles = StyleSheet.create({

@@ -1,8 +1,44 @@
 import React, { Component, PropTypes } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Text, Button } from '../../base';
+import { StyleSheet } from 'react-native';
+import {
+  MapView,
+  View,
+  Text,
+  Button,
+} from '../../base';
 import { firebaseDB } from '../../../lib/firebase';
 import { RequestStatus } from '../../../lib/constants';
+import {
+  providerLocation, requestorLocation, naloxoneRequestor, midpointLocation,
+} from '../../../lib/data';
+import { LocationMarkerView } from '../../misc/location_marker_view';
+import { vr } from '../../../styles/units';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+  title: {
+    paddingTop: vr(0.25),
+    paddingBottom: vr(0.25),
+    paddingRight: vr(1),
+    paddingLeft: vr(1),
+  },
+
+  map: {
+    flex: 1,
+  },
+
+  request: {
+    padding: vr(1),
+  },
+
+  button: {
+    marginTop: vr(0.5),
+  },
+});
 
 export class NaloProviderHomeScene extends Component {
   static propTypes = {
@@ -28,16 +64,32 @@ export class NaloProviderHomeScene extends Component {
 
   render() {
     const { request } = this.props;
-    const { status, source } = request;
+    const { status } = request;
+    const requested = (status === RequestStatus.REQUESTED);
 
     return (
-      <View>
-        <Text>Provider</Text>
-        {status === RequestStatus.REQUESTED ? (
-          <View>
-            <Text>REQUEST</Text>
-            <Text>{source.title}</Text>
-            <Button onPress={this.acceptRequest}>Deliver Naloxone</Button>
+      <View style={styles.container}>
+        <View style={styles.title}><Text>Naloxone delivery mode</Text></View>
+        <MapView
+          style={styles.map}
+          region={Object.assign({}, requested ? midpointLocation : providerLocation, {
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          })}
+          >
+          <MapView.Marker coordinate={providerLocation}>
+            <LocationMarkerView />
+          </MapView.Marker>
+          {requested ? (
+            <MapView.Marker coordinate={requestorLocation} />
+          ) : null}
+        </MapView>
+        {requested ? (
+          <View style={styles.request}>
+            <Text>{naloxoneRequestor.title}</Text>
+            <Button style={styles.button} onPress={this.acceptRequest} design='urgent'>
+              Deliver naloxone now
+            </Button>
           </View>
         ) : null}
       </View>

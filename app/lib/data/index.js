@@ -13,6 +13,10 @@ export const midpointLocation = {
   longitude: -122.41455,
 };
 
+export const naloxoneRequestor = {
+  title: 'John Doe',
+};
+
 export const naloxoneSources = [
   {
     id: 'uber',

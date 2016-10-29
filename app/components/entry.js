@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     top: NAVBAR_HEIGHT,
+    paddingBottom: NAVBAR_HEIGHT,
   },
 
   tabContent: {
@@ -104,6 +105,8 @@ export class Entry extends Component {
       titleStyle: [styles.navBarContent, styles.navBarText],
       rightButtonTextStyle: [styles.navBarContent, styles.navBarText],
       sceneStyle: styles.content,
+      rightTitle: 'Menu',
+      onRight: () => Actions.refresh({ key: 'drawer', open: true }),
     };
 
     const tabSceneProps = {
@@ -118,11 +121,7 @@ export class Entry extends Component {
           component={DrawerLayout}
           open={false}
           >
-          <Scene
-            key='root'
-            rightTitle='Menu'
-            onRight={() => Actions.refresh({ key: 'drawer', open: true })}
-            >
+          <Scene key='drawerContent'>
             <Scene
               {...defaultSceneProps}
               key='chooseRoleScene'
@@ -161,18 +160,21 @@ export class Entry extends Component {
                   key='naloRequestorRequestScene'
                   component={NaloRequestorRequestScene}
                 />
-                <Scene
-                  {...tabSceneProps}
-                  key='naloProviderHomeScene'
-                  component={NaloProviderHomeScene}
-                />
-                <Scene
-                  {...tabSceneProps}
-                  key='naloProviderAcceptedRequestScene'
-                  component={NaloProviderAcceptedRequestScene}
-                  duration={1}
-                />
               </Scene>
+            </Scene>
+            <Scene key='naloProvider'>
+              <Scene
+                {...defaultSceneProps}
+                key='naloProviderHomeScene'
+                component={NaloProviderHomeScene}
+                initial
+              />
+              <Scene
+                {...defaultSceneProps}
+                key='naloProviderAcceptedRequestScene'
+                component={NaloProviderAcceptedRequestScene}
+                duration={1}
+              />
             </Scene>
           </Scene>
         </Scene>
