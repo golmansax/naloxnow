@@ -11,7 +11,7 @@ import { DrawerLayout } from './layouts/drawer_layout';
 import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
 import { pressedOpacity, vr } from '../styles/units';
-import { Test } from './test';
+import { OverdoseToolkitStep1Scene } from './scenes/overdose_toolkit/step1_scene';
 import { AppLoading } from './base';
 import { Tab } from './layouts/tab';
 
@@ -140,7 +140,7 @@ export class Entry extends Component {
                 title='Overdose Toolkit'
                 icon={Tab}
                 >
-                <Scene key='toolkitStep1' component={Test} />
+                <Scene key='toolkitStep1' component={OverdoseToolkitStep1Scene} />
               </Scene>
               <Scene
                 key='naloxoneNow'

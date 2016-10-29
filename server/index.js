@@ -11,5 +11,6 @@ server.get('/push', async function(req, res) {
   const response = await sendPushNotificationAsync();
   res.send(response);
 });
+server.get('/', (req, res) => res.send('OK'));
 
 export { server };
