@@ -12,6 +12,8 @@ import { midpointLocation, providerLocation, requestorLocation } from '../../../
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
 import { SourceInfo } from './source_info';
+import { white } from '../../../styles/colors';
+import { vr } from '../../../styles/units';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,11 +28,20 @@ const styles = StyleSheet.create({
   map: {
     ...StyleSheet.absoluteFillObject,
   },
+
+  source: {
+    borderBottomWidth: 1,
+    borderColor: white,
+  },
+
+  button: {
+    margin: vr(0.5),
+  },
 });
 
 export const NaloRequestorSourceScene = ({ source }) => (
   <View style={styles.container}>
-    <SourceInfo source={source} />
+    <SourceInfo source={source} style={styles.source} />
     <View style={styles.mapContainer}>
       <MapView
         ref={(ref) => (this.mapRef = ref)}

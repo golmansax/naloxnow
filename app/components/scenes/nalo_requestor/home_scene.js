@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    paddingTop: vr(0.5),
-    paddingBottom: vr(0.5),
+    paddingTop: vr(0.25),
+    paddingBottom: vr(0.25),
     paddingRight: vr(1),
     paddingLeft: vr(1),
   },

@@ -6,7 +6,10 @@ import { superLightGrey } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
-    padding: vr(1),
+    paddingTop: vr(0.5),
+    paddingBottom: vr(0.5),
+    paddingRight: vr(1),
+    paddingLeft: vr(1),
     backgroundColor: superLightGrey,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -16,6 +19,7 @@ const styles = StyleSheet.create({
 
 export class SourceInfo extends Component {
   static propTypes = {
+    style: View.propTypes.style,
     source: PropTypes.object.isRequired,
   };
 
@@ -24,10 +28,10 @@ export class SourceInfo extends Component {
   }
 
   render() {
-    const { source } = this.props;
+    const { source, style } = this.props;
 
     return (
-      <View style={styles.container} ref={(ref) => (this.rootRef = ref)}>
+      <View style={[styles.container, style]} ref={(ref) => (this.rootRef = ref)}>
         <View>
           <Text>{source.title}</Text>
           <Text>{source.subtitle}</Text>

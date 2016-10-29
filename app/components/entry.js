@@ -16,8 +16,8 @@ import { Test } from './test';
 import { AppLoading } from './base';
 import { Tab } from './layouts/tab';
 
-const NAVBAR_HEIGHT = vr(4);
-const TAB_HEIGHT = vr(4);
+const NAVBAR_HEIGHT = vr(3);
+const TAB_HEIGHT = vr(3);
 const styles = StyleSheet.create({
   content: {
     flex: 1,
@@ -36,6 +36,8 @@ const styles = StyleSheet.create({
   tabBarStyle: {
     backgroundColor: lightGrey,
     height: TAB_HEIGHT,
+    borderTopWidth: 1,
+    borderColor: white,
   },
 
   navBarContent: {
