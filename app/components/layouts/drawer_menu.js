@@ -29,8 +29,8 @@ export const DrawerMenu = ({ onNavigate }) => (
         key={entry.key}
         style={styles.entry}
         onPress={() => {
-          onNavigate();
-          Actions[entry.key]();
+          const key = entry.key;
+          Actions[key]();
         }}
         >
         <Text>{entry.title}</Text>

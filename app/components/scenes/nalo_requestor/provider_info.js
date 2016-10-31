@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export class SourceInfo extends Component {
+export class ProviderInfo extends Component {
   static propTypes = {
-    source: PropTypes.object.isRequired,
+    provider: PropTypes.object.isRequired,
     style: View.propTypes.style,
   };
 
@@ -28,16 +28,16 @@ export class SourceInfo extends Component {
   }
 
   render() {
-    const { source, style } = this.props;
+    const { provider, style } = this.props;
 
     return (
       <View style={[styles.container, style]} ref={(ref) => (this.rootRef = ref)}>
         <View>
-          <Text>{source.title}</Text>
-          <Text>{source.subtitle}</Text>
+          <Text>{provider.title}</Text>
+          <Text>{provider.subtitle}</Text>
         </View>
         <View>
-          <Text>{source.time} mins</Text>
+          <Text>{provider.time} mins</Text>
         </View>
       </View>
     );

@@ -4,7 +4,7 @@ import { Font } from 'exponent';
 import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
-import { NaloRequestorRequestScene } from './scenes/nalo_requestor/request_scene';
+import { NaloRequestorAcceptedRequestScene } from './scenes/nalo_requestor/accepted_request_scene';
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
 import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
 
   navBarText: {
     ...mainFontStyle,
+  },
+
+  navBarHiddenText: {
+    color: nnBlue,
   },
 });
 
@@ -103,7 +107,7 @@ export class Entry extends Component {
       navigationBarStyle: styles.navBar,
       title: 'NaloxoneNow',
       titleStyle: [styles.navBarContent, styles.navBarText],
-      rightButtonTextStyle: [styles.navBarContent, styles.navBarText],
+      rightButtonTextStyle: [styles.navBarHiddenText],
       sceneStyle: styles.content,
       rightTitle: 'Menu',
       onRight: () => Actions.refresh({ key: 'drawer', open: true }),
@@ -154,12 +158,13 @@ export class Entry extends Component {
                   initial
                   key='naloRequestorHomeScene'
                   component={NaloRequestorHomeScene}
-                  rnderBackButton={() => false}
+                  renderBackButton={() => false}
                 />
                 <Scene
                   {...tabSceneProps}
-                  key='naloRequestorRequestScene'
-                  component={NaloRequestorRequestScene}
+                  key='naloRequestorAcceptedRequestScene'
+                  component={NaloRequestorAcceptedRequestScene}
+                  renderBackButton={() => false}
                 />
               </Scene>
             </Scene>
@@ -171,6 +176,7 @@ export class Entry extends Component {
                 {...defaultSceneProps}
                 key='naloProviderHomeScene'
                 component={NaloProviderHomeScene}
+                renderBackButton={() => false}
                 initial
               />
               <Scene
