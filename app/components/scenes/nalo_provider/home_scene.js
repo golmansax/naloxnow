@@ -10,7 +10,7 @@ import {
 import { firebaseDB } from '../../../lib/firebase';
 import { RequestStatus } from '../../../lib/constants';
 import {
-  providerLocation, requestorLocation, naloxoneRequestor, midpointLocation,
+  provider, requestor, naloxoneRequestor, midpointLocation,
 } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr } from '../../../styles/units';
@@ -72,16 +72,16 @@ export class NaloProviderHomeScene extends Component {
         <View style={styles.title}><Text>Naloxone delivery mode</Text></View>
         <MapView
           style={styles.map}
-          region={Object.assign({}, requested ? midpointLocation : providerLocation, {
+          region={Object.assign({}, requested ? midpointLocation : provider.location, {
             latitudeDelta: 0.01,
             longitudeDelta: 0.01,
           })}
           >
-          <MapView.Marker coordinate={providerLocation}>
+          <MapView.Marker coordinate={provider.location}>
             <LocationMarkerView />
           </MapView.Marker>
           {requested ? (
-            <MapView.Marker coordinate={requestorLocation} />
+            <MapView.Marker coordinate={requestor.location} />
           ) : null}
         </MapView>
         {requested ? (

@@ -6,11 +6,11 @@ import {
 } from '../../base';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import {
-  midpointLocation, providerLocation, requestorLocation, naloxoneRequestor,
+  midpointLocation, provider, requestor,
 } from '../../../lib/data';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
-import { SourceInfo } from './source_info';
+import { ProviderInfo } from './provider_info';
 import { white, superDarkGrey } from '../../../styles/colors';
 import { vr, defaultBorderRadius } from '../../../styles/units';
 import { sendPushNotificationAsync } from '../../../lib/push_notifications';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
 
-  source: {
+  provider: {
     borderBottomWidth: 1,
     borderColor: white,
   },
@@ -82,11 +82,11 @@ export class NaloRequestorRequestScene extends Component {
 
   render() {
     const { request } = this.props;
-    const { source, status } = request;
+    const { provider, status } = request;
 
     return (
       <View style={styles.container}>
-        <SourceInfo source={source} style={styles.source} />
+        <ProviderInfo provider={provider} style={styles.provider} />
         <View style={styles.mapContainer}>
           <MapView
             ref={(ref) => (this.mapRef = ref)}
@@ -96,10 +96,10 @@ export class NaloRequestorRequestScene extends Component {
               longitudeDelta: 0.01,
             })}
             >
-            <MapView.Marker identifier='requestor' coordinate={requestorLocation}>
+            <MapView.Marker identifier='requestor' coordinate={requestor.location}>
               <LocationMarkerView />
             </MapView.Marker>
-            <MapView.Marker identifier='provider' coordinate={providerLocation} />
+            <MapView.Marker identifier='provider' coordinate={provider.location} />
           </MapView>
           {status === RequestStatus.REQUESTED ? (
             <View style={styles.requestedModal}>
@@ -111,11 +111,11 @@ export class NaloRequestorRequestScene extends Component {
               design='urgent'
               style={styles.button}
               onPress={() => {
-                firebaseDB().ref('request/status').set(RequestStatus.REQUESTED)
+                firebaseDB().ref('request/status').set(RequestStatus.REQUESTED);
                 sendPushNotificationAsync([
-                  `URGENT: ${naloxoneRequestor.title} needs naloxone immediately,`,
-                  `is located ${source.time} minutes away`,
-                ].join(' '))
+                  `URGENT: ${requestor.title} needs naloxone immediately,`,
+                  `is located ${provider.time} minutes away`,
+                ].join(' '));
               }}
               >
               Request Naloxone Now

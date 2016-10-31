@@ -9,11 +9,10 @@ import {
 } from '../../base';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
-import { naloxoneSources, requestorLocation } from '../../../lib/data';
+import { providers, requestor } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr, pressedOpacity } from '../../../styles/units';
 import { white, lightGrey } from '../../../styles/colors';
-import { SourceInfo } from './source_info';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,43 +36,47 @@ const styles = StyleSheet.create({
   },
 });
 
+/*
+          <TouchableHighlight
+            key={source.id}
+            style={styles.listItem}
+            onPress={() => {
+              const request = {
+                source,
+                status: RequestStatus.NOT_YET_REQUESTED,
+              };
+
+              firebaseDB().ref('request').set(request).then(() => {
+                Actions.naloRequestorRequestScene({ request });
+              });
+            }}
+            underlayColor={lightGrey}
+            activeOpacity={pressedOpacity}
+            >
+            <ProviderInfo source={source} />
+          </TouchableHighlight>
+          */
+
 export const NaloRequestorHomeScene = () => (
   <View style={styles.container}>
     <View>
-      <Text style={styles.title}>Nearest naloxone carriers</Text>
-    </View>
-    <View>
-      {naloxoneSources.map((source) => (
-        <TouchableHighlight
-          key={source.id}
-          style={styles.listItem}
-          onPress={() => {
-            const request = {
-              source,
-              status: RequestStatus.NOT_YET_REQUESTED,
-            };
-
-            firebaseDB().ref('request').set(request).then(() => {
-              Actions.naloRequestorRequestScene({ request });
-            });
-          }}
-          underlayColor={lightGrey}
-          activeOpacity={pressedOpacity}
-          >
-          <SourceInfo source={source} />
-        </TouchableHighlight>
-      ))}
+      <Text style={styles.title}>
+        {providers.length} naloxone deliveries nearby
+      </Text>
     </View>
     <MapView
       style={styles.map}
-      region={Object.assign({}, requestorLocation, {
+      region={Object.assign({}, requestor.location, {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01,
       })}
       >
-      <MapView.Marker coordinate={requestorLocation}>
+      <MapView.Marker coordinate={requestor.location}>
         <LocationMarkerView />
       </MapView.Marker>
+      {providers.map((provider) => (
+        <MapView.Marker key={provider.id} coordinate={provider.location} />
+      ))}
     </MapView>
   </View>
 );

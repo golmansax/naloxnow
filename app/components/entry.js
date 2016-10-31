@@ -182,5 +182,7 @@ export class Entry extends Component {
     );
   }
 
-  handleNotification = (notification) => console.log(notification);
+  handleNotification(notification) {
+    console.log(notification); // eslint-disable-line no-console
+  }
 }

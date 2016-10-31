@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Platform, Linking } from 'react-native';
 import URI from 'urijs';
 import { View } from '../../base';
-import { providerLocation, requestorLocation } from '../../../lib/data';
+import { provider, requestor } from '../../../lib/data';
 import { locationToString } from '../../../lib/utils';
 
 async function openDirections() {
@@ -13,8 +13,8 @@ async function openDirections() {
       case 'ios':
         return new URI('https://maps.apple.com')
           .search({
-            saddr: locationToString(providerLocation),
-            daddr: locationToString(requestorLocation),
+            saddr: locationToString(provider.location),
+            daddr: locationToString(requestor.location),
           })
           .toString();
 
