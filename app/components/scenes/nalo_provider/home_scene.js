@@ -10,7 +10,7 @@ import {
 import { firebaseDB } from '../../../lib/firebase';
 import { RequestStatus } from '../../../lib/constants';
 import {
-  provider, requestor, naloxoneRequestor, midpointLocation,
+  provider, requestor, midpointLocation,
 } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr } from '../../../styles/units';
@@ -86,7 +86,7 @@ export class NaloProviderHomeScene extends Component {
         </MapView>
         {requested ? (
           <View style={styles.request}>
-            <Text>{naloxoneRequestor.title}</Text>
+            <Text>{requestor.title}</Text>
             <Button style={styles.button} onPress={this.acceptRequest} design='urgent'>
               Deliver naloxone now
             </Button>

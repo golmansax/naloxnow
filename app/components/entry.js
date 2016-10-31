@@ -134,6 +134,7 @@ export class Entry extends Component {
               tabs
               hideNavBar
               pressOpacity={pressedOpacity}
+              duration={1}
               >
               <Scene
                 key='overdoseToolkit'
@@ -162,7 +163,10 @@ export class Entry extends Component {
                 />
               </Scene>
             </Scene>
-            <Scene key='naloProvider'>
+            <Scene
+              key='naloProvider'
+              duration={1}
+              >
               <Scene
                 {...defaultSceneProps}
                 key='naloProviderHomeScene'

@@ -2,10 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
-  MapView,
-  Text,
-  View,
-  TouchableHighlight,
+  MapView, Text, View, TouchableHighlight, Button,
 } from '../../base';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
@@ -24,15 +21,21 @@ const styles = StyleSheet.create({
     paddingBottom: vr(0.25),
     paddingRight: vr(1),
     paddingLeft: vr(1),
+    borderColor: white,
+    borderBottomWidth: 1,
+  },
+
+  mapContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
 
   map: {
-    flex: 1,
+    ...StyleSheet.absoluteFillObject,
   },
 
-  listItem: {
-    borderColor: white,
-    borderBottomWidth: 1,
+  button: {
+    margin: vr(0.5),
   },
 });
 
@@ -64,19 +67,36 @@ export const NaloRequestorHomeScene = () => (
         {deliveryProviders.length} naloxone delivery providers nearby
       </Text>
     </View>
-    <MapView
-      style={styles.map}
-      region={Object.assign({}, requestor.location, {
-        latitudeDelta: 0.02,
-        longitudeDelta: 0.02,
-      })}
-      >
-      <MapView.Marker coordinate={requestor.location}>
-        <LocationMarkerView />
-      </MapView.Marker>
-      {deliveryProviders.map((provider) => (
-        <MapView.Marker key={provider.id} coordinate={provider.location} />
-      ))}
-    </MapView>
+    <View style={styles.mapContainer}>
+      <MapView
+        style={styles.map}
+        region={Object.assign({}, requestor.location, {
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.015,
+        })}
+        >
+        <MapView.Marker coordinate={requestor.location}>
+          <LocationMarkerView />
+        </MapView.Marker>
+        {deliveryProviders.map((provider) => (
+          <MapView.Marker key={provider.id} coordinate={provider.location} />
+        ))}
+      </MapView>
+      <Button
+        design='urgent'
+        style={styles.button}
+        onPress={() => {
+          /*
+          firebaseDB().ref('request/status').set(RequestStatus.REQUESTED);
+          sendPushNotificationAsync([
+            `URGENT: ${requestor.title} needs naloxone immediately,`,
+            `is located ${provider.time} minutes away`,
+          ].join(' '));
+          */
+        }}
+        >
+        Request Naloxone Now
+      </Button>
+    </View>
   </View>
 );

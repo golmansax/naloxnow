@@ -14,7 +14,7 @@ export const LocationMarkerView = () => (
       numPulses={1}
       top={-35}
       diameter={100}
-      speed={100}
+      speed={50}
     />
     <Image source={locationIcon} />
   </View>
