@@ -7,10 +7,21 @@ import {
   registerPushTokenAsync,
 } from '../../lib/push_notifications';
 import { getGlobalState } from '../../lib/global_state';
+import {
+  completeProviderPrerequisites, completeRequestorPrerequisites,
+} from '../../lib/prerequisites';
 
 const menuEntries = [
-  { title: 'Find Naloxone', key: 'naloRequestor' },
-  { title: 'Provide Naloxone', key: 'naloProvider' },
+  {
+    title: 'Find Naloxone',
+    key: 'naloRequestor',
+    prerequisite: completeRequestorPrerequisites,
+  },
+  {
+    title: 'Provide Naloxone',
+    key: 'naloProvider',
+    prerequisite: completeProviderPrerequisites,
+  },
 ];
 
 const styles = StyleSheet.create({
@@ -29,8 +40,7 @@ export const DrawerMenu = () => (
         key={entry.key}
         style={styles.entry}
         onPress={() => {
-          const key = entry.key;
-          Actions[key]();
+          entry.prerequisite().then(() => Actions[entry.key]());
         }}
         >
         <Text>{entry.title}</Text>
