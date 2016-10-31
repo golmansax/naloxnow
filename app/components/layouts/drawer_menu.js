@@ -3,7 +3,7 @@ import { Alert, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
 import {
-  sendPushNotificationAsync,
+  sendDefaultPushNotificationAsync,
   registerPushTokenAsync,
 } from '../../lib/push_notifications';
 import { getGlobalState } from '../../lib/global_state';
@@ -49,7 +49,7 @@ export const DrawerMenu = () => (
     <TouchableHighlight
       style={styles.entry}
       onPress={async function () {
-        sendPushNotificationAsync('This is a test')
+        sendDefaultPushNotificationAsync()
           .then(() => Alert.alert('Success', 'Successfully sent message'))
           .catch((err) => Alert.alert('Error', err.message));
       }}

@@ -38,6 +38,5 @@ export async function sendDefaultPushNotificationAsync() {
   ].join(' ');
 
   return sendPushNotificationAsync(message)
-    .then(checkStatus)
-    .catch((err) => console.log(err)); // eslint-disable-line no-console
+    .then(checkStatus);
 }

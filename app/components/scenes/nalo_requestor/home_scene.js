@@ -125,7 +125,8 @@ export class NaloRequestorHomeScene extends Component {
               style={styles.button}
               onPress={() => {
                 firebaseDB().ref('request/status').set(RequestStatus.REQUESTED);
-                sendDefaultPushNotificationAsync();
+                sendDefaultPushNotificationAsync()
+                  .catch((err) => console.log(err)); // eslint-disable-line no-console
               }}
               >
               Request Naloxone Now
