@@ -6,17 +6,54 @@ export const requestor = {
   },
 };
 
-export const providers = [
+export const deliveryProviders = [
   {
     id: 'uber',
     title: 'Uber driver',
     subtitle: '253 2nd Ave, San Mateo, CA',
     time: 7,
     location: {
+      // Saigon Sandwich
       latitude: 37.783156,
       longitude: -122.417475,
     },
   },
+  {
+    id: 'uber2',
+    title: 'Random person',
+    subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 5,
+    location: {
+      // Deli Board
+      latitude: 37.777642,
+      longitude: -122.406457,
+    },
+  },
+  {
+    id: 'p2p',
+    title: 'Random person',
+    subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 4,
+    location: {
+      // Cellarmaker
+      latitude: 37.777120,
+      longitude: -122.410657,
+    },
+  },
+  {
+    id: 'uber3',
+    title: 'Random person',
+    subtitle: '253 2nd Ave, San Mateo, CA',
+    time: 7,
+    location: {
+      // REI
+      latitude: 37.773091,
+      longitude: -122.404331,
+    },
+  },
+];
+
+export const pickupProviders = [
   {
     id: 'walgreens',
     title: 'Walgreens',
@@ -27,29 +64,9 @@ export const providers = [
       longitude: -122.417475,
     },
   },
-  {
-    id: 'uber2',
-    title: 'Random person',
-    subtitle: '253 2nd Ave, San Mateo, CA',
-    time: 10,
-    location: {
-      latitude: 37.783156,
-      longitude: -122.417475,
-    },
-  },
-  {
-    id: 'p2p',
-    title: 'Random person',
-    subtitle: '253 2nd Ave, San Mateo, CA',
-    time: 15,
-    location: {
-      latitude: 37.783156,
-      longitude: -122.417475,
-    },
-  },
 ];
 
-export const provider = providers[0];
+export const provider = deliveryProviders[0];
 
 export const midpointLocation = {
   latitude: 37.782136,

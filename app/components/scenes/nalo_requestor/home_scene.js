@@ -9,7 +9,7 @@ import {
 } from '../../base';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
-import { providers, requestor } from '../../../lib/data';
+import { deliveryProviders, requestor } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr, pressedOpacity } from '../../../styles/units';
 import { white, lightGrey } from '../../../styles/colors';
@@ -61,20 +61,20 @@ export const NaloRequestorHomeScene = () => (
   <View style={styles.container}>
     <View>
       <Text style={styles.title}>
-        {providers.length} naloxone deliveries nearby
+        {deliveryProviders.length} naloxone delivery providers nearby
       </Text>
     </View>
     <MapView
       style={styles.map}
       region={Object.assign({}, requestor.location, {
-        latitudeDelta: 0.01,
-        longitudeDelta: 0.01,
+        latitudeDelta: 0.02,
+        longitudeDelta: 0.02,
       })}
       >
       <MapView.Marker coordinate={requestor.location}>
         <LocationMarkerView />
       </MapView.Marker>
-      {providers.map((provider) => (
+      {deliveryProviders.map((provider) => (
         <MapView.Marker key={provider.id} coordinate={provider.location} />
       ))}
     </MapView>
