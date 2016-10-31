@@ -32,14 +32,12 @@ export async function sendPushNotificationAsync(message) {
 }
 
 export async function sendDefaultPushNotificationAsync() {
-  var message = [
+  const message = [
     `URGENT: ${requestor.title} needs naloxone immediately,`,
     `is located ${provider.time} minutes away`,
   ].join(' ');
 
-  return sendPushNotificationAsync()
+  return sendPushNotificationAsync(message)
     .then(checkStatus)
-    .catch(function(err) {
-      console.log(err);
-    });
+    .catch((err) => console.log(err)); // eslint-disable-line no-console
 }

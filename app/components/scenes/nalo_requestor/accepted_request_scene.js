@@ -1,19 +1,15 @@
-import React, { Component, PropTypes } from 'react';
-import { Actions } from 'react-native-router-flux';
+import React from 'react';
 import { StyleSheet } from 'react-native';
 import {
-  MapView, View, Button, Text,
+  MapView, View,
 } from '../../base';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import {
   midpointLocation, provider, requestor,
 } from '../../../lib/data';
-import { RequestStatus } from '../../../lib/constants';
-import { firebaseDB } from '../../../lib/firebase';
 import { ProviderInfo } from './provider_info';
 import { white, superDarkGrey } from '../../../styles/colors';
 import { vr, defaultBorderRadius } from '../../../styles/units';
-import { sendPushNotificationAsync } from '../../../lib/push_notifications';
 
 const styles = StyleSheet.create({
   container: {

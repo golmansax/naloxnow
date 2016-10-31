@@ -2,15 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import { Alert, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
-  MapView, Text, View, TouchableHighlight, Button,
+  MapView, Text, View, Button,
 } from '../../base';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
 import { deliveryProviders, provider, requestor } from '../../../lib/data';
 import { sendDefaultPushNotificationAsync } from '../../../lib/push_notifications';
 import { LocationMarkerView } from '../../misc/location_marker_view';
-import { vr, pressedOpacity, defaultBorderRadius } from '../../../styles/units';
-import { white, lightGrey, superDarkGrey } from '../../../styles/colors';
+import { vr, defaultBorderRadius } from '../../../styles/units';
+import { white, superDarkGrey } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -78,9 +78,7 @@ export class NaloRequestorHomeScene extends Component {
         Alert.alert(
           'Naloxone request accepted',
           `Naloxone is on its way, and will be delieverd in ${provider.time} minutes`,
-          [
-            { text: 'OK', onPress: () => Actions.naloRequestorAcceptedRequestScene() }
-          ]
+          [{ text: 'OK', onPress: () => Actions.naloRequestorAcceptedRequestScene() }]
         );
       } else if (newStatus !== this.props.request.status) {
         const request = Object.assign({}, this.props.request, {
@@ -117,8 +115,8 @@ export class NaloRequestorHomeScene extends Component {
             <MapView.Marker coordinate={requestor.location}>
               <LocationMarkerView />
             </MapView.Marker>
-            {deliveryProviders.map((provider) => (
-              <MapView.Marker key={provider.id} coordinate={provider.location} />
+            {deliveryProviders.map((deliveryProvider) => (
+              <MapView.Marker key={deliveryProvider.id} coordinate={deliveryProvider.location} />
             ))}
           </MapView>
           {status === RequestStatus.NOT_YET_REQUESTED ? (

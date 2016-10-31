@@ -1,5 +1,5 @@
-import React, { PropTypes } from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { Alert, StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { View, TouchableHighlight, Text } from '../base';
 import {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const DrawerMenu = ({ onNavigate }) => (
+export const DrawerMenu = () => (
   <View style={styles.content}>
     {menuEntries.map((entry) => (
       <TouchableHighlight
@@ -40,8 +40,8 @@ export const DrawerMenu = ({ onNavigate }) => (
       style={styles.entry}
       onPress={async function () {
         registerPushTokenAsync(getGlobalState('pushToken').token)
-          .then(() => alert('Push notification enabled for this user'))
-          .catch((err) => alert(err.message));
+          .then(() => Alert.alert('Success', 'Push notification enabled for this user'))
+          .catch((err) => Alert.alert('Error', err.message));
       }}
       >
       <Text>Register this user for push notifications</Text>
@@ -50,8 +50,8 @@ export const DrawerMenu = ({ onNavigate }) => (
       style={styles.entry}
       onPress={async function () {
         sendPushNotificationAsync('This is a test')
-          .then(() => alert('Successfully sent message'))
-          .catch((err) => alert(err.message));
+          .then(() => Alert.alert('Success', 'Successfully sent message'))
+          .catch((err) => Alert.alert('Error', err.message));
       }}
       >
       <Text>Send push notification</Text>
@@ -66,7 +66,3 @@ export const DrawerMenu = ({ onNavigate }) => (
     </View>
   </View>
 );
-
-DrawerMenu.propTypes = {
-  onNavigate: PropTypes.func.isRequired,
-};

@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
   },
 });
 
+function handleNotification(notification) {
+  console.log(notification); // eslint-disable-line no-console
+}
+
 export class Entry extends Component {
   static propTypes = {
     exp: PropTypes.shape({
@@ -73,7 +77,7 @@ export class Entry extends Component {
     // Handle notifications that are received or selected while the app
     // is open
     this.removeListener = DeviceEventEmitter.addListener(
-      'Exponent.notification', this.handleNotification
+      'Exponent.notification', handleNotification
     );
 
     // Handle notifications that are received or selected while the app
@@ -82,7 +86,7 @@ export class Entry extends Component {
     // root component -- the one that is registered with `AppRegistry`
     // as main.
     if (this.props.exp.notification) {
-      this.handleNotification(this.props.exp.notification);
+      handleNotification(this.props.exp.notification);
     }
 
     await Font.loadAsync({
@@ -190,9 +194,5 @@ export class Entry extends Component {
         </Scene>
       </Router>
     );
-  }
-
-  handleNotification(notification) {
-    console.log(notification); // eslint-disable-line no-console
   }
 }
