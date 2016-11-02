@@ -1,9 +1,12 @@
 // import { Location } from 'exponent';
+import { Font } from 'exponent';
 import { getPushTokenAsync } from './push_notifications';
 import { getSignedInUserAsync } from './auth';
 import { setGlobalState } from './global_state';
 import { firebaseDB } from './firebase';
 import { RequestStatus } from './constants';
+
+const cache = new Map();
 
 async function requestLocationAsync() {
   return Promise.resolve();
@@ -11,7 +14,15 @@ async function requestLocationAsync() {
 }
 
 async function storeLoggedInUserAsync() {
-  return getSignedInUserAsync().then((user) => setGlobalState('user', user));
+  const cachedPromise = cache.get('loggedInUser');
+  if (cachedPromise) {
+    return cachedPromise;
+  }
+
+  const promise = getSignedInUserAsync().then((user) => setGlobalState('user', user));
+  cache.set('loggedInUser', promise);
+
+  return promise;
 }
 
 async function storePushTokenAsync() {
@@ -35,5 +46,17 @@ export async function completeRequestorPrerequisites() {
     requestLocationAsync(),
     storeLoggedInUserAsync()
       .then(() => setRequestStatus(RequestStatus.NOT_YET_REQUESTED)),
+  ]);
+}
+
+export async function completeAppPrerequisites() {
+  return Promise.all([
+    Font.loadAsync({
+      /* eslint-disable global-require */
+      'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
+      'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
+      /* eslint-enable global-require */
+    }),
+    storeLoggedInUserAsync(),
   ]);
 }

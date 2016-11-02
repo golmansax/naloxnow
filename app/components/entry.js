@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import { Font } from 'exponent';
 import { StyleSheet, DeviceEventEmitter } from 'react-native';
 import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
@@ -12,8 +11,11 @@ import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
 import { pressedOpacity, vr } from '../styles/units';
 import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_scene';
-import { OverdoseToolkitObtainNaloxoneScene } from './scenes/overdose_toolkit/obtain_naloxone_scene';
+import {
+  OverdoseToolkitObtainNaloxoneScene,
+} from './scenes/overdose_toolkit/obtain_naloxone_scene';
 import { AppLoading } from './base';
+import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
 
 const NAVBAR_HEIGHT = vr(3);
@@ -74,7 +76,7 @@ export class Entry extends Component {
     isReady: false,
   };
 
-  async componentWillMount() {
+  componentWillMount() {
     // Handle notifications that are received or selected while the app
     // is open
     this.removeListener = DeviceEventEmitter.addListener(
@@ -90,13 +92,7 @@ export class Entry extends Component {
       handleNotification(this.props.exp.notification);
     }
 
-    await Font.loadAsync({
-      // eslint-disable-next-line global-require
-      'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
-      'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
-    });
-
-    this.setState({ isReady: true });
+    completeAppPrerequisites().then(() => this.setState({ isReady: true }));
   }
 
   componentWillUnmount() {

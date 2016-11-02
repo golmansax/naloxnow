@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View, TouchableHighlight } from '../../base';
-import { vr } from '../../../styles/units';
-import { superLightGrey, nnRed, white } from '../../../styles/colors';
+import { Text, View, TouchableHighlight } from '../base';
+import { vr, pressedOpacity } from '../../styles/units';
+import { superLightGrey, nnRed, white, lightGrey } from '../../styles/colors';
+import { RequestStatus } from '../../lib/constants';
+import { firebaseDB } from '../../lib/firebase';
 
 const styles = StyleSheet.create({
   content: {
@@ -39,7 +41,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export class ProviderInfo extends Component {
+export class RequestAlert extends Component {
   static propTypes = {
     provider: PropTypes.object.isRequired,
     style: View.propTypes.style,
@@ -65,7 +67,12 @@ export class ProviderInfo extends Component {
               <Text bold style={styles.timeText}>{provider.time} mins</Text>
             </Text>
           </View>
-          <TouchableHighlight style={styles.cancelButton}>
+          <TouchableHighlight
+            style={styles.cancelButton}
+            onPress={() => firebaseDB().ref('request/status').set(RequestStatus.NOT_YET_REQUESTED)}
+            activeOpacity={pressedOpacity}
+            underlayColor={lightGrey}
+            >
             <Text style={styles.content}>Cancel</Text>
           </TouchableHighlight>
         </View>

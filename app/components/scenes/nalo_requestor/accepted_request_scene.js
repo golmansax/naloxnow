@@ -7,9 +7,9 @@ import { LocationMarkerView } from '../../misc/location_marker_view';
 import {
   midpointLocation, provider, requestor,
 } from '../../../lib/data';
-import { ProviderInfo } from './provider_info';
 import { white, superDarkGrey } from '../../../styles/colors';
 import { vr, defaultBorderRadius } from '../../../styles/units';
+import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 const styles = StyleSheet.create({
   container: {
@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
 });
 
 export const NaloRequestorAcceptedRequestScene = () => (
-  <View style={styles.container}>
-    <ProviderInfo provider={provider} style={styles.provider} />
+  <RequestAlertLayout style={styles.container}>
     <View style={styles.mapContainer}>
       <MapView
         ref={(ref) => (this.mapRef = ref)}
@@ -73,5 +72,5 @@ export const NaloRequestorAcceptedRequestScene = () => (
         <MapView.Marker identifier='provider' coordinate={provider.location} />
       </MapView>
     </View>
-  </View>
+  </RequestAlertLayout>
 );

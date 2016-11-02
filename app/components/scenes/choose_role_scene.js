@@ -7,6 +7,7 @@ import { lightGrey, superDarkGrey, white } from '../../styles/colors';
 import {
   completeRequestorPrerequisites,
 } from '../../lib/prerequisites';
+import { RequestAlertLayout } from '../layouts/request_alert_layout';
 
 const styles = StyleSheet.create({
   container: {
@@ -49,7 +50,7 @@ function chooseNaloRequestor() {
 }
 
 export const ChooseRoleScene = () => (
-  <View style={styles.container}>
+  <RequestAlertLayout style={styles.container}>
     <View>
       <Text style={styles.title}>
         Please choose one of the options:
@@ -62,8 +63,8 @@ export const ChooseRoleScene = () => (
     </View>
     <View style={[styles.option, styles.lastOption]}>
       <Button style={styles.button} onPress={chooseNaloRequestor}>
-        I know what I'm doing: Request naloxone
+        I know what I&rsquo;m doing: Request naloxone
       </Button>
     </View>
-  </View>
+  </RequestAlertLayout>
 );

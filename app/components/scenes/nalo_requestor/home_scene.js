@@ -11,6 +11,7 @@ import { sendDefaultPushNotificationAsync } from '../../../lib/push_notification
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { vr, defaultBorderRadius } from '../../../styles/units';
 import { white, superDarkGrey } from '../../../styles/colors';
+import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 const styles = StyleSheet.create({
   container: {
@@ -98,7 +99,7 @@ export class NaloRequestorHomeScene extends Component {
     const { status } = request;
 
     return (
-      <View style={styles.container}>
+      <RequestAlertLayout style={styles.container}>
         <View>
           <Text style={styles.title}>
             {deliveryProviders.length} naloxone delivery providers nearby
@@ -137,7 +138,7 @@ export class NaloRequestorHomeScene extends Component {
             </View>
           )}
         </View>
-      </View>
+      </RequestAlertLayout>
     );
   }
 }

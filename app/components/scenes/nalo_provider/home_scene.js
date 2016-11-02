@@ -50,10 +50,14 @@ export class NaloProviderHomeScene extends Component {
   };
 
   componentWillMount() {
-    this.listener = firebaseDB().ref('request').on('value', (snapshot) => {
-      const newRequest = snapshot.val();
-      if (newRequest.status !== this.props.request.status) {
-        Actions.refresh({ request: newRequest });
+    this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
+      const newStatus = snapshot.val();
+      if (newStatus !== this.props.request.status) {
+        Actions.refresh({
+          request: Object.assign({}, this.props.request, {
+            status: newStatus,
+          }),
+        });
       }
     });
   }
