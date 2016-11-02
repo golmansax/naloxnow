@@ -12,6 +12,7 @@ import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
 import { pressedOpacity, vr } from '../styles/units';
 import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_scene';
+import { OverdoseToolkitObtainNaloxoneScene } from './scenes/overdose_toolkit/obtain_naloxone_scene';
 import { AppLoading } from './base';
 import { Tab } from './layouts/tab';
 
@@ -92,6 +93,7 @@ export class Entry extends Component {
     await Font.loadAsync({
       // eslint-disable-next-line global-require
       'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
+      'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
     });
 
     this.setState({ isReady: true });
@@ -152,9 +154,14 @@ export class Entry extends Component {
                 >
                 <Scene
                   {...tabSceneProps}
-                  key='call911Scene'
+                  key='toolkitCall911Scene'
                   component={OverdoseToolkitCall911Scene}
                   renderBackButton={() => false}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='toolkitObtainNaloxoneScene'
+                  component={OverdoseToolkitObtainNaloxoneScene}
                 />
               </Scene>
               <Scene
@@ -166,13 +173,13 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='naloRequestorHomeScene'
                   component={NaloRequestorHomeScene}
-                  renderBackButton={() => false}
                 />
                 <Scene
                   {...tabSceneProps}
                   key='naloRequestorAcceptedRequestScene'
                   component={NaloRequestorAcceptedRequestScene}
                   renderBackButton={() => false}
+                  initial
                 />
               </Scene>
             </Scene>

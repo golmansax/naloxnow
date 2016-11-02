@@ -1,19 +1,41 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View } from '../../base';
+import { Text, View, TouchableHighlight } from '../../base';
 import { vr } from '../../../styles/units';
-import { superLightGrey } from '../../../styles/colors';
+import { superLightGrey, nnRed, white } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
-  container: {
+  content: {
     paddingTop: vr(0.5),
     paddingBottom: vr(0.5),
     paddingRight: vr(1),
     paddingLeft: vr(1),
-    backgroundColor: superLightGrey,
+  },
+
+  status: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+
+  info: {
+    backgroundColor: nnRed,
+  },
+
+  infoText: {
+    color: white,
+  },
+
+  time: {
+    flex: 1,
+  },
+
+  timeText: {
+    color: nnRed,
+  },
+
+  cancelButton: {
+    backgroundColor: superLightGrey,
   },
 });
 
@@ -31,13 +53,21 @@ export class ProviderInfo extends Component {
     const { provider, style } = this.props;
 
     return (
-      <View style={[styles.container, style]} ref={(ref) => (this.rootRef = ref)}>
-        <View>
-          <Text>{provider.title}</Text>
-          <Text>{provider.subtitle}</Text>
+      <View style={style} ref={(ref) => (this.rootRef = ref)}>
+        <View style={[styles.content, styles.info]}>
+          <Text style={styles.infoText}>Naloxone is on its way</Text>
+          <Text style={styles.infoText}>{provider.title}</Text>
         </View>
-        <View>
-          <Text>{provider.time} mins</Text>
+        <View style={[styles.status]}>
+          <View style={styles.time}>
+            <Text style={styles.content}>
+              Will arrive in:{' '}
+              <Text bold style={styles.timeText}>{provider.time} mins</Text>
+            </Text>
+          </View>
+          <TouchableHighlight style={styles.cancelButton}>
+            <Text style={styles.content}>Cancel</Text>
+          </TouchableHighlight>
         </View>
       </View>
     );

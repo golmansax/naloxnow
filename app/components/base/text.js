@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text as RNText } from 'react-native';
-import { mainFontStyle } from '../../styles/fonts';
+import { mainFontStyle, boldFontStyle } from '../../styles/fonts';
 import { defaultFontSize } from '../../styles/units';
 import { superDarkGrey } from '../../styles/colors';
 
@@ -11,11 +11,20 @@ const styles = StyleSheet.create({
     color: superDarkGrey,
     lineHeight: 21,
   },
+
+  bold: {
+    ...boldFontStyle,
+  },
 });
 
 export class Text extends Component {
   static propTypes = {
+    bold: React.PropTypes.bool.isRequired,
     style: RNText.propTypes.style,
+  };
+
+  static defaultProps = {
+    bold: false,
   };
 
   setNativeProps(nativeProps) {
@@ -23,11 +32,11 @@ export class Text extends Component {
   }
 
   render() {
-    const { style, ...props } = this.props;
+    const { style, bold, ...props } = this.props;
     return (
       <RNText
         ref={(component) => (this.rootRef = component)}
-        style={[styles.text, style]}
+        style={[styles.text, style, bold ? styles.bold : null]}
         {...props}
       />
     );

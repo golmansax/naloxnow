@@ -77,7 +77,7 @@ export class NaloRequestorHomeScene extends Component {
       if (newStatus === RequestStatus.ACCEPTED) {
         Alert.alert(
           'Naloxone request accepted',
-          `Naloxone is on its way, and will be delieverd in ${provider.time} minutes`,
+          `Naloxone is on its way, and will be delivered in ${provider.time} minutes`,
           [{ text: 'OK', onPress: () => Actions.naloRequestorAcceptedRequestScene() }]
         );
       } else if (newStatus !== this.props.request.status) {

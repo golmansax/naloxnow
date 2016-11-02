@@ -5,7 +5,7 @@ import { Text, View, Button } from '../base';
 import { vr } from '../../styles/units';
 import { lightGrey, superDarkGrey, white } from '../../styles/colors';
 import {
-  completeProviderPrerequisites, completeRequestorPrerequisites,
+  completeRequestorPrerequisites,
 } from '../../lib/prerequisites';
 
 const styles = StyleSheet.create({
