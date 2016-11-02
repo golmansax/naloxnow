@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Button } from '../../base';
 
-export const OverdoseToolkitStep1Scene = () => (
+export const OverdoseToolkitCall911Scene = () => (
   <View>
-    <Button>Test</Button>
+    <Button>Call 911</Button>
   </View>
 );

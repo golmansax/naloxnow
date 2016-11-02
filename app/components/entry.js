@@ -11,7 +11,7 @@ import { DrawerLayout } from './layouts/drawer_layout';
 import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
 import { pressedOpacity, vr } from '../styles/units';
-import { OverdoseToolkitStep1Scene } from './scenes/overdose_toolkit/step1_scene';
+import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_scene';
 import { AppLoading } from './base';
 import { Tab } from './layouts/tab';
 
@@ -131,11 +131,6 @@ export class Entry extends Component {
           >
           <Scene key='drawerContent'>
             <Scene
-              {...defaultSceneProps}
-              key='chooseRoleScene'
-              component={ChooseRoleScene}
-            />
-            <Scene
               key='naloRequestor'
               tabBarStyle={styles.tabBar}
               tabBarIconContainerStyle={styles.tabContainer}
@@ -145,21 +140,30 @@ export class Entry extends Component {
               duration={1}
               >
               <Scene
+                {...defaultSceneProps}
+                key='chooseRoleScene'
+                component={ChooseRoleScene}
+                hideTabBar
+              />
+              <Scene
                 key='overdoseToolkit'
                 title='Overdose Toolkit'
                 icon={Tab}
                 >
-                <Scene key='toolkitStep1' component={OverdoseToolkitStep1Scene} />
+                <Scene
+                  {...tabSceneProps}
+                  key='call911Scene'
+                  component={OverdoseToolkitCall911Scene}
+                  renderBackButton={() => false}
+                />
               </Scene>
               <Scene
                 key='naloxoneNow'
                 title='NaloxoneNow'
                 icon={Tab}
-                initial
                 >
                 <Scene
                   {...tabSceneProps}
-                  initial
                   key='naloRequestorHomeScene'
                   component={NaloRequestorHomeScene}
                   renderBackButton={() => false}
@@ -181,7 +185,6 @@ export class Entry extends Component {
                 key='naloProviderHomeScene'
                 component={NaloProviderHomeScene}
                 renderBackButton={() => false}
-                initial
               />
               <Scene
                 {...defaultSceneProps}
