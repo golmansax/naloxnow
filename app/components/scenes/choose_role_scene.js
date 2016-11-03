@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   optionContent: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
 
   lastOption: {

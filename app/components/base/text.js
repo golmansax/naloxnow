@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text as RNText } from 'react-native';
 import { mainFontStyle, boldFontStyle, titleFontStyle } from '../../styles/fonts';
-import { defaultFontSize } from '../../styles/units';
+import { defaultFontSize, largeFontSize, xLargeFontSize } from '../../styles/units';
 import { superDarkGrey } from '../../styles/colors';
 
 const styles = StyleSheet.create({
@@ -10,6 +10,14 @@ const styles = StyleSheet.create({
     fontSize: defaultFontSize,
     color: superDarkGrey,
     lineHeight: 21,
+  },
+
+  large: {
+    fontSize: largeFontSize,
+  },
+
+  xLarge: {
+    fontSize: xLargeFontSize,
   },
 
   bold: {
@@ -24,6 +32,7 @@ const styles = StyleSheet.create({
 export class Text extends Component {
   static propTypes = {
     bold: React.PropTypes.bool.isRequired,
+    size: React.PropTypes.oneOf(['default', 'large', 'xLarge']),
     style: RNText.propTypes.style,
     title: React.PropTypes.bool.isRequired,
   };
@@ -31,6 +40,7 @@ export class Text extends Component {
   static defaultProps = {
     bold: false,
     title: false,
+    size: 'default',
   };
 
   setNativeProps(nativeProps) {
@@ -38,7 +48,8 @@ export class Text extends Component {
   }
 
   render() {
-    const { style, bold, title, ...props } = this.props;
+    const { size, style, bold, title, ...props } = this.props;
+
     return (
       <RNText
         ref={(component) => (this.rootRef = component)}
@@ -46,6 +57,7 @@ export class Text extends Component {
           styles.text,
           bold ? styles.bold : null,
           title ? styles.title : null,
+          styles[size],
           style,
         ]}
         {...props}
