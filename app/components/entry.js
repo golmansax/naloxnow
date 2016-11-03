@@ -17,6 +17,7 @@ import {
 import { AppLoading } from './base';
 import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
+import { NavBarTitle } from './layouts/nav_bar_title';
 
 const NAVBAR_HEIGHT = vr(3);
 const TAB_HEIGHT = vr(3);
@@ -107,12 +108,13 @@ export class Entry extends Component {
     const defaultSceneProps = {
       drawerImage: null,
       navigationBarStyle: styles.navBar,
-      title: 'NaloxoneNow',
-      titleStyle: [styles.navBarContent, styles.navBarText],
+      title: 'OD Response',
+      titleStyle: [styles.navBarContent],
       rightButtonTextStyle: [styles.navBarHiddenText],
       sceneStyle: styles.content,
       rightTitle: 'Menu',
       onRight: () => Actions.refresh({ key: 'drawer', open: true }),
+      renderTitle: NavBarTitle,
     };
 
     const tabSceneProps = {

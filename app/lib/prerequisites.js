@@ -1,5 +1,5 @@
 // import { Location } from 'exponent';
-import { Font } from 'exponent';
+import { Asset, Font } from 'exponent';
 import { getPushTokenAsync } from './push_notifications';
 import { getSignedInUserAsync } from './auth';
 import { setGlobalState } from './global_state';
@@ -33,6 +33,14 @@ async function setRequestStatus(status) {
   return firebaseDB().ref('request/status').set(status);
 }
 
+async function loadImagesAsync() {
+  const images = [
+    require('../assets/images/odrlogo_whitetransparent.png'),
+  ];
+
+  return Promise.all(images.map((image) => Asset.fromModule(image).downloadAsync()));
+}
+
 export async function completeProviderPrerequisites() {
   return Promise.all([
     requestLocationAsync(),
@@ -55,8 +63,10 @@ export async function completeAppPrerequisites() {
       /* eslint-disable global-require */
       'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
       'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
+      'museo-slab': require('../assets/fonts/museo-slab-500.ttf'),
       /* eslint-enable global-require */
     }),
+    loadImagesAsync(),
     storeLoggedInUserAsync(),
   ]);
 }
