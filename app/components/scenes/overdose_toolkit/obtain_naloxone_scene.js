@@ -41,7 +41,7 @@ function naloxoneNow() {
 export const OverdoseToolkitObtainNaloxoneScene = () => (
   <RequestAlertLayout style={styles.container}>
     <View style={styles.textContainer}>
-      <Text size='xLarge' style={styles.title}>Obtain naloxone</Text>
+      <Text size='xLarge' style={styles.title} title>Obtain naloxone</Text>
       <Text style={styles.text}>
         If the patient is suspected of taking too many opioids, it is best to
         obtain naloxone immediately.

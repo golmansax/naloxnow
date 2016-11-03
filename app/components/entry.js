@@ -9,7 +9,7 @@ import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepte
 import { DrawerLayout } from './layouts/drawer_layout';
 import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
-import { pressedOpacity, vr } from '../styles/units';
+import { pressedOpacity, tabHeight, navbarHeight } from '../styles/units';
 import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_scene';
 import {
   OverdoseToolkitObtainNaloxoneScene,
@@ -19,27 +19,25 @@ import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
 import { NavBarTitle } from './layouts/nav_bar_title';
 
-const NAVBAR_HEIGHT = vr(3);
-const TAB_HEIGHT = vr(3);
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    top: NAVBAR_HEIGHT,
-    paddingBottom: NAVBAR_HEIGHT,
+    top: navbarHeight,
+    paddingBottom: navbarHeight,
   },
 
   tabContent: {
-    paddingBottom: NAVBAR_HEIGHT + TAB_HEIGHT,
+    paddingBottom: navbarHeight + tabHeight,
   },
 
   navBar: {
     backgroundColor: nnBlue,
-    height: NAVBAR_HEIGHT,
+    height: navbarHeight,
   },
 
   tabBar: {
     backgroundColor: lightGrey,
-    height: TAB_HEIGHT,
+    height: tabHeight,
     borderTopWidth: 1,
     borderColor: white,
   },
@@ -149,6 +147,7 @@ export class Entry extends Component {
                 key='overdoseToolkit'
                 title='Overdose Toolkit'
                 icon={Tab}
+                iconName='info-circle'
                 >
                 <Scene
                   {...tabSceneProps}
@@ -167,6 +166,7 @@ export class Entry extends Component {
                 key='naloxoneNow'
                 title='NaloxoneNow'
                 icon={Tab}
+                iconName='flag-o'
                 >
                 <Scene
                   {...tabSceneProps}
