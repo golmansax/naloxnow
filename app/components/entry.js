@@ -200,6 +200,7 @@ export class Entry extends Component {
                   key='naloRequestorAcceptedRequestScene'
                   component={NaloRequestorAcceptedRequestScene}
                   hideBackImage
+                  initial
                 />
               </Scene>
             </Scene>

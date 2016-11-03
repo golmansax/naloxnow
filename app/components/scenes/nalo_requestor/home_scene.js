@@ -11,12 +11,16 @@ import { sendDefaultPushNotificationAsync } from '../../../lib/push_notification
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { ProviderMarkerView } from '../../misc/provider_marker_view';
 import { vr, defaultBorderRadius } from '../../../styles/units';
-import { white, superDarkGrey } from '../../../styles/colors';
+import { nnRed, white, superDarkGrey } from '../../../styles/colors';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  requestingText: {
+    color: nnRed,
   },
 
   title: {
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: white,
     borderRadius: defaultBorderRadius,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     shadowColor: superDarkGrey,
     shadowOpacity: 0.8,
     shadowRadius: defaultBorderRadius,
@@ -138,7 +142,9 @@ export class NaloRequestorHomeScene extends Component {
             </Button>
           ) : (
             <View style={styles.requestedModal}>
-              <Text>Requesting naloxone...</Text>
+              <Text style={styles.requestingText} size='large' title>
+                Requesting naloxone...
+              </Text>
             </View>
           )}
         </View>
