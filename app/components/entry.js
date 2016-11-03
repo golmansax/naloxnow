@@ -154,7 +154,7 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='toolkitCall911Scene'
                   component={OverdoseToolkitCall911Scene}
-                  renderBackButton={() => false}
+                  hideBackImage
                 />
                 <Scene
                   {...tabSceneProps}
@@ -176,8 +176,7 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='naloRequestorAcceptedRequestScene'
                   component={NaloRequestorAcceptedRequestScene}
-                  renderBackButton={() => false}
-                  initial
+                  hideBackImage
                 />
               </Scene>
             </Scene>
@@ -189,7 +188,7 @@ export class Entry extends Component {
                 {...defaultSceneProps}
                 key='naloProviderHomeScene'
                 component={NaloProviderHomeScene}
-                renderBackButton={() => false}
+                hideBackImage
               />
               <Scene
                 {...defaultSceneProps}

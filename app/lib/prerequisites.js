@@ -3,9 +3,7 @@ import { Asset, Font } from 'exponent';
 import { getPushTokenAsync } from './push_notifications';
 import { getSignedInUserAsync } from './auth';
 import { setGlobalState } from './global_state';
-import { firebaseDB } from './firebase';
 import { images } from './images';
-import { RequestStatus } from './constants';
 
 const cache = new Map();
 
@@ -30,10 +28,6 @@ async function storePushTokenAsync() {
   return getPushTokenAsync().then((token) => setGlobalState('pushToken', token));
 }
 
-async function setRequestStatus(status) {
-  return firebaseDB().ref('request/status').set(status);
-}
-
 async function loadImagesAsync() {
   return Promise.all(images.map((image) => Asset.fromModule(image).downloadAsync()));
 }
@@ -49,8 +43,7 @@ export async function completeProviderPrerequisites() {
 export async function completeRequestorPrerequisites() {
   return Promise.all([
     requestLocationAsync(),
-    storeLoggedInUserAsync()
-      .then(() => setRequestStatus(RequestStatus.NOT_YET_REQUESTED)),
+    storeLoggedInUserAsync(),
   ]);
 }
 
@@ -58,9 +51,13 @@ export async function completeAppPrerequisites() {
   return Promise.all([
     Font.loadAsync({
       /* eslint-disable global-require */
-      'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
-      'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
-      'museo-slab': require('../assets/fonts/museo-slab-500.ttf'),
+      // 'noto-sans': require('../assets/fonts/NotoSans-Regular.ttf'),
+      // 'noto-sans-bold': require('../assets/fonts/NotoSans-Bold.ttf'),
+      // 'museo-slab-300': require('../assets/fonts/museo-slab-300.ttf'),
+      'museo-slab-500': require('../assets/fonts/museo-slab-500.ttf'),
+      // 'museo-sans-300': require('../assets/fonts/museo-sans-300.ttf'),
+      'museo-sans-500': require('../assets/fonts/museo-sans-500.ttf'),
+      'museo-sans-700': require('../assets/fonts/museo-sans-700.ttf'),
       /* eslint-enable global-require */
     }),
     loadImagesAsync(),

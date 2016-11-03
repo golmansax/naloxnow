@@ -2,9 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import { StyleSheet } from 'react-native';
 import APSLButton from 'apsl-react-native-button';
 import { View, Text } from './index';
-import { mainFontStyle } from '../../styles/fonts';
 import { nnRed, white, superLightGrey, superDarkGrey } from '../../styles/colors';
-import { vr, defaultFontSize, defaultBorderRadius } from '../../styles/units';
+import { vr, largeFontSize, defaultBorderRadius } from '../../styles/units';
+import { mainFontStyle } from '../../styles/fonts';
 
 const styles = StyleSheet.create({
   button: {
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
   text: {
     ...mainFontStyle,
-    fontSize: defaultFontSize,
+    fontSize: largeFontSize,
     color: superDarkGrey,
   },
 

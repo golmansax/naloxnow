@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
 });
 
 export const NavBarTitle = (props) => {
-  const { title, titleWrapperStyle, titleStyle, navigationState } = props;
-  const hasBackButton = stateHasBackButton(navigationState);
+  const { title, titleWrapperStyle, titleStyle, navigationState, hideBackImage } = props;
+  const hasBackButton = stateHasBackButton(navigationState) && !hideBackImage;
 
   return (
     <View
@@ -58,6 +58,7 @@ export const NavBarTitle = (props) => {
 };
 
 NavBarTitle.propTypes = {
+  hideBackImage: PropTypes.bool,
   navigationState: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   titleStyle: Text.propTypes.style,

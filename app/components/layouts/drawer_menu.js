@@ -10,6 +10,8 @@ import { getGlobalState } from '../../lib/global_state';
 import {
   completeProviderPrerequisites, completeRequestorPrerequisites,
 } from '../../lib/prerequisites';
+import { firebaseDB } from '../../lib/firebase';
+import { RequestStatus } from '../../lib/constants';
 
 const menuEntries = [
   {
@@ -22,6 +24,12 @@ const menuEntries = [
     key: 'naloProvider',
     prerequisite: completeProviderPrerequisites,
   },
+];
+
+const statuses = [
+  'NOT_YET_REQUESTED',
+  'REQUESTED',
+  'ACCEPTED',
 ];
 
 const styles = StyleSheet.create({
@@ -44,6 +52,17 @@ export const DrawerMenu = () => (
         }}
         >
         <Text>{entry.title}</Text>
+      </TouchableHighlight>
+    ))}
+    {statuses.map((status) => (
+      <TouchableHighlight
+        key={status}
+        style={styles.entry}
+        onPress={() => {
+          firebaseDB().ref('request/status').set(RequestStatus[status]);
+        }}
+        >
+        <Text>Set status to {status}</Text>
       </TouchableHighlight>
     ))}
     <TouchableHighlight

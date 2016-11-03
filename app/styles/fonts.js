@@ -1,5 +1,5 @@
 import { Font } from 'exponent';
 
-export const mainFontStyle = Font.style('noto-sans');
-export const boldFontStyle = Font.style('noto-sans-bold');
-export const titleFontStyle = Font.style('museo-slab');
+export const mainFontStyle = Font.style('museo-sans-500');
+export const boldFontStyle = Font.style('museo-sans-700');
+export const titleFontStyle = Font.style('museo-slab-500');
