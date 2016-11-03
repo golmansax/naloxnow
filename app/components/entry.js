@@ -14,6 +14,12 @@ import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_
 import {
   OverdoseToolkitObtainNaloxoneScene,
 } from './scenes/overdose_toolkit/obtain_naloxone_scene';
+import {
+  OverdoseToolkitSupportBreathingScene,
+} from './scenes/overdose_toolkit/support_breathing_scene';
+import {
+  OverdoseToolkitAdministerNaloxoneScene,
+} from './scenes/overdose_toolkit/administer_naloxone_scene';
 import { AppLoading } from './base';
 import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
@@ -160,6 +166,16 @@ export class Entry extends Component {
                   key='toolkitObtainNaloxoneScene'
                   component={OverdoseToolkitObtainNaloxoneScene}
                   initial
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='toolkitAdministerNaloxoneScene'
+                  component={OverdoseToolkitAdministerNaloxoneScene}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='toolkitSupportBreathingScene'
+                  component={OverdoseToolkitSupportBreathingScene}
                 />
               </Scene>
               <Scene
