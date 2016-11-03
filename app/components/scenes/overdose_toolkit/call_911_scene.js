@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     padding: vr(1),
   },
 
+  text: {
+    textAlign: 'center',
+  },
+
   numberContainer: {
     flex: 1,
     flexDirection: 'row',
@@ -71,7 +75,9 @@ export const OverdoseToolkitCall911Scene = () => (
     </View>
     <View style={styles.section}>
       <Text size='xLarge' style={styles.title}>Call 911</Text>
-      <Text>Make sure to give an accurate location to first responders</Text>
+      <Text style={styles.text}>
+        Make sure to give an accurate location to first responders
+      </Text>
     </View>
     <View style={styles.section}>
       <Button design='urgent' size='large'>Call 911</Button>

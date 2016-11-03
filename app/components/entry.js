@@ -160,6 +160,7 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='toolkitObtainNaloxoneScene'
                   component={OverdoseToolkitObtainNaloxoneScene}
+                  initial
                 />
               </Scene>
               <Scene
