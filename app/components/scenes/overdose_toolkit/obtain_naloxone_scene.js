@@ -4,13 +4,14 @@ import { View, Button } from '../../base';
 import {
   completeRequestorPrerequisites,
 } from '../../../lib/prerequisites';
+import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 function naloxoneNow() {
   completeRequestorPrerequisites().then(() => Actions.naloxoneNow());
 }
 
 export const OverdoseToolkitObtainNaloxoneScene = () => (
-  <View>
+  <RequestAlertLayout>
     <Button onPress={naloxoneNow}>NaloxoneNow</Button>
-  </View>
+  </RequestAlertLayout>
 );
