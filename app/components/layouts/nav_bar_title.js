@@ -6,11 +6,11 @@ import { titleFontStyle } from '../../styles/fonts';
 import { getImage } from '../../lib/images';
 import { stateHasBackButton } from './nav_utils';
 
-const height = vr(1);
+const height = vr(1.5);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: vr(1.5) - 5,
+    paddingTop: vr(1.5) - 7,
     paddingLeft: vr(1),
   },
 
@@ -25,18 +25,19 @@ const styles = StyleSheet.create({
 
   logo: {
     height,
-    width: (height * 130) / 56,
+    width: Math.round((height / 165) * 200),
   },
 
   title: {
     ...titleFontStyle,
     fontSize: 20,
-    paddingTop: 6,
+    paddingTop: 4,
+    paddingLeft: 3,
   },
 });
 
 export const NavBarTitle = (props) => {
-  const { title, titleWrapperStyle, titleStyle, navigationState, hideBackImage } = props;
+  const { titleWrapperStyle, titleStyle, navigationState, hideBackImage } = props;
   const hasBackButton = stateHasBackButton(navigationState) && !hideBackImage;
 
   return (
@@ -48,7 +49,7 @@ export const NavBarTitle = (props) => {
           source={getImage('odrLogo')}
           style={styles.logo}
         />
-        <Text style={[styles.title, titleStyle]}>{title}</Text>
+        <Text style={[styles.title, titleStyle]}>ODResponse</Text>
       </View>
     </View>
   );
@@ -57,7 +58,6 @@ export const NavBarTitle = (props) => {
 NavBarTitle.propTypes = {
   hideBackImage: PropTypes.bool,
   navigationState: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired,
   titleStyle: Text.propTypes.style,
   titleWrapperStyle: View.propTypes.style,
 };

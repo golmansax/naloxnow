@@ -24,13 +24,17 @@ import { AppLoading } from './base';
 import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
 import { NavBarTitle } from './layouts/nav_bar_title';
-import { BackButton } from './layouts/back_button';
+import { getImage } from '../lib/images';
 
 const styles = StyleSheet.create({
   content: {
     flex: 1,
     top: navbarHeight,
     paddingBottom: navbarHeight,
+  },
+
+  back: {
+    marginLeft: 8,
   },
 
   tabContent: {
@@ -113,14 +117,15 @@ export class Entry extends Component {
     const defaultSceneProps = {
       drawerImage: null,
       navigationBarStyle: styles.navBar,
-      title: 'OD Response',
       titleStyle: [styles.navBarContent],
       rightButtonTextStyle: [styles.navBarHiddenText],
       sceneStyle: styles.content,
       rightTitle: 'Menu',
       onRight: () => Actions.refresh({ key: 'drawer', open: true }),
       renderTitle: NavBarTitle,
-      renderBackButton: BackButton,
+      // renderBackButton: BackButton,
+      backButtonImage: getImage('chevron'),
+      leftButtonIconStyle: styles.back,
     };
 
     const tabSceneProps = {
