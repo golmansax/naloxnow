@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 
   disclaimer: {
     textAlign: 'center',
+    marginBottom: vr(1),
   },
 
   red: {
@@ -47,8 +48,6 @@ export const NaloRequestorAcceptedRequestScene = () => (
         While you are waiting for the naloxone, if you are nearby a patient,
         you should proceed to support breathing.
       </Text>
-    </View>
-    <View>
       <Button onPress={toToolkit}>
         How to support breathing
       </Button>
