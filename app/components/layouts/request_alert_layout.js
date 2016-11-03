@@ -1,12 +1,14 @@
 import React, { PropTypes, Component } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Dimensions, ScrollView, StyleSheet } from 'react-native';
 import { provider } from '../../lib/data';
 import { View } from '../base';
 import { RequestAlert } from './request_alert';
 import { RequestStatus } from '../../lib/constants';
 import { firebaseDB } from '../../lib/firebase';
 import { getGlobalState, setGlobalState } from '../../lib/global_state';
-import { vr } from '../../styles/units';
+import { vr, navbarHeight, tabHeight } from '../../styles/units';
+
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -14,15 +16,11 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1,
   },
 
   contentWithAlert: {
-    paddingTop: vr(5),
+    marginTop: vr(5),
   },
 
   alert: {
@@ -30,6 +28,10 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
+  },
+
+  contentContainer: {
+    minHeight: height - navbarHeight - tabHeight,
   },
 });
 
@@ -68,7 +70,7 @@ export class RequestAlertLayout extends Component {
       <View style={styles.container}>
         <ScrollView
           style={[styles.content, showAlert ? styles.contentWithAlert : null]}
-          contentContainerStyle={style}
+          contentContainerStyle={[styles.contentContainer, style]}
           >
           {children}
         </ScrollView>
