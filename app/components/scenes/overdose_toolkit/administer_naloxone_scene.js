@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, View, Text } from '../../base';
+import { Button, View, Text, Image } from '../../base';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 import { nnRed } from '../../../styles/colors';
 import { vr } from '../../../styles/units';
+import { getImage } from '../../../lib/images';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,6 +21,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  image: {
+    width: vr(4),
+    height: vr(4),
+  },
+
   title: {
     marginBottom: vr(1),
     color: nnRed,
@@ -33,10 +39,10 @@ const styles = StyleSheet.create({
 export const OverdoseToolkitAdministerNaloxoneScene = () => (
   <RequestAlertLayout style={styles.container}>
     <View style={styles.textContainer}>
+      <Image source={getImage('needle')} style={styles.image} />
       <Text size='xLarge' style={styles.title} title>Administer naloxone</Text>
       <Text style={styles.text}>
-        If the patient is suspected of taking too many opioids, it is best to
-        obtain naloxone immediately.
+        Depending on what naloxone you have...
       </Text>
     </View>
     <View>
