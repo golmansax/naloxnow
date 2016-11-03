@@ -24,6 +24,7 @@ import { AppLoading } from './base';
 import { completeAppPrerequisites } from '../lib/prerequisites';
 import { Tab } from './layouts/tab';
 import { NavBarTitle } from './layouts/nav_bar_title';
+import { BackButton } from './layouts/back_button';
 
 const styles = StyleSheet.create({
   content: {
@@ -119,6 +120,7 @@ export class Entry extends Component {
       rightTitle: 'Menu',
       onRight: () => Actions.refresh({ key: 'drawer', open: true }),
       renderTitle: NavBarTitle,
+      renderBackButton: BackButton,
     };
 
     const tabSceneProps = {

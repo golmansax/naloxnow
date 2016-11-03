@@ -4,10 +4,7 @@ import { View, Text, Image } from '../base';
 import { vr } from '../../styles/units';
 import { titleFontStyle } from '../../styles/fonts';
 import { getImage } from '../../lib/images';
-
-function stateHasBackButton(state) {
-  return !(state.index === 0 && (!state.parentIndex || state.parentIndex === 0));
-}
+import { stateHasBackButton } from './nav_utils';
 
 const height = vr(1);
 const styles = StyleSheet.create({
