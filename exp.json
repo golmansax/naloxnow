@@ -6,14 +6,14 @@
   "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#0b56a4",
-  "iconUrl": "https://golmansax.com/static/gravitar.png",
+  "iconUrl": "https://golmansax.com/CzrpuyF0Rc/static/odresponse-square-logo.png",
   "notification": {
-    "iconUrl": "https://golmansax.com/static/gravitar.png",
+    "iconUrl": "https://golmansax.com/CzrpuyF0Rc/static/odresponse-square-logo.png",
     "color": "#0b56a4"
   },
   "loading": {
     "backgroundColor": "#0b56a4",
-    "iconUrl": "https://golmansax.com/static/gravitar.png",
+    "iconUrl": "https://golmansax.com/CzrpuyF0Rc/static/odresponse-square-logo.png",
     "hideExponentText": true
   },
   "ios": {
