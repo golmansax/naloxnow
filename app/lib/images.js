@@ -1,6 +1,7 @@
 const lookup = {
   /* eslint-disable global-require */
   odrLogo: require('../assets/images/odrlogo_whitetransparent.png'),
+  breathing: require('../assets/images/red_air_breathing.png'),
   /* eslint-enable global-require */
 };
 

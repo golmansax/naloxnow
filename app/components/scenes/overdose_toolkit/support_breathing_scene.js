@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, View, Text } from '../../base';
+import { Button, View, Text, Image } from '../../base';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 import { nnRed } from '../../../styles/colors';
 import { vr } from '../../../styles/units';
+import { getImage } from '../../../lib/images';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,6 +15,7 @@ const styles = StyleSheet.create({
 
   text: {
     textAlign: 'center',
+    marginTop: vr(1),
   },
 
   textContainer: {
@@ -21,8 +23,12 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginBottom: vr(1),
     color: nnRed,
+  },
+
+  image: {
+    width: vr(4),
+    height: vr(4),
   },
 
   button: {
@@ -33,10 +39,17 @@ const styles = StyleSheet.create({
 export const OverdoseToolkitSupportBreathingScene = () => (
   <RequestAlertLayout style={styles.container}>
     <View style={styles.textContainer}>
+      <Image source={getImage('breathing')} style={styles.image} />
       <Text size='xLarge' style={styles.title} title>Support Breathing</Text>
       <Text style={styles.text}>
-        If the patient is suspected of taking too many opioids, it is best to
-        obtain naloxone immediately.
+        While waiting for medical responders, it is important that the patient
+        is able to breathe.
+      </Text>
+      <Text style={styles.text}>
+        Clear airway
+      </Text>
+      <Text style={styles.text}>
+        Turn the patient onto the side
       </Text>
     </View>
     <View>
