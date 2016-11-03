@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
 });
 
 export const Tab = ({ selected, title }) => (
-  <Text style={selected ? styles.selected : null}>
+  <Text title style={selected ? styles.selected : null}>
     {title}
   </Text>
 );

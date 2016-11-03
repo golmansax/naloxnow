@@ -91,7 +91,7 @@ export class NaloProviderHomeScene extends Component {
         {requested ? (
           <View style={styles.request}>
             <Text>{requestor.title}</Text>
-            <Button style={styles.button} onPress={this.acceptRequest} design='urgent'>
+            <Button size='large' style={styles.button} onPress={this.acceptRequest} design='urgent'>
               Deliver naloxone now
             </Button>
           </View>

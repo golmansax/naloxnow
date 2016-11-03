@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Text, View, Button } from '../base';
-import { vr } from '../../styles/units';
+import { Text, View, TouchableHighlight } from '../base';
+import { vr, xLargeFontSize } from '../../styles/units';
 import { lightGrey, superDarkGrey, white } from '../../styles/colors';
 import {
   completeRequestorPrerequisites,
@@ -25,10 +25,18 @@ const styles = StyleSheet.create({
 
   option: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
     borderColor: lightGrey,
     borderBottomWidth: 1,
+  },
+
+  optionTitle: {
+    fontSize: xLargeFontSize,
+  },
+
+  optionContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
 
   lastOption: {
@@ -56,15 +64,23 @@ export const ChooseRoleScene = () => (
         Please choose one of the options:
       </Text>
     </View>
-    <View style={styles.option}>
-      <Button style={styles.button} onPress={chooseToolkit}>
-        Take me through the Overdose Toolkit
-      </Button>
-    </View>
-    <View style={[styles.option, styles.lastOption]}>
-      <Button style={styles.button} onPress={chooseNaloRequestor}>
-        I know what I&rsquo;m doing: Request naloxone
-      </Button>
-    </View>
+    <TouchableHighlight style={styles.option} onPress={chooseToolkit}>
+      <View style={styles.optionContent}>
+        <Text title style={styles.optionTitle}>
+          Overdose Toolkit
+        </Text>
+        <Text>
+          Help! Someone is suspected of overdosing.
+        </Text>
+      </View>
+    </TouchableHighlight>
+    <TouchableHighlight style={[styles.option, styles.lastOption]} onPres={chooseNaloRequestor}>
+      <View style={styles.optionContent}>
+        <Text title style={styles.optionTitle}>
+          NaloxoneNow
+        </Text>
+        <Text>Find naloxone</Text>
+      </View>
+    </TouchableHighlight>
   </RequestAlertLayout>
 );

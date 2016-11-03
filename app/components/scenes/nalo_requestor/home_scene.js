@@ -122,6 +122,7 @@ export class NaloRequestorHomeScene extends Component {
           </MapView>
           {status === RequestStatus.NOT_YET_REQUESTED ? (
             <Button
+              size='large'
               design='urgent'
               style={styles.button}
               onPress={() => {
