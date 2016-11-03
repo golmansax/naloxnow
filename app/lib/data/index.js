@@ -69,6 +69,8 @@ export const pickupProviders = [
 export const provider = deliveryProviders[0];
 
 export const midpointLocation = {
-  latitude: 37.782136,
-  longitude: -122.41455,
+  latitude: 37.780681,
+  longitude: -122.414932,
 };
+
+export directions from './directions.json';

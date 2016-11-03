@@ -13,7 +13,9 @@ import {
   provider, requestor, midpointLocation,
 } from '../../../lib/data';
 import { LocationMarkerView } from '../../misc/location_marker_view';
+import { DirectionsPolyline } from '../../misc/directions_polyline';
 import { vr } from '../../../styles/units';
+import { nnRed } from '../../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,7 +40,19 @@ const styles = StyleSheet.create({
   button: {
     marginTop: vr(0.5),
   },
+
+  urgentTitle: {
+    color: nnRed,
+  },
 });
+
+function acceptRequest() {
+  firebaseDB().ref('request/status').set(RequestStatus.ACCEPTED);
+}
+
+function finishRequest() {
+  firebaseDB().ref('request/status').set(RequestStatus.NOT_YET_REQUESTED);
+}
 
 export class NaloProviderHomeScene extends Component {
   static propTypes = {
@@ -70,13 +84,15 @@ export class NaloProviderHomeScene extends Component {
     const { request } = this.props;
     const { status } = request;
     const requested = (status === RequestStatus.REQUESTED);
+    const accepted = (status === RequestStatus.ACCEPTED);
+    const activeRequest = (requested || accepted);
 
     return (
       <View style={styles.container}>
         <View style={styles.title}><Text>Naloxone delivery mode</Text></View>
         <MapView
           style={styles.map}
-          region={Object.assign({}, requested ? midpointLocation : provider.location, {
+          region={Object.assign({}, activeRequest ? midpointLocation : provider.location, {
             latitudeDelta: 0.01,
             longitudeDelta: 0.01,
           })}
@@ -84,24 +100,31 @@ export class NaloProviderHomeScene extends Component {
           <MapView.Marker coordinate={provider.location}>
             <LocationMarkerView />
           </MapView.Marker>
-          {requested ? (
+          {activeRequest ? (
             <MapView.Marker coordinate={requestor.location} />
           ) : null}
+          {activeRequest ? (
+            <DirectionsPolyline />
+          ) : null}
         </MapView>
-        {requested ? (
+        {activeRequest ? (
           <View style={styles.request}>
+            <Text bold style={styles.urgentTitle}>URGENT: Naloxone request</Text>
             <Text>{requestor.title}</Text>
-            <Button size='large' style={styles.button} onPress={this.acceptRequest} design='urgent'>
-              Deliver naloxone now
-            </Button>
+            <Text>{provider.time} min away</Text>
+            {requested ? (
+              <Button size='large' style={styles.button} onPress={acceptRequest} design='urgent'>
+                Accept Request - Leave Now
+              </Button>
+            ) : null}
+            {accepted ? (
+              <Button style={styles.button} onPress={finishRequest}>
+                Naloxone delivered
+              </Button>
+            ) : null}
           </View>
         ) : null}
       </View>
     );
   }
-
-  acceptRequest = () => {
-    firebaseDB().ref('request/status').set(RequestStatus.ACCEPTED);
-    Actions.naloProviderAcceptedRequestScene();
-  };
 }
