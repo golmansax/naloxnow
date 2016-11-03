@@ -1,9 +1,11 @@
 const lookup = {
   /* eslint-disable global-require */
   odrLogo: require('../assets/images/odresponse_fastcross_logo.png'),
+  holman: require('../assets/images/holman.jpg'),
   chevron: require('../assets/images/chevron_white.png'),
   breathing: require('../assets/images/red_air_breathing.png'),
   needle: require('../assets/images/red_administer_needle.png'),
+  uber: require('../assets/images/uber.png'),
   /* eslint-enable global-require */
 };
 

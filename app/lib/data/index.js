@@ -9,8 +9,8 @@ export const requestor = {
 export const deliveryProviders = [
   {
     id: 'uber',
-    title: 'Uber driver',
-    subtitle: '253 2nd Ave, San Mateo, CA',
+    title: 'Holman Gao',
+    subtitle: '5 star Uber driver',
     time: 7,
     location: {
       // Saigon Sandwich

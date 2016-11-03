@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 
   contentWithAlert: {
-    marginTop: vr(5),
+    marginTop: vr(6),
   },
 
   alert: {

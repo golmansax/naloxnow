@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
-import { Text, View, TouchableHighlight } from '../base';
+import { Text, View, TouchableHighlight, Image } from '../base';
 import { vr, pressedOpacity } from '../../styles/units';
 import { superLightGrey, nnRed, white, lightGrey, superDarkGrey } from '../../styles/colors';
 import { RequestStatus } from '../../lib/constants';
 import { firebaseDB } from '../../lib/firebase';
+import { getImage } from '../../lib/images';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
     paddingBottom: vr(0.5),
     paddingRight: vr(1),
     paddingLeft: vr(1),
+    flexDirection: 'row',
   },
 
   status: {
@@ -48,6 +50,23 @@ const styles = StyleSheet.create({
   cancelButton: {
     backgroundColor: superLightGrey,
   },
+
+  portrait: {
+    height: vr(2),
+    width: vr(2),
+    borderRadius: vr(1),
+  },
+
+  company: {
+    position: 'absolute',
+    top: vr(1),
+    left: vr(1.5),
+  },
+
+  portraitContainer: {
+    paddingRight: vr(1.5),
+    marginRight: vr(1),
+  },
 });
 
 export class RequestAlert extends Component {
@@ -66,8 +85,15 @@ export class RequestAlert extends Component {
     return (
       <View style={[styles.container, style]} ref={(ref) => (this.rootRef = ref)}>
         <View style={[styles.content, styles.info]}>
-          <Text style={styles.infoText}>Naloxone is on its way</Text>
-          <Text style={styles.infoText}>{provider.title}</Text>
+          <View style={styles.portraitContainer}>
+            <Image style={[styles.portrait, styles.company]} source={getImage('uber')} />
+            <Image style={[styles.portrait, styles.person]} source={getImage('holman')} />
+          </View>
+          <View>
+            <Text style={styles.infoText} bold>Naloxone is on its way</Text>
+            <Text style={styles.infoText}>{provider.title}</Text>
+            <Text style={styles.infoText}>{provider.subtitle}</Text>
+          </View>
         </View>
         <View style={[styles.status]}>
           <View style={styles.time}>
