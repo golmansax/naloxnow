@@ -1,6 +1,6 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
-import { View, Button } from '../../base';
+import { Button } from '../../base';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 function nextStep() {

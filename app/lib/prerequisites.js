@@ -4,6 +4,7 @@ import { getPushTokenAsync } from './push_notifications';
 import { getSignedInUserAsync } from './auth';
 import { setGlobalState } from './global_state';
 import { firebaseDB } from './firebase';
+import { images } from './images';
 import { RequestStatus } from './constants';
 
 const cache = new Map();
@@ -34,10 +35,6 @@ async function setRequestStatus(status) {
 }
 
 async function loadImagesAsync() {
-  const images = [
-    require('../assets/images/odrlogo_whitetransparent.png'),
-  ];
-
   return Promise.all(images.map((image) => Asset.fromModule(image).downloadAsync()));
 }
 
