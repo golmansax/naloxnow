@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { FontAwesome } from '@exponent/vector-icons';
 import { Text, View, TouchableHighlight } from '../base';
 import { vr, xLargeFontSize } from '../../styles/units';
-import { lightGrey, superDarkGrey, white } from '../../styles/colors';
+import { nnBlue, lightGrey, superDarkGrey, white } from '../../styles/colors';
 import {
   completeRequestorPrerequisites,
 } from '../../lib/prerequisites';
@@ -31,6 +32,8 @@ const styles = StyleSheet.create({
 
   optionTitle: {
     fontSize: xLargeFontSize,
+    marginBottom: vr(1),
+    color: nnBlue,
   },
 
   optionContent: {
@@ -66,20 +69,33 @@ export const ChooseRoleScene = () => (
     </View>
     <TouchableHighlight style={styles.option} onPress={chooseToolkit}>
       <View style={styles.optionContent}>
+        <FontAwesome
+          name='info-circle'
+          size={vr(3)}
+          color={nnBlue}
+        />
         <Text title style={styles.optionTitle}>
           Overdose Toolkit
         </Text>
         <Text>
+
           Help! Someone is suspected of overdosing.
         </Text>
       </View>
     </TouchableHighlight>
-    <TouchableHighlight style={[styles.option, styles.lastOption]} onPres={chooseNaloRequestor}>
+    <TouchableHighlight style={[styles.option, styles.lastOption]} onPress={chooseNaloRequestor}>
       <View style={styles.optionContent}>
+        <FontAwesome
+          name='flag-o'
+          size={vr(3)}
+          color={nnBlue}
+        />
         <Text title style={styles.optionTitle}>
           NaloxoneNow
         </Text>
-        <Text>Find naloxone</Text>
+        <Text>
+          See if anyone can deliver naloxone to you
+        </Text>
       </View>
     </TouchableHighlight>
   </RequestAlertLayout>

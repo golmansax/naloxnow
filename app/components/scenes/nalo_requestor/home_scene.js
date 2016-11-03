@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    margin: vr(0.5),
+    margin: vr(1),
   },
 
   requestedModal: {

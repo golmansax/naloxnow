@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { StyleSheet } from 'react-native';
 import APSLButton from 'apsl-react-native-button';
 import { View, Text } from './index';
-import { nnRed, white, superLightGrey, superDarkGrey } from '../../styles/colors';
+import { nnRed, white, superLightGrey, grey, superDarkGrey } from '../../styles/colors';
 import { vr, defaultFontSize, largeFontSize, defaultBorderRadius } from '../../styles/units';
 import { mainFontStyle } from '../../styles/fonts';
 
@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     height: null,
     borderRadius: defaultBorderRadius,
     padding: vr(0.75),
+    borderColor: grey,
   },
 
   text: {
