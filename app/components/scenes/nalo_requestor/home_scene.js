@@ -9,6 +9,7 @@ import { firebaseDB } from '../../../lib/firebase';
 import { deliveryProviders, provider, requestor } from '../../../lib/data';
 import { sendDefaultPushNotificationAsync } from '../../../lib/push_notifications';
 import { LocationMarkerView } from '../../misc/location_marker_view';
+import { ProviderMarkerView } from '../../misc/provider_marker_view';
 import { vr, defaultBorderRadius } from '../../../styles/units';
 import { white, superDarkGrey } from '../../../styles/colors';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
@@ -117,7 +118,9 @@ export class NaloRequestorHomeScene extends Component {
               <LocationMarkerView />
             </MapView.Marker>
             {deliveryProviders.map((deliveryProvider) => (
-              <MapView.Marker key={deliveryProvider.id} coordinate={deliveryProvider.location} />
+              <MapView.Marker key={deliveryProvider.id} coordinate={deliveryProvider.location}>
+                <ProviderMarkerView />
+              </MapView.Marker>
             ))}
           </MapView>
           {status === RequestStatus.NOT_YET_REQUESTED ? (
