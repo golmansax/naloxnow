@@ -166,7 +166,6 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='toolkitCall911Scene'
                   component={OverdoseToolkitCall911Scene}
-                  hideBackImage
                 />
                 <Scene
                   {...tabSceneProps}
