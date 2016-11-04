@@ -16,6 +16,15 @@ export async function openDirections() {
           })
           .toString();
 
+      case 'android':
+        // return `google.navigation:q=${locationToString(requestor.location)}`;
+        return new URI('http://maps.google.com/maps')
+          .search({
+            saddr: locationToString(provider.location),
+            daddr: locationToString(requestor.location),
+          })
+          .toString();
+
       default: throw new Error(`Directions url not specified for OS: ${OS}`);
     }
   })();

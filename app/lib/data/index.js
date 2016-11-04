@@ -11,7 +11,7 @@ export const deliveryProviders = [
     id: 'uber',
     title: 'Holman Gao',
     subtitle: '5 star Uber driver',
-    time: 7,
+    time: 11,
     location: {
       // Saigon Sandwich
       latitude: 37.783156,

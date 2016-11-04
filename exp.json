@@ -8,6 +8,7 @@
   "primaryColor": "#0b56a4",
   "iconUrl": "https://golmansax.com/CzrpuyF0Rc/static/odresponse-square-logo.png",
   "notification": {
+    "androidMode": "default",
     "iconUrl": "https://golmansax.com/CzrpuyF0Rc/static/odresponse-square-logo.png",
     "color": "#0b56a4"
   },
