@@ -16,6 +16,7 @@ import { LocationMarkerView } from '../../misc/location_marker_view';
 import { DirectionsPolyline } from '../../misc/directions_polyline';
 import { vr } from '../../../styles/units';
 import { nnRed } from '../../../styles/colors';
+import { openDirections } from './utils';
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +73,9 @@ export class NaloProviderHomeScene extends Component {
             status: newStatus,
           }),
         });
+      }
+      if (newStatus === RequestStatus.ACCEPTED) {
+        openDirections();
       }
     });
   }
