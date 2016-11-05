@@ -99,8 +99,6 @@ export class NaloRequestorHomeScene extends Component {
   }
 
   render() {
-    const { request } = this.props;
-
     return (
       <RequestAlertLayout style={styles.container}>
         <View>
