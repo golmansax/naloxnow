@@ -4,13 +4,14 @@ import { View, Text, Image } from '../base';
 import { titleFontStyle } from '../../styles/fonts';
 import { getImage } from '../../lib/images';
 import { stateHasBackButton } from './nav_utils';
-import { RequestAlert } from './request_alert';
+import { AcceptedRequestAlert } from './accepted_request_alert';
+import { RequestedRequestAlert } from './requested_request_alert';
 import { provider } from '../../lib/data';
 import { RequestStatus } from '../../lib/constants';
 import { firebaseDB } from '../../lib/firebase';
+import { superDarkGrey } from '../../styles/colors';
 import { getGlobalState, setGlobalState } from '../../lib/global_state';
 import { vr } from '../../styles/units';
-import { white } from '../../styles/colors';
 
 const height = vr(1.5);
 const styles = StyleSheet.create({
@@ -42,10 +43,27 @@ const styles = StyleSheet.create({
   },
 
   alert: {
-    marginTop: 3,
-    backgroundColor: white,
+    marginTop: 5,
+    shadowColor: superDarkGrey,
+    shadowOpacity: 0.8,
+    shadowOffset: {
+      height: 1,
+      width: 0,
+    },
   },
 });
+
+function statusToAlert(status) {
+  switch (status) {
+    case RequestStatus.ACCEPTED:
+      return <AcceptedRequestAlert style={styles.alert} provider={provider} />;
+
+    case RequestStatus.REQUESTED:
+      return <RequestedRequestAlert style={styles.alert} />;
+
+    default: return null;
+  }
+}
 
 export class NavBarTitle extends Component {
   static propTypes = {
@@ -56,18 +74,20 @@ export class NavBarTitle extends Component {
   };
 
   state = {
-    showAlert: false,
+    alert: null,
   };
 
   componentDidMount() {
     const cachedStatus = getGlobalState('cachedStatus');
     if (cachedStatus) {
-      this.state.showAlert = (cachedStatus === RequestStatus.ACCEPTED);
+      this.state.alert = statusToAlert(cachedStatus);
     }
 
     this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
       const newStatus = snapshot.val();
-      this.setState({ showAlert: (newStatus === RequestStatus.ACCEPTED) });
+      this.setState({
+        alert: statusToAlert(newStatus),
+      });
       setGlobalState({ cachedStatus: newStatus });
     });
   }
@@ -79,7 +99,6 @@ export class NavBarTitle extends Component {
   render() {
     const { titleWrapperStyle, titleStyle, navigationState, hideBackImage } = this.props;
     const hasBackButton = stateHasBackButton(navigationState) && !hideBackImage;
-    const { showAlert } = this.state;
 
     return (
       <View
@@ -92,7 +111,7 @@ export class NavBarTitle extends Component {
           />
           <Text style={[styles.title, titleStyle]}>ODResponse</Text>
         </View>
-        {showAlert ? <RequestAlert style={styles.alert} provider={provider} /> : null}
+        {this.state.alert}
       </View>
     );
   }

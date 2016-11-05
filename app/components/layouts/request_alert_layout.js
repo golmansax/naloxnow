@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     marginTop: vr(6),
   },
 
+  contentWithSmallAlert: {
+    marginTop: vr(2),
+  },
+
   alert: {
     position: 'absolute',
     top: 0,
@@ -33,6 +37,18 @@ const styles = StyleSheet.create({
   },
 });
 
+function statusToStyle(status) {
+  switch (status) {
+    case RequestStatus.ACCEPTED:
+      return styles.contentWithAlert;
+
+    case RequestStatus.REQUESTED:
+      return styles.contentWithSmallAlert;
+
+    default: return null;
+  }
+}
+
 export class RequestAlertLayout extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -40,18 +56,20 @@ export class RequestAlertLayout extends Component {
   };
 
   state = {
-    showAlert: false,
+    alertStyle: null,
   };
 
   componentDidMount() {
     const cachedStatus = getGlobalState('cachedStatus');
     if (cachedStatus) {
-      this.state.showAlert = (cachedStatus === RequestStatus.ACCEPTED);
+      this.state.alertStyle = statusToStyle(cachedStatus);
     }
 
     this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
       const newStatus = snapshot.val();
-      this.setState({ showAlert: (newStatus === RequestStatus.ACCEPTED) });
+      this.setState({
+        alertStyle: statusToStyle(newStatus),
+      });
       setGlobalState({ cachedStatus: newStatus });
     });
   }
@@ -62,12 +80,12 @@ export class RequestAlertLayout extends Component {
 
   render() {
     const { style, children } = this.props;
-    const { showAlert } = this.state;
+    const { alertStyle } = this.state;
 
     return (
       <View style={styles.container}>
         <ScrollView
-          style={[styles.content, showAlert ? styles.contentWithAlert : null]}
+          style={[styles.content, alertStyle]}
           contentContainerStyle={[styles.contentContainer, style]}
           >
           {children}

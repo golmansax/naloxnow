@@ -2,21 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, View, TouchableHighlight, Image } from '../base';
 import { vr, pressedOpacity } from '../../styles/units';
-import { superLightGrey, nnRed, white, lightGrey, superDarkGrey } from '../../styles/colors';
+import { superLightGrey, nnRed, white, lightGrey } from '../../styles/colors';
 import { RequestStatus } from '../../lib/constants';
 import { firebaseDB } from '../../lib/firebase';
 import { getImage } from '../../lib/images';
 
 const styles = StyleSheet.create({
-  container: {
-    shadowColor: superDarkGrey,
-    shadowOpacity: 0.8,
-    shadowOffset: {
-      height: 1,
-      width: 0,
-    },
-  },
-
   content: {
     paddingTop: vr(0.5),
     paddingBottom: vr(0.5),
@@ -41,6 +32,7 @@ const styles = StyleSheet.create({
 
   time: {
     flex: 1,
+    backgroundColor: white,
   },
 
   timeText: {
@@ -69,7 +61,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export class RequestAlert extends Component {
+export class AcceptedRequestAlert extends Component {
   static propTypes = {
     provider: PropTypes.object.isRequired,
     style: View.propTypes.style,
