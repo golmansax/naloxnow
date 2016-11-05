@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
 
-  contentContainer: {
+  minHeight: {
     minHeight: height - navbarHeight - tabHeight,
   },
 });
@@ -51,8 +51,13 @@ function statusToStyle(status) {
 
 export class RequestAlertLayout extends Component {
   static propTypes = {
+    addMinHeight: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
     style: View.propTypes.style,
+  };
+
+  static defaultProps = {
+    addMinHeight: true,
   };
 
   state = {
@@ -79,14 +84,14 @@ export class RequestAlertLayout extends Component {
   }
 
   render() {
-    const { style, children } = this.props;
+    const { style, children, addMinHeight } = this.props;
     const { alertStyle } = this.state;
 
     return (
       <View style={styles.container}>
         <ScrollView
           style={[styles.content, alertStyle]}
-          contentContainerStyle={[styles.contentContainer, style]}
+          contentContainerStyle={[addMinHeight && styles.minHeight, style]}
           >
           {children}
         </ScrollView>

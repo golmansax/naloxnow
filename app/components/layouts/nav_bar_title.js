@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { Alert, StyleSheet } from 'react-native';
 import { View, Text, Image } from '../base';
 import { titleFontStyle } from '../../styles/fonts';
 import { getImage } from '../../lib/images';
@@ -69,26 +69,37 @@ export class NavBarTitle extends Component {
   static propTypes = {
     hideBackImage: PropTypes.bool,
     navigationState: PropTypes.object.isRequired,
+    showProviderAlert: PropTypes.bool.isRequired,
     titleStyle: Text.propTypes.style,
     titleWrapperStyle: View.propTypes.style,
   };
 
+  static defaultProps = {
+    showProviderAlert: true,
+  };
+
   state = {
-    alert: null,
+    status: null,
   };
 
   componentDidMount() {
     const cachedStatus = getGlobalState('cachedStatus');
     if (cachedStatus) {
-      this.state.alert = statusToAlert(cachedStatus);
+      this.state.status = cachedStatus;
     }
 
     this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
       const newStatus = snapshot.val();
-      this.setState({
-        alert: statusToAlert(newStatus),
-      });
-      setGlobalState({ cachedStatus: newStatus });
+      if (this.props.showProviderAlert &&
+          newStatus === RequestStatus.ACCEPTED && newStatus !== this.state.status) {
+        Alert.alert(
+          'Naloxone request accepted',
+          `Naloxone is on its way, and will be delivered in ${provider.time} minutes`,
+        );
+      }
+
+      this.setState({ status: newStatus });
+      setGlobalState('cachedStatus', newStatus);
     });
   }
 
@@ -97,7 +108,9 @@ export class NavBarTitle extends Component {
   }
 
   render() {
-    const { titleWrapperStyle, titleStyle, navigationState, hideBackImage } = this.props;
+    const {
+      titleWrapperStyle, titleStyle, navigationState, hideBackImage, showProviderAlert,
+    } = this.props;
     const hasBackButton = stateHasBackButton(navigationState) && !hideBackImage;
 
     return (
@@ -111,7 +124,7 @@ export class NavBarTitle extends Component {
           />
           <Text style={[styles.title, titleStyle]}>ODResponse</Text>
         </View>
-        {this.state.alert}
+        {showProviderAlert && statusToAlert(this.state.status)}
       </View>
     );
   }

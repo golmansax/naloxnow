@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import {
   MapView, Text, View, Button,
 } from '../../base';
 import { RequestStatus } from '../../../lib/constants';
 import { firebaseDB } from '../../../lib/firebase';
-import { deliveryProviders, provider, requestor } from '../../../lib/data';
+import { deliveryProviders, requestor } from '../../../lib/data';
 import { sendDefaultPushNotificationAsync } from '../../../lib/push_notifications';
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { ProviderMarkerView } from '../../misc/provider_marker_view';
@@ -80,18 +80,17 @@ export class NaloRequestorHomeScene extends Component {
   componentDidMount() {
     this.listener = firebaseDB().ref('request/status').on('value', (snapshot) => {
       const newStatus = snapshot.val();
-      if (newStatus === RequestStatus.ACCEPTED) {
-        Alert.alert(
-          'Naloxone request accepted',
-          `Naloxone is on its way, and will be delivered in ${provider.time} minutes`,
-          [{ text: 'OK', onPress: () => Actions.naloRequestorAcceptedRequestScene() }]
-        );
-      } else if (newStatus !== this.props.request.status) {
+      if (newStatus === RequestStatus.REQUESTED) {
+        Actions.naloRequestorAcceptedRequestScene();
+      }
+      /*
+      else if (newStatus !== this.props.request.status) {
         const request = Object.assign({}, this.props.request, {
           status: newStatus,
         });
         Actions.refresh({ request });
       }
+      */
     });
   }
 
@@ -101,7 +100,6 @@ export class NaloRequestorHomeScene extends Component {
 
   render() {
     const { request } = this.props;
-    const { status } = request;
 
     return (
       <RequestAlertLayout style={styles.container}>
@@ -127,26 +125,18 @@ export class NaloRequestorHomeScene extends Component {
               </MapView.Marker>
             ))}
           </MapView>
-          {status === RequestStatus.NOT_YET_REQUESTED ? (
-            <Button
-              size='large'
-              design='urgent'
-              style={styles.button}
-              onPress={() => {
-                firebaseDB().ref('request/status').set(RequestStatus.REQUESTED);
-                sendDefaultPushNotificationAsync()
-                  .catch((err) => console.log(err)); // eslint-disable-line no-console
-              }}
-              >
-              Request Naloxone Now
-            </Button>
-          ) : (
-            <View style={styles.requestedModal}>
-              <Text style={styles.requestingText} size='large' title>
-                Requesting naloxone...
-              </Text>
-            </View>
-          )}
+          <Button
+            size='large'
+            design='urgent'
+            style={styles.button}
+            onPress={() => {
+              firebaseDB().ref('request/status').set(RequestStatus.REQUESTED);
+              sendDefaultPushNotificationAsync()
+                .catch((err) => console.log(err)); // eslint-disable-line no-console
+            }}
+            >
+            Request Naloxone Now
+          </Button>
         </View>
       </RequestAlertLayout>
     );

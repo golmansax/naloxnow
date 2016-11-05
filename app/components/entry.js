@@ -5,7 +5,6 @@ import { ChooseRoleScene } from './scenes/choose_role_scene';
 import { NaloRequestorHomeScene } from './scenes/nalo_requestor/home_scene';
 import { NaloRequestorAcceptedRequestScene } from './scenes/nalo_requestor/accepted_request_scene';
 import { NaloProviderHomeScene } from './scenes/nalo_provider/home_scene';
-import { NaloProviderAcceptedRequestScene } from './scenes/nalo_provider/accepted_request_scene';
 import { DrawerLayout } from './layouts/drawer_layout';
 import { nnBlue, white, lightGrey } from '../styles/colors';
 import { mainFontStyle } from '../styles/fonts';
@@ -220,12 +219,7 @@ export class Entry extends Component {
                 key='naloProviderHomeScene'
                 component={NaloProviderHomeScene}
                 hideBackImage
-              />
-              <Scene
-                {...defaultSceneProps}
-                key='naloProviderAcceptedRequestScene'
-                component={NaloProviderAcceptedRequestScene}
-                duration={1}
+                showProviderAlert={false}
               />
             </Scene>
           </Scene>

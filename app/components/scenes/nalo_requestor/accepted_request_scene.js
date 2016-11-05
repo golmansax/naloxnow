@@ -1,26 +1,20 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Text, Button, View } from '../../base';
+import { Text, Button } from '../../base';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 import { vr } from '../../../styles/units';
 import { nnRed } from '../../../styles/colors';
-import { provider } from '../../../lib/data';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: vr(1),
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
 
   button: {
     marginTop: vr(0.5),
-  },
-
-  banner: {
-    textAlign: 'center',
-    marginBottom: vr(1),
   },
 
   disclaimer: {
@@ -33,24 +27,27 @@ const styles = StyleSheet.create({
   },
 });
 
-function toToolkit() {
+function toAdminister() {
+  Actions.toolkitAdministerNaloxoneScene();
+}
+
+function toBreathing() {
   Actions.toolkitSupportBreathingScene();
 }
 
 export const NaloRequestorAcceptedRequestScene = () => (
-  <RequestAlertLayout style={styles.container}>
-    <View>
-      <Text title size='large' style={styles.banner}>
-        Your naloxone is on its way and will arrive in{' '}
-        <Text style={styles.red} size='large' title>{provider.time} mins</Text>.
-      </Text>
-      <Text style={styles.disclaimer}>
-        While you are waiting for the naloxone, if you are nearby a patient,
-        you should proceed to support breathing.
-      </Text>
-      <Button onPress={toToolkit}>
-        How to support breathing
-      </Button>
-    </View>
+  <RequestAlertLayout addMinHeight={false} style={styles.container}>
+    <Text style={styles.disclaimer} title size='xLarge'>
+      Suggested actions while waiting for naloxone
+    </Text>
+    <Button design='urgent'>
+      Call 911
+    </Button>
+    <Button onPress={toBreathing} style={styles.button}>
+      How to support breathing
+    </Button>
+    <Button onPress={toAdminister} style={styles.button}>
+      How to administer naloxone
+    </Button>
   </RequestAlertLayout>
 );
