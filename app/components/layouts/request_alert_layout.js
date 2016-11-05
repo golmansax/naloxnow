@@ -1,8 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Dimensions, ScrollView, StyleSheet } from 'react-native';
-import { provider } from '../../lib/data';
 import { View } from '../base';
-import { RequestAlert } from './request_alert';
 import { RequestStatus } from '../../lib/constants';
 import { firebaseDB } from '../../lib/firebase';
 import { getGlobalState, setGlobalState } from '../../lib/global_state';
@@ -74,7 +72,6 @@ export class RequestAlertLayout extends Component {
           >
           {children}
         </ScrollView>
-        {showAlert ? <RequestAlert style={styles.alert} provider={provider} /> : null}
       </View>
     );
   }

@@ -122,7 +122,7 @@ export class Entry extends Component {
       sceneStyle: styles.content,
       rightTitle: 'Menu',
       onRight: () => Actions.refresh({ key: 'drawer', open: true }),
-      renderTitle: NavBarTitle,
+      renderTitle: (props) => <NavBarTitle {...props} />,
       // renderBackButton: BackButton,
       backButtonImage: getImage('chevron'),
       leftButtonIconStyle: styles.back,
