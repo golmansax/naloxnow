@@ -11,7 +11,7 @@ import { sendDefaultPushNotificationAsync } from '../../../lib/push_notification
 import { LocationMarkerView } from '../../misc/location_marker_view';
 import { ProviderMarkerView } from '../../misc/provider_marker_view';
 import { vr, defaultBorderRadius } from '../../../styles/units';
-import { nnRed, white, superDarkGrey } from '../../../styles/colors';
+import { nnRed, white, superDarkGrey, superLightGrey } from '../../../styles/colors';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 
 const styles = StyleSheet.create({
@@ -24,12 +24,11 @@ const styles = StyleSheet.create({
   },
 
   title: {
+    flex: 1,
     paddingTop: vr(0.25),
     paddingBottom: vr(0.25),
     paddingRight: vr(1),
     paddingLeft: vr(1),
-    borderColor: white,
-    borderBottomWidth: 1,
   },
 
   mapContainer: {
@@ -63,6 +62,20 @@ const styles = StyleSheet.create({
       height: 1,
       width: 0,
     },
+  },
+
+  titleContainer: {
+    flexDirection: 'row',
+  },
+
+  titleButton: {
+    flex: 1,
+    paddingTop: vr(0.25),
+    paddingBottom: vr(0.25),
+    paddingRight: vr(1),
+    paddingLeft: vr(1),
+    backgroundColor: superLightGrey,
+    textAlign: 'center',
   },
 });
 
@@ -101,9 +114,12 @@ export class NaloRequestorHomeScene extends Component {
   render() {
     return (
       <RequestAlertLayout style={styles.container}>
-        <View>
+        <View style={styles.titleContainer}>
           <Text style={styles.title}>
-            {deliveryProviders.length} naloxone delivery providers nearby
+            {deliveryProviders.length} drivers nearby
+          </Text>
+          <Text style={styles.titleButton}>
+            Find retailers
           </Text>
         </View>
         <View style={styles.mapContainer}>
