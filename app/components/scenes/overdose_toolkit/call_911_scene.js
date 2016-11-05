@@ -9,12 +9,13 @@ import { vr } from '../../../styles/units';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     padding: vr(1),
   },
 
   text: {
     textAlign: 'center',
+    marginTop: vr(1),
   },
 
   numberContainer: {
@@ -35,14 +36,21 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginBottom: vr(1),
     color: nnRed,
+    textAlign: 'center',
+  },
+
+  mainTitle: {
+    marginTop: vr(1),
   },
 
   section: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  mainSection: {
+    flex: 1,
   },
 
   firstNumber: {
@@ -56,7 +64,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    marginTop: vr(0.5),
+    marginTop: vr(1),
   },
 });
 
@@ -64,24 +72,34 @@ function nextStep() {
   Actions.toolkitObtainNaloxoneScene();
 }
 
+/* Hiding this for now
+  <View style={styles.numberContainer}>
+    {[9, 1, 1].map((number, index) => (
+      <View key={index} style={[styles.number, index === 0 ? styles.firstNumber : null]}>
+        <Text title style={styles.numberText}>{number}</Text>
+      </View>
+    ))}
+  </View>
+*/
+
 export const OverdoseToolkitCall911Scene = () => (
   <RequestAlertLayout style={styles.container}>
-    <View style={styles.numberContainer}>
-      {[9, 1, 1].map((number, index) => (
-        <View key={index} style={[styles.number, index === 0 ? styles.firstNumber : null]}>
-          <Text title style={styles.numberText}>{number}</Text>
-        </View>
-      ))}
-    </View>
-    <View style={styles.section}>
-      <Text size='xLarge' style={styles.title}>Call 911</Text>
+    <View style={[styles.section, styles.mainSection]}>
+      <Text title size='large' style={styles.title}>
+        If you are in a potential emergency situation:{' '}
+      </Text>
+      <Text size='xLarge' title bold style={[styles.title, styles.mainTitle]}>
+        Call 911 immediately
+      </Text>
+      <Button style={styles.button} design='urgent' size='large'>
+        Call 911
+      </Button>
       <Text style={styles.text}>
-        Make sure to give an accurate location to first responders
+        Make sure to give an accurate location to first responders.
       </Text>
     </View>
     <View style={styles.section}>
-      <Button design='urgent' size='large'>Call 911</Button>
-      <Button onPress={nextStep} style={styles.button}>Move to next step</Button>
+      <Button onPress={nextStep} style={styles.button}>Next step</Button>
     </View>
   </RequestAlertLayout>
 );

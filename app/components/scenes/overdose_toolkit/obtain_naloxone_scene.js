@@ -43,8 +43,8 @@ export const OverdoseToolkitObtainNaloxoneScene = () => (
     <View style={styles.textContainer}>
       <Text size='xLarge' style={styles.title} title>Obtain naloxone</Text>
       <Text style={styles.text}>
-        If the patient is suspected of taking too many opioids, it is best to
-        obtain naloxone immediately.
+        If the patient is exhibiting shallow breathing, small pupils, or
+        suspected of taking opiods, obtain naloxone immediately.
       </Text>
     </View>
     <View>
@@ -55,7 +55,7 @@ export const OverdoseToolkitObtainNaloxoneScene = () => (
         I already have naloxone
       </Button>
       <Button onPress={() => Actions.toolkitSupportBreathingScene()} style={styles.button}>
-        Skip this step
+        I don&rsquo;t need naloxone
       </Button>
     </View>
   </RequestAlertLayout>

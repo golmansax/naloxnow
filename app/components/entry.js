@@ -12,6 +12,9 @@ import { mainFontStyle } from '../styles/fonts';
 import { pressedOpacity, tabHeight, navbarHeight } from '../styles/units';
 import { OverdoseToolkitCall911Scene } from './scenes/overdose_toolkit/call_911_scene';
 import {
+  OverdoseToolkitMonitorPatientScene,
+} from './scenes/overdose_toolkit/monitor_patient_scene';
+import {
   OverdoseToolkitObtainNaloxoneScene,
 } from './scenes/overdose_toolkit/obtain_naloxone_scene';
 import {
@@ -161,6 +164,7 @@ export class Entry extends Component {
                 title='Overdose Toolkit'
                 icon={Tab}
                 iconName='info-circle'
+                initial
                 >
                 <Scene
                   {...tabSceneProps}
@@ -181,6 +185,11 @@ export class Entry extends Component {
                   {...tabSceneProps}
                   key='toolkitSupportBreathingScene'
                   component={OverdoseToolkitSupportBreathingScene}
+                />
+                <Scene
+                  {...tabSceneProps}
+                  key='toolkitMonitorPatientScene'
+                  component={OverdoseToolkitMonitorPatientScene}
                 />
               </Scene>
               <Scene

@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { Button, View, Text, Image } from '../../base';
 import { RequestAlertLayout } from '../../layouts/request_alert_layout';
 import { nnRed } from '../../../styles/colors';
@@ -36,6 +37,10 @@ const styles = StyleSheet.create({
   },
 });
 
+function nextStep() {
+  Actions.toolkitMonitorPatientScene();
+}
+
 export const OverdoseToolkitAdministerNaloxoneScene = () => (
   <RequestAlertLayout style={styles.container}>
     <View style={styles.textContainer}>
@@ -50,7 +55,7 @@ export const OverdoseToolkitAdministerNaloxoneScene = () => (
       </Text>
     </View>
     <View>
-      <Button style={styles.button}>
+      <Button style={styles.button} onPress={nextStep}>
         Next step
       </Button>
     </View>
