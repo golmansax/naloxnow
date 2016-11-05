@@ -16,6 +16,7 @@ export const deliveryProviders = [
       // Saigon Sandwich
       latitude: 37.783156,
       longitude: -122.417475,
+      rotation: '80deg',
     },
   },
   {
@@ -27,6 +28,7 @@ export const deliveryProviders = [
       // Deli Board
       latitude: 37.777642,
       longitude: -122.406457,
+      rotation: '150deg',
     },
   },
   {
@@ -38,6 +40,7 @@ export const deliveryProviders = [
       // Cellarmaker
       latitude: 37.777120,
       longitude: -122.410657,
+      rotation: '-30deg',
     },
   },
   {
@@ -46,9 +49,10 @@ export const deliveryProviders = [
     subtitle: '253 2nd Ave, San Mateo, CA',
     time: 7,
     location: {
-      // REI
-      latitude: 37.773091,
-      longitude: -122.404331,
+      // The Mosser
+      latitude: 37.785057,
+      longitude: -122.404901,
+      rotation: '50deg',
     },
   },
 ];

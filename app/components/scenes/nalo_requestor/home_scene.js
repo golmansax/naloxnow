@@ -123,7 +123,7 @@ export class NaloRequestorHomeScene extends Component {
             </MapView.Marker>
             {deliveryProviders.map((deliveryProvider) => (
               <MapView.Marker key={deliveryProvider.id} coordinate={deliveryProvider.location}>
-                <ProviderMarkerView />
+                <ProviderMarkerView provider={deliveryProvider} />
               </MapView.Marker>
             ))}
           </MapView>
