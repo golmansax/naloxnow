@@ -42,19 +42,15 @@ export const OverdoseToolkitSupportBreathingScene = () => (
       <Image source={getImage('breathing')} style={styles.image} />
       <Text size='xLarge' style={styles.title} title>Support Breathing</Text>
       <Text style={styles.text}>
-        While waiting for medical responders, it is important that the patient
-        is able to breathe.
+        Look inside the patient&rsquo;s mouth and remove visible debris.
       </Text>
       <Text style={styles.text}>
-        Clear airway
-      </Text>
-      <Text style={styles.text}>
-        Turn the patient onto the side
+        Turn the patient onto their side.
       </Text>
     </View>
     <View>
       <Button style={styles.button}>
-        Skip this step
+        Next step
       </Button>
     </View>
   </RequestAlertLayout>

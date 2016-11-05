@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
 
   text: {
     textAlign: 'center',
+    marginTop: vr(1),
   },
 
   textContainer: {
@@ -27,7 +28,6 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginBottom: vr(1),
     color: nnRed,
   },
 
@@ -42,12 +42,16 @@ export const OverdoseToolkitAdministerNaloxoneScene = () => (
       <Image source={getImage('needle')} style={styles.image} />
       <Text size='xLarge' style={styles.title} title>Administer naloxone</Text>
       <Text style={styles.text}>
-        Depending on what naloxone you have...
+        If you have the naloxone auto-injector, place and apply on the upper leg.
+      </Text>
+      <Text style={styles.text}>
+        If you have the naloxone nasal spray, assemble nasal atomizer and
+        deliver half the dose to each nostril.
       </Text>
     </View>
     <View>
       <Button style={styles.button}>
-        Skip this step
+        Next step
       </Button>
     </View>
   </RequestAlertLayout>
