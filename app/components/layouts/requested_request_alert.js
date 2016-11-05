@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ActivityIndicator } from 'react-native';
 import { Text, View } from '../base';
 import { vr } from '../../styles/units';
 import { nnRed, white } from '../../styles/colors';
@@ -11,10 +11,13 @@ const styles = StyleSheet.create({
     paddingRight: vr(1),
     paddingLeft: vr(1),
     backgroundColor: nnRed,
+    flexDirection: 'row',
   },
 
   text: {
+    flex: 1,
     color: white,
+    marginLeft: vr(1),
   },
 });
 
@@ -32,8 +35,13 @@ export class RequestedRequestAlert extends Component {
 
     return (
       <View style={[styles.container, style]} ref={(ref) => (this.rootRef = ref)}>
-        <Text style={styles.text}>
-          Naloxone requested...
+        <ActivityIndicator
+          animating
+          size='large'
+          color='white'
+        />
+        <Text bold style={styles.text}>
+          Requesting naloxone delivery from nearby providers...
         </Text>
       </View>
     );

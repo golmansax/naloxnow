@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 
   contentWithSmallAlert: {
-    marginTop: vr(2),
+    marginTop: vr(3),
   },
 
   alert: {
