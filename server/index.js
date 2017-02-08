@@ -7,7 +7,8 @@ const server = express();
 
 server.use(morgan('common'));
 server.use(bodyParser.json());
-server.get('/push', async function(req, res) {
+// eslint-disable-next-line prefer-arrow-callback
+server.get('/push', async function (req, res) {
   const response = await sendPushNotificationAsync(req.query.message);
   res.send(response);
 });
