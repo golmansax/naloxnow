@@ -2,6 +2,8 @@
 
 https://www.challenge.gov/challenge/the-2016-fda-naloxone-app-competition/
 
+Built with [ExponentJS](https://getexponent.com/) and React Native
+
 ### Requirements
 1. Node.js v6.6 or higher
 2. Exponent XDE https://docs.getexponent.com/versions/v10.0.0/introduction/installation.html
